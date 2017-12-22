@@ -15,6 +15,37 @@
   cursor: pointer;
 }
 
-.row.tabs {
-  margin: 3em 0;
+.wrapper-wood {
+  /* background-image: url('/images/Desktop.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  min-height: 500px;
+  padding: 1em 0.5em; */
+
+  background-image: url(/images/Desktop.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+  padding: 1em 0.5em;
 }
+
+.main-content {
+  background-color: rgba(255,255,255,0.8);
+  color: #A3643A;
+  border-radius: 0.3em;
+}
+
+.image {
+  margin-left: -10px;
+  padding: 1em;
+}
+
+/* .mazanec {
+  background-image: url('/images/mazanec.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  min-height: 500px;
+  border-radius: 0.4em;
+} */
