@@ -1,28 +1,22 @@
-.active {
-  color: #bada55;
+/*
+*  COLORS:
+*
+*  basic: #A3643A
+*/
+
+body {
+  font-size: 1.125em;
 }
 
-.number {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #3d3d3d;
-  border-radius: 50%;
-  padding: 0.75em;
-  font-size: 2em;
-  line-height: 1.5;
-  text-align: center;
-  margin: 0 auto;
-  cursor: pointer;
+a {
+  color: #A3643A;
+}
+
+h2 {
+  font-size: 1.375em;
 }
 
 .wrapper-wood {
-  /* background-image: url('/images/Desktop.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100%;
-  min-height: 500px;
-  padding: 1em 0.5em; */
-
   background-image: url(/images/Desktop.png);
   background-repeat: no-repeat;
   background-position: 0 0;
@@ -41,11 +35,71 @@
   padding: 1em;
 }
 
-/* .mazanec {
-  background-image: url('/images/mazanec.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100%;
-  min-height: 500px;
-  border-radius: 0.4em;
-} */
+.contact-info {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em auto;
+}
+
+.tab-icon {
+  border: 1px solid #A3643A;
+  border-radius: 50%;
+  padding: 1em;
+  line-height: 1;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+  font-size: 2.25em;
+  position: relative;
+}
+
+.tab-icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.tab-active {
+  background-color: #A3643A;
+  color: #fff;
+}
+
+.tab-active ~ .tab-heading {
+  font-weight: 700;
+}
+
+.tab-heading {
+  margin-top: 0.5em;
+}
+
+.attributes h2 {
+  text-align: center;
+  font-weight: 700;
+  margin: 1em auto;
+}
+
+.attributes ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.attributes ul li {
+  border: 1px solid #A3643A;
+  padding: 1em 2em;
+  border-radius: 0.25em;
+}
+
+.attributes ul li.selected {
+  border: 1px solid #A3643A;
+  background-color: #A3643A;
+  color: #fff;
+  padding: 1em 2em;
+  border-radius: 0.25em;
+}

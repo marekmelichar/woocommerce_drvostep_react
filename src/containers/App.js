@@ -35,8 +35,6 @@ class App extends Component {
       // btoa(key:secret) from WooCommerce API
       baseURL: 'https://drvostepstaging.marekmelichar.cz/wp-json/wc/v2/products',
       headers: {'Authorization': `Basic ${btoa('ck_9f0085f12fddda97bdd774930973eccb7605b7fb:cs_3e7b6168aeab374dd92ddfdfce2199ef062559aa')}`},
-      // baseURL: 'https://woocommerce.marekmelichar.cz/wp-json/wc/v2/products',
-      // headers: {'Authorization': `Basic ${btoa('ck_a1dc7487f74328e855ad20e7bfc7924da15ebcfc:cs_83abaadb572428a054eebf57415bc09d1fb0f1c8')}`},
       maxRedirects: 0,
     });
 
@@ -58,25 +56,19 @@ class App extends Component {
   }
 
   renderAttributes = () => {
-    const {wood, attributes, opt1, opt2} = this.state
+    const {wood, attributes} = this.state
 
-    // console.log(wood, opt1, opt2);
-
-    if (this.state.wood.id) {
-      return (
-        <div>
-          {attributes.map(itm => {
-            // console.log(itm);
-            return <div key={itm.name}>
-              <h1>{itm.name}</h1>
+    if (wood.id) {
+        return attributes.map(itm => {
+          return <div key={itm.name} className="attributes">
+            <h2>{itm.name}</h2>
+            <ul>
               {itm.options.map(opt => {
-                return <h2 key={opt} className="aaa" onClick={(e) => this.handleOptionClick(e, itm.id, opt)}>{opt}</h2>
+                return <li key={opt} onClick={(e) => this.handleOptionClick(e, itm.id, opt)}>{opt}</li>
               })}
-            </div>
-          })}
-          {/* <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/?add-to-cart=${wood.id}&attribute_pa_delka=${opt2}&attribute_pa_drevo=${opt1}` : '#'}>SEND TO CART</a> */}
-          <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt2}&attribute_pa_drevo=${opt1}` : '#'}>SEND TO CART</a>
-        </div>
+            </ul>
+          </div>
+        }
       )
     }
 
@@ -84,9 +76,8 @@ class App extends Component {
   }
 
   handleOptionClick = (e, id, opt) => {
-    // console.log('click ', e.target.className, id, opt);
 
-    e.target.classList.toggle('active')
+    e.target.classList.toggle('selected')
 
     if (id === 8) {
       return this.setState({ opt1: opt })
@@ -98,58 +89,56 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.tab1, this.state.tab2);
+    const {tab1, tab2, tab3} = this.state
+
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
         <div className="row main-content">
           <div className="column size_50">
             <div className="image">
-              {/* <div className="mazanec"></div> */}
                 <img src="/images/mazanec.png" alt="Jiri Mazanec - Drvostep" />
             </div>
             <div className="row">
               <div className="column size_100 text-center">
-                <p>Jmenuji se Jiří Mazanec a vyřeším s vámi vaši objednávku.</p>
+                <p>Jmenuji se <strong>Jiří Mazanec</strong> a vyřeším s vámi vaši objednávku.</p>
               </div>
             </div>
             <div className="row">
-              <div className="column size_50 text-center">
+              <div className="column size_50 contact-info">
                 <p>E-mail:</p>
                 <a href="mailto:jiri.mazanec@drvostep.eu">jiri.mazanec@drvostep.eu</a>
               </div>
-              <div className="column size_50 text-center">
+              <div className="column size_50 contact-info">
                 <p>Telefon:</p>
                 <a href="tel:+420 999 999 999">+420 999 999 999</a>
               </div>
               <div className="column size_50"></div>
             </div>
-
-            {/* <p>Jmenuji se Jiří Mazanec a vyřeším s vámi vaši objednávku.</p>
-
-            <p>E-mail:</p>
-            <a href="mailto:jiri.mazanec@drvostep.eu">jiri.mazanec@drvostep.eu</a>
-
-            <p>Telefon:</p>
-            <a href="tel:+420 999 999 999">+420 999 999 999</a> */}
-
           </div>
           <div className="column size_50">
 
-            <div className="row">
-              <div className="column size_33">
-                <div className="number" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false })}>1</div>
+            <div className="tabs">
+              <div className="tab">
+                <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false })}>
+                  <i className="fas fa-tree"></i>
+                </div>
+                <div className="tab-heading">1. Dřevo</div>
               </div>
-              <div className="column size_33">
-                <div className="number" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>2</div>
+              <div className="tab">
+                <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+                  <i className="fas fa-truck"></i>
+                </div>
+                <div className="tab-heading">2. Doprava</div>
               </div>
-              <div className="column size_33">
-                <div className="number" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true })}>3</div>
+              <div className="tab">
+                <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true })}>
+                  <i className="fas fa-list-ul"></i>
+                </div>
+                <div className="tab-heading">3. Shrnutí</div>
               </div>
             </div>
 
-            {this.state.tab1 && <div>
-              {this.renderAttributes()}
-            </div>}
+            {this.state.tab1 && this.renderAttributes()}
 
             {this.state.tab2 && <div>TAB 2</div>}
             {this.state.tab3 && <div>TAB 3</div>}
