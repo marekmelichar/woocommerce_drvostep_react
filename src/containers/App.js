@@ -34,7 +34,7 @@ class App extends Component {
       method: 'get',
       // btoa(key:secret) from WooCommerce API
       baseURL: 'https://drvostepstaging.marekmelichar.cz/wp-json/wc/v2/products',
-      headers: {'Authorization': `Basic ${btoa('ck_9f0085f12fddda97bdd774930973eccb7605b7fb:cs_3e7b6168aeab374dd92ddfdfce2199ef062559aa')}`},
+      headers: {'Authorization': `Basic ${btoa('ck_4e2f7290e45ea1338c626f7f0b4073f1ce190ac9:cs_b14745a6ba61f5441c6e0d4c0a1a9ad03cde89a5')}`},
       maxRedirects: 0,
     });
 
@@ -47,7 +47,10 @@ class App extends Component {
           attributes
         })
       })
-      .catch(err => console.log('error', err))
+      .catch(error => {
+        console.log('error', error.message)
+        this.setState({ error: error.message })
+      })
 
   }
 
@@ -59,25 +62,53 @@ class App extends Component {
     const {wood, attributes} = this.state
 
     if (wood.id) {
-        return attributes.map(itm => {
-          return <div key={itm.name} className="attributes">
-            <h2>{itm.name}</h2>
-            <ul>
-              {itm.options.map(opt => {
-                return <li key={opt} onClick={(e) => this.handleOptionClick(e, itm.id, opt)}>{opt}</li>
-              })}
-            </ul>
-          </div>
-        }
+      return (
+        <form className="attributes">
+          {attributes.map(itm => {
+            return(
+              <div key={itm.id}>
+                <h2>{itm.name}</h2>
+                <ul className="flex">
+                  {itm.options.map((opt, i) => {
+                    return (
+                      <li className="item-wrapper" key={opt}>
+                        <input
+                          id={opt}
+                          type="radio"
+                          name={`wood${itm.id}`}
+                          value={opt}
+                          onClick={(e) => this.handleOptionClick(e, itm.id, opt)}
+                        />
+                        <label
+                          htmlFor={opt}
+                        >{opt}</label>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            )
+          })}
+        </form>
       )
     }
 
-    return <span>Loading....<Spinner /></span>
+    return (
+      <form className="attributes placeholders">
+        <h2><Spinner /></h2>
+        <h2><Spinner /></h2>
+        <h2><Spinner /></h2>
+
+        {this.state.error && <div className="error">{this.state.error}<i className="fas fa-exclamation-circle"></i></div>}
+      </form>
+    )
   }
 
   handleOptionClick = (e, id, opt) => {
 
-    e.target.classList.toggle('selected')
+    // console.log(e.target, id, opt);
+
+    // e.target.classList.toggle('selected')
 
     if (id === 8) {
       return this.setState({ opt1: opt })
@@ -89,7 +120,7 @@ class App extends Component {
   }
 
   render() {
-    const {tab1, tab2, tab3} = this.state
+    const {opt1, opt2, wood, tab1, tab2, tab3} = this.state
 
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
@@ -139,6 +170,7 @@ class App extends Component {
             </div>
 
             {this.state.tab1 && this.renderAttributes()}
+            {this.state.tab1 && <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}` : '#'}>SEND TO CART</a>}
 
             {this.state.tab2 && <div>TAB 2</div>}
             {this.state.tab3 && <div>TAB 3</div>}

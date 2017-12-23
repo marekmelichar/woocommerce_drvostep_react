@@ -16,6 +16,19 @@ h2 {
   font-size: 1.375em;
 }
 
+.error {
+  margin: 2em auto;
+  padding: 0.5em 0;
+  text-align: center;
+  color: #c0392b;
+  border: 1px solid #c0392b;
+  border-radius: 0.25em;
+}
+
+.error svg {
+  margin-left: 20px;
+}
+
 .wrapper-wood {
   background-image: url(/images/Desktop.png);
   background-repeat: no-repeat;
@@ -35,10 +48,17 @@ h2 {
   padding: 1em;
 }
 
+.image img {
+  border-radius: 0.4em;
+}
+
 .contact-info {
   margin: 1em 0;
   text-align: center;
 }
+
+
+/* TABS */
 
 .tabs {
   display: flex;
@@ -47,14 +67,15 @@ h2 {
 }
 
 .tab-icon {
+  width: 50px;
   border: 1px solid #A3643A;
   border-radius: 50%;
-  padding: 1em;
+  padding: 1.2em;
   line-height: 1;
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
-  font-size: 2.25em;
+  font-size: 1.5em;
   position: relative;
 }
 
@@ -74,32 +95,81 @@ h2 {
   font-weight: 700;
 }
 
+
+
+
 .tab-heading {
   margin-top: 0.5em;
 }
 
-.attributes h2 {
-  text-align: center;
-  font-weight: 700;
-  margin: 1em auto;
-}
+/* ATTRIBUTES */
 
-.attributes ul {
+.attributes .flex {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
 }
 
-.attributes ul li {
-  border: 1px solid #A3643A;
-  padding: 1em 2em;
-  border-radius: 0.25em;
+.attributes h2 {
+  text-align: center;
+  font-weight: 700;
+  margin: 1em auto 0.75em auto;
 }
 
-.attributes ul li.selected {
+.attributes input[type="radio"] {
+  visibility: hidden;
+}
+
+.attributes input[type="radio"] + label {
+  border: 1px solid #A3643A;
+  padding: 0.75em 1.25em;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.attributes input[type="radio"]:checked + label {
   border: 1px solid #A3643A;
   background-color: #A3643A;
   color: #fff;
-  padding: 1em 2em;
+  /* padding: 1em 2em; */
+  /* border-radius: 0.25em; */
+}
+
+
+
+
+/* PLACEHOLDERS FOR ATTRIBUTES */
+
+.attributes.placeholders h2 {
+  text-align: center;
+  font-weight: 700;
+  margin: 1.5em auto;
+  width: 9em;
+  height: 1.5em;
+  border: 1px solid #A3643A;
+}
+
+.attributes.placeholders ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.attributes.placeholders ul li {
+  padding: 1.5em 4em;
   border-radius: 0.25em;
+}
+
+/* SPINNER */
+
+.loader{
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+  /* vertical-align: top; */
+}
+
+.loader svg path,
+.loader svg rect{
+  fill: #A3643A;
 }
