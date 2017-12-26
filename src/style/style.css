@@ -173,3 +173,30 @@ h2 {
 .loader svg rect{
   fill: #A3643A;
 }
+
+
+
+
+
+
+/* WOOD RANGE INPUT */
+
+.wood-range-input {
+  margin: 2em auto 1em auto;
+}
+
+.wood-range-input h2 {
+  text-align: center;
+}
+
+.wood-counter {
+  background: red;
+  display: block;
+  border: 1px solid red;
+  height: 50px;
+}
+
+.wood-handler {
+  font-size: 2em;
+  cursor: pointer;
+}

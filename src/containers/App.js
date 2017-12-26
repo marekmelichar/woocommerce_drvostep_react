@@ -8,6 +8,9 @@ import _ from 'lodash'
 
 import Spinner from '../components/spinner/Spinner';
 
+// import InputRange from 'react-input-range'
+// import 'react-input-range/lib/css/index.css'
+
 class App extends Component {
 
   constructor() {
@@ -23,6 +26,8 @@ class App extends Component {
       tab1: true,
       tab2: false,
       tab3: false,
+      // value: 0,
+      woodAmount: 2
     }
   }
 
@@ -106,10 +111,6 @@ class App extends Component {
 
   handleOptionClick = (e, id, opt) => {
 
-    // console.log(e.target, id, opt);
-
-    // e.target.classList.toggle('selected')
-
     if (id === 8) {
       return this.setState({ opt1: opt })
     }
@@ -119,7 +120,35 @@ class App extends Component {
     }
   }
 
+  increaseWood = () => {
+    if (this.state.woodAmount < 7) {
+      this.setState({ woodAmount: this.state.woodAmount + 1 })
+    }
+  }
+
+  decreaseWood = () => {
+    if (this.state.woodAmount > 0) {
+      this.setState({ woodAmount: this.state.woodAmount - 1 })
+    }
+  }
+
+
+  renderWoodAmount = () => {
+    return(
+      <div className="wood-range-input">
+        <h2>Množství</h2>
+        <span className="wood-handler" onClick={this.decreaseWood}>-</span>
+        <div className="wood-counter" style={{ width: 100 / 7 * this.state.woodAmount + '%' }}></div>
+        <span className="wood-handler" onClick={this.increaseWood}>+</span>
+        <div>{this.state.woodAmount}</div>
+      </div>
+    )
+  }
+
   render() {
+
+    console.log(this.state.woodAmount);
+
     const {opt1, opt2, wood, tab1, tab2, tab3} = this.state
 
     return this.state.loading ? <div><Spinner /></div> : (
@@ -170,6 +199,7 @@ class App extends Component {
             </div>
 
             {this.state.tab1 && this.renderAttributes()}
+            {this.state.tab1 && this.renderWoodAmount()}
             {this.state.tab1 && <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}` : '#'}>SEND TO CART</a>}
 
             {this.state.tab2 && <div>TAB 2</div>}
