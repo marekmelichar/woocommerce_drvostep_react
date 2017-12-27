@@ -27,7 +27,9 @@ class App extends Component {
       tab2: false,
       tab3: false,
       // value: 0,
-      woodAmount: 2
+      woodAmount: 2,
+      compareToMoistWood: 1,
+      totalPrice: 1
     }
   }
 
@@ -137,10 +139,31 @@ class App extends Component {
     return(
       <div className="wood-range-input">
         <h2>Množství</h2>
-        <span className="wood-handler" onClick={this.decreaseWood}>-</span>
-        <div className="wood-counter" style={{ width: 100 / 7 * this.state.woodAmount + '%' }}></div>
-        <span className="wood-handler" onClick={this.increaseWood}>+</span>
-        <div>{this.state.woodAmount}</div>
+        <div className="wood-actual-info"><strong>{this.state.woodAmount === 0 ? 0 : (this.state.woodAmount * 1.1).toFixed(1) + ' prms'}</strong> suchého <i className="fas fa-info-circle"></i></div>
+        <div className="wood-body">
+          <div className="wood-handler-left no-select" onClick={this.decreaseWood}>-</div>
+          <div className="wood-counter">
+            <div className="filling" style={{ width: 100 / 7 * this.state.woodAmount + '%' }}></div>
+          </div>
+          <div className="wood-handler-right no-select" onClick={this.increaseWood}>+</div>
+        </div>
+        <div className="wood-comparison">odpovídá <strong>{this.state.compareToMoistWood} prms</strong> nedosušeného</div>
+        <div className="wood-info">Suché dřevo má výtopnost až o <strong>30 procent</strong> lepší a šetří vaše kamna i sousedské vztahy.</div>
+      </div>
+    )
+  }
+
+  calculateTotalPrice = () => {
+    return(
+      <div className="total-price">
+        <div className="total-price-info">
+          <div><strong>Celková cena:</strong></div>
+          <div>{this.state.totalPrice} Kč</div>
+        </div>
+
+        <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+          Na dopravu
+        </div>
       </div>
     )
   }
@@ -200,7 +223,8 @@ class App extends Component {
 
             {this.state.tab1 && this.renderAttributes()}
             {this.state.tab1 && this.renderWoodAmount()}
-            {this.state.tab1 && <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}` : '#'}>SEND TO CART</a>}
+            {this.state.tab1 && this.calculateTotalPrice()}
+            {/* {this.state.tab1 && <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}` : '#'}>SEND TO CART</a>} */}
 
             {this.state.tab2 && <div>TAB 2</div>}
             {this.state.tab3 && <div>TAB 3</div>}
