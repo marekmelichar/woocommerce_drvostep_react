@@ -14,8 +14,8 @@ import Tab3 from './Tab3'
 
 class App extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       loading: false,
@@ -24,10 +24,15 @@ class App extends Component {
       color: 'black',
       opt1: '',
       opt2: '',
-      tab1: true,
-      tab2: false,
+      tab1: false,
+      tab2: true,
       tab3: false,
       woodAmount: 2,
+      delivery: {
+        doveze_drvostep: '',
+        osobni_odber: ''
+      },
+      whenToDeliver: ''
     }
   }
 
@@ -111,19 +116,6 @@ class App extends Component {
     )
   }
 
-  handleOptionClick = (e, id, opt) => {
-
-    // console.log(id, opt);
-
-    if (id === 8) {
-      return this.setState({ opt1: opt })
-    }
-
-    if (id === 7) {
-      return this.setState({ opt2: opt })
-    }
-  }
-
   increaseWood = () => {
     if (this.state.woodAmount < 7) {
       this.setState({ woodAmount: this.state.woodAmount + 1 })
@@ -133,6 +125,41 @@ class App extends Component {
   decreaseWood = () => {
     if (this.state.woodAmount > 0) {
       this.setState({ woodAmount: this.state.woodAmount - 1 })
+    }
+  }
+
+  handleOptionClick = (e, id, opt) => {
+
+    // console.log(id, opt);
+
+    if (id === 11 || id === 12 || id === 13) {
+      return this.setState({ whenToDeliver: opt })
+    }
+
+    if (id === 10) {
+      return this.setState({
+        delivery: {
+          doveze_drvostep: opt,
+          osobni_odber: ''
+        }
+      })
+    }
+
+    if (id === 9) {
+      return this.setState({
+        delivery: {
+          doveze_drvostep: '',
+          osobni_odber: opt
+        }
+      })
+    }
+
+    if (id === 8) {
+      return this.setState({ opt1: opt })
+    }
+
+    if (id === 7) {
+      return this.setState({ opt2: opt })
     }
   }
 
@@ -184,7 +211,11 @@ class App extends Component {
               opt1={this.state.opt1}
               opt2={this.state.opt2}
             />}
-            {this.state.tab2 && <Tab2 />}
+            {this.state.tab2 && <Tab2
+              handleOptionClick={this.handleOptionClick}
+              delivery={this.state.delivery.osobni_odber || this.state.delivery.doveze_drvostep}
+              whenToDeliver={this.state.whenToDeliver}
+            />}
             {this.state.tab3 && <Tab3 />}
 
           </div>
