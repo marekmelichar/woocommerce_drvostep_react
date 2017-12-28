@@ -8,8 +8,9 @@ import _ from 'lodash'
 
 import Spinner from '../components/spinner/Spinner';
 
-// import InputRange from 'react-input-range'
-// import 'react-input-range/lib/css/index.css'
+import Tab1 from './Tab1'
+import Tab2 from './Tab2'
+import Tab3 from './Tab3'
 
 class App extends Component {
 
@@ -26,10 +27,7 @@ class App extends Component {
       tab1: true,
       tab2: false,
       tab3: false,
-      // value: 0,
       woodAmount: 2,
-      compareToMoistWood: 1,
-      totalPrice: 1
     }
   }
 
@@ -58,60 +56,64 @@ class App extends Component {
         console.log('error', error.message)
         this.setState({ error: error.message })
       })
-
   }
 
   componentDidMount() {
     this.setState({ loading: false })
   }
 
-  renderAttributes = () => {
-    const {wood, attributes} = this.state
+  renderTabs = () => {
+    const {tab1, tab2, tab3} = this.state
 
-    if (wood.id) {
-      return (
-        <form className="attributes">
-          {attributes.map(itm => {
-            return(
-              <div key={itm.id}>
-                <h2>{itm.name}</h2>
-                <ul className="flex">
-                  {itm.options.map((opt, i) => {
-                    return (
-                      <li className="item-wrapper" key={opt}>
-                        <input
-                          id={opt}
-                          type="radio"
-                          name={`wood${itm.id}`}
-                          value={opt}
-                          onClick={(e) => this.handleOptionClick(e, itm.id, opt)}
-                        />
-                        <label
-                          htmlFor={opt}
-                        >{opt}</label>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          })}
-        </form>
-      )
-    }
+    return(
+      <div className="tabs">
+        <div className="tab">
+          <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false })}>
+            <i className="fas fa-tree"></i>
+          </div>
+          <div className="tab-heading">1. Dřevo</div>
+        </div>
+        <div className="tab">
+          <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+            <i className="fas fa-truck"></i>
+          </div>
+          <div className="tab-heading">2. Doprava</div>
+        </div>
+        <div className="tab">
+          <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true })}>
+            <i className="fas fa-list-ul"></i>
+          </div>
+          <div className="tab-heading">3. Shrnutí</div>
+        </div>
+      </div>
+    )
+  }
 
-    return (
-      <form className="attributes placeholders">
-        <h2><Spinner /></h2>
-        <h2><Spinner /></h2>
-        <h2><Spinner /></h2>
+  calculateTotalPrice = () => {
 
-        {this.state.error && <div className="error">{this.state.error}<i className="fas fa-exclamation-circle"></i></div>}
-      </form>
+    const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
+
+    let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
+
+    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+
+    return(
+      <div className="total-price">
+        <div className="total-price-info">
+          <div><strong>Celková cena:</strong></div>
+          <div>{totalPrice} Kč</div>
+        </div>
+
+        <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+          Na dopravu
+        </div>
+      </div>
     )
   }
 
   handleOptionClick = (e, id, opt) => {
+
+    // console.log(id, opt);
 
     if (id === 8) {
       return this.setState({ opt1: opt })
@@ -134,45 +136,13 @@ class App extends Component {
     }
   }
 
-
-  renderWoodAmount = () => {
-    return(
-      <div className="wood-range-input">
-        <h2>Množství</h2>
-        <div className="wood-actual-info"><strong>{this.state.woodAmount === 0 ? 0 : (this.state.woodAmount * 1.1).toFixed(1) + ' prms'}</strong> suchého <i className="fas fa-info-circle"></i></div>
-        <div className="wood-body">
-          <div className="wood-handler-left no-select" onClick={this.decreaseWood}>-</div>
-          <div className="wood-counter">
-            <div className="filling" style={{ width: 100 / 7 * this.state.woodAmount + '%' }}></div>
-          </div>
-          <div className="wood-handler-right no-select" onClick={this.increaseWood}>+</div>
-        </div>
-        <div className="wood-comparison">odpovídá <strong>{this.state.compareToMoistWood} prms</strong> nedosušeného</div>
-        <div className="wood-info">Suché dřevo má výtopnost až o <strong>30 procent</strong> lepší a šetří vaše kamna i sousedské vztahy.</div>
-      </div>
-    )
-  }
-
-  calculateTotalPrice = () => {
-    return(
-      <div className="total-price">
-        <div className="total-price-info">
-          <div><strong>Celková cena:</strong></div>
-          <div>{this.state.totalPrice} Kč</div>
-        </div>
-
-        <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
-          Na dopravu
-        </div>
-      </div>
-    )
-  }
-
   render() {
 
-    console.log(this.state.woodAmount);
+    // const {opt1, opt2, wood, tab1, tab2, tab3} = this.state
+    // const {tab1, tab2, tab3} = this.state
+    const {wood, attributes} = this.state
 
-    const {opt1, opt2, wood, tab1, tab2, tab3} = this.state
+    // console.log(this.state.opt1, this.state.opt2);
 
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
@@ -200,34 +170,23 @@ class App extends Component {
           </div>
           <div className="column size_50">
 
-            <div className="tabs">
-              <div className="tab">
-                <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false })}>
-                  <i className="fas fa-tree"></i>
-                </div>
-                <div className="tab-heading">1. Dřevo</div>
-              </div>
-              <div className="tab">
-                <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
-                  <i className="fas fa-truck"></i>
-                </div>
-                <div className="tab-heading">2. Doprava</div>
-              </div>
-              <div className="tab">
-                <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true })}>
-                  <i className="fas fa-list-ul"></i>
-                </div>
-                <div className="tab-heading">3. Shrnutí</div>
-              </div>
-            </div>
+            {this.renderTabs()}
 
-            {this.state.tab1 && this.renderAttributes()}
-            {this.state.tab1 && this.renderWoodAmount()}
-            {this.state.tab1 && this.calculateTotalPrice()}
-            {/* {this.state.tab1 && <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}` : '#'}>SEND TO CART</a>} */}
+            {this.state.tab1 && <Tab1
+              wood={wood}
+              attributes={attributes}
+              handleOptionClick={this.handleOptionClick}
+              decreaseWood={this.decreaseWood}
+              increaseWood={this.increaseWood}
+              woodAmount={this.state.woodAmount}
+              loading={this.state.loading}
+              calculateTotalPrice={this.calculateTotalPrice}
+              opt1={this.state.opt1}
+              opt2={this.state.opt2}
+            />}
+            {this.state.tab2 && <Tab2 />}
+            {this.state.tab3 && <Tab3 />}
 
-            {this.state.tab2 && <div>TAB 2</div>}
-            {this.state.tab3 && <div>TAB 3</div>}
           </div>
         </div>
       </div>
@@ -256,5 +215,23 @@ export default connect(mapStateToProps, actions)(App);
  // defaultni mnozstvi cca za 3000 kc
  // 15% je suche drevo
  // 50% je mokre drevo
+
+ // suche vs. mokre
+ // 1.1 = 1.6
+ // 2.2 = 3.3
  // 3.3 = 4.9
+ // 4.4 = 6.5
+ // 5.5 = 8.1
+ // 6.6 = 9.8
+ // 7.7 = 11.4
+ //
  // vzit to z drvostepu stavajiciho
+ //
+ // ceny:
+ // 1.1 = 1790
+ // 2.2 = 3580
+ // 3.3 = 5370
+ // 4.4 = 7160
+ // 5.5 = 8950
+ // 6.6 = 10740
+ // 7.7 = 12530
