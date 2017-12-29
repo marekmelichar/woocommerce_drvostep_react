@@ -32,7 +32,9 @@ class App extends Component {
         doveze_drvostep: '',
         osobni_odber: ''
       },
-      whenToDeliver: ''
+      whenToDeliver: '',
+      whereToDeliver: '',
+      filterValue: ''
     }
   }
 
@@ -102,18 +104,55 @@ class App extends Component {
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
-    return(
-      <div className="total-price">
-        <div className="total-price-info">
-          <div><strong>Celková cena:</strong></div>
-          <div>{totalPrice} Kč</div>
-        </div>
+    const {tab1, tab2, tab3} = this.state
 
-        <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
-          Na dopravu
+    if (tab1) {
+      return(
+        <div className="total-price">
+          <div className="total-price-info">
+            <div><strong>Celková cena:</strong></div>
+            <div>{totalPrice} Kč</div>
+          </div>
+
+          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+            Na dopravu
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+
+    if (tab2) {
+      return(
+        <div className="total-price">
+          <div className="total-price-info">
+            <div><strong>Celková cena:</strong></div>
+            <div>{totalPrice} Kč</div>
+          </div>
+
+          <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false })}>
+            Na výběr dřeva
+          </div>
+          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true })}>
+            Shrnutí
+          </div>
+        </div>
+      )
+    }
+
+    if (tab3) {
+      return(
+        <div className="total-price">
+          <div className="total-price-info">
+            <div><strong>Celková cena:</strong></div>
+            <div>{totalPrice} Kč</div>
+          </div>
+
+          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+            Na dopravu
+          </div>
+        </div>
+      )
+    }
   }
 
   increaseWood = () => {
@@ -131,6 +170,10 @@ class App extends Component {
   handleOptionClick = (e, id, opt) => {
 
     // console.log(id, opt);
+
+    if (id === 14) {
+      return this.setState({ whereToDeliver: opt })
+    }
 
     if (id === 11 || id === 12 || id === 13) {
       return this.setState({ whenToDeliver: opt })
@@ -163,13 +206,15 @@ class App extends Component {
     }
   }
 
+  handleFilterValue = e => {
+    return this.setState({ filterValue: e })
+  }
+
   render() {
 
-    // const {opt1, opt2, wood, tab1, tab2, tab3} = this.state
-    // const {tab1, tab2, tab3} = this.state
-    const {wood, attributes} = this.state
+    const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
-    // console.log(this.state.opt1, this.state.opt2);
+    // console.log(this.state);
 
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
@@ -213,8 +258,12 @@ class App extends Component {
             />}
             {this.state.tab2 && <Tab2
               handleOptionClick={this.handleOptionClick}
-              delivery={this.state.delivery.osobni_odber || this.state.delivery.doveze_drvostep}
-              whenToDeliver={this.state.whenToDeliver}
+              delivery={delivery.osobni_odber || delivery.doveze_drvostep}
+              whenToDeliver={whenToDeliver}
+              whereToDeliver={whereToDeliver}
+              calculateTotalPrice={this.calculateTotalPrice}
+              handleFilterValue={this.handleFilterValue}
+              filterValue={this.state.filterValue}
             />}
             {this.state.tab3 && <Tab3 />}
 

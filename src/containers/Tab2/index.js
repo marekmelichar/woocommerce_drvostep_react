@@ -10,7 +10,6 @@ export default class Tab2 extends Component {
 
     this.state = {
       Obce: [],
-      obec_filter_input_val: ''
     }
   }
 
@@ -19,10 +18,13 @@ export default class Tab2 extends Component {
   }
 
   renderObceFilter = () => {
-    const {Obce, obec_filter_input_val} = this.state
+    const {Obce} = this.state
+
+    const {whereToDeliver, filterValue} = this.props
 
     let obj = _.map(Obce, o => {
-      if (o.Obec && o.Obec.includes(obec_filter_input_val) && obec_filter_input_val.length) {
+      // to be able to filter value without diacritics
+      if (o.Obec && o.Obec.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase().includes(filterValue.toUpperCase()) && filterValue.length) {
         return o
       }
     })
@@ -30,26 +32,42 @@ export default class Tab2 extends Component {
     let final = _.without(obj, undefined)
 
     return(
-      <div>
-        <div className="text-center">
-          <h2>Kam?</h2>
-        </div>
+      <div className="where-to-deliver">
+        <h2>Kam?</h2>
         <div className="text-center">
           <input
             id="obceFilterInput"
             type="text"
-            onChange={(e) => this.setState({ obec_filter_input_val: e.target.value })}
-            value={this.state.obec_filter_input_val}
+            placeholder="název města kam se poveze dřevo"
+            onChange={e => this.props.handleFilterValue(e.target.value)}
+            value={filterValue}
           />
         </div>
-        <div className="text-center">
-          <ul id="obce-result">
-            {final.slice(0, 3).map(obj => {
-              return(
-                <li key={obj.Obec + ' ' + obj.Vzdalenost}>{obj.Obec}</li>
-              )
-            })}
-          </ul>
+        <div className="text-center filtered-values">
+          <form className="attributes">
+            <div className="attribute">
+              <ul className="flex">
+                {final.slice(0, 3).map(o => {
+                  return(
+                    <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper">
+                      <input
+                        id={o.Obec}
+                        type="radio"
+                        name={o.Obec}
+                        value={o.Obec}
+                        onChange={(e) => this.props.handleOptionClick(e, 14, o.Obec)}
+                        checked={whereToDeliver === o.Obec}
+                      />
+                      <label
+                        htmlFor={o.Obec}
+                        className={whereToDeliver === o.Obec ? 'checked' : ''}
+                      >{o.Obec}</label>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </form>
         </div>
       </div>
     )
@@ -58,14 +76,14 @@ export default class Tab2 extends Component {
   render() {
     const {delivery, whenToDeliver} = this.props
 
+    // console.log(whereToDeliver);
+
     return(
-      <div>
-        <div className="text-center">
-          <h2>Kdo doveze?</h2>
-        </div>
-        <div className="text-center">
+      <div className="delivery-body">
+        <h2>Kdo doveze?</h2>
+        <p className="delivery-info">
           Dovážíme od 3.3prms. Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy.
-        </div>
+        </p>
         <form className="attributes">
           <div className="attribute">
             <ul className="flex">
@@ -101,9 +119,7 @@ export default class Tab2 extends Component {
           </div>
         </form>
 
-        <div className="text-center">
-          <h2>Kdy?</h2>
-        </div>
+        <h2>Kdy?</h2>
         <form className="attributes">
           <div className="attribute">
             <ul className="flex">
@@ -154,6 +170,7 @@ export default class Tab2 extends Component {
         </form>
 
         {this.renderObceFilter()}
+        {this.props.calculateTotalPrice()}
       </div>
     )
   }

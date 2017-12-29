@@ -136,6 +136,7 @@ h2 {
 
 .attributes input[type="radio"] {
   visibility: hidden;
+  display: none;
 }
 
 .attributes input[type="radio"] + label {
@@ -144,12 +145,6 @@ h2 {
   border-radius: 0.25em;
   cursor: pointer;
 }
-
-/* .attributes input[type="radio"]:checked + label {
-  border: 1px solid #A3643A;
-  background-color: #A3643A;
-  color: #fff;
-} */
 
 .checked {
   border: 1px solid #A3643A;
@@ -310,7 +305,84 @@ h2 {
   cursor: pointer;
 }
 
+.back-btn {
+  text-align: center;
+  float: right;
 
+  border: 1px solid #A3643A;
+  background: transparent;
+  color: #A3643A;
+  padding: 0.75em 1.25em;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* DELIVERY TAB & CONTENT */
+
+.delivery-body h2 {
+  text-align: center;
+  font-weight: 700;
+}
+
+.delivery-info {
+  font-size: 0.75em;
+  text-align: center;
+}
+
+.delivery-body form {
+  margin: 1em auto 1.5em auto;
+}
+
+.delivery-body input#obceFilterInput {
+  border: 1px solid #A3643A;
+  background: transparent;
+  padding: 0.5em 1em;
+  margin-top: 0.25em;
+  border-radius: 0.25em;
+  width: 90%;
+  color: #A3643A;
+  font-size: 1.125em;
+}
+
+.delivery-body input#obceFilterInput::placeholder {
+  color: #A3643A;
+  font-style: italic;
+  opacity: 0.4;
+  font-size: 0.8em;
+}
+
+.delivery-body input#obceFilterInput:focus::placeholder {
+  opacity: 0;
+}
+
+.where-to-deliver .attributes input[type="radio"] + label {
+  border: 1px solid #A3643A;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin: 0.1em;
+}
+
+.where-to-deliver {
+  position: relative;
+}
+
+.filtered-values {
+  position: absolute;
+  width: 100%;
+}
+
+.delivery-body .total-price {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5.75em;
+}
 
 
 
