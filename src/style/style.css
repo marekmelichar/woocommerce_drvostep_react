@@ -390,6 +390,114 @@ h2 {
 
 
 
+/* TOTALS TAB */
+
+.totals-body ul {
+  list-style-type: none;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  width: 100%;
+}
+
+.totals-body ul:after {
+  content: '';
+  clear: both;
+}
+
+.totals-body ul li {
+  width: 25%;
+  float: left;
+}
+
+.totals-body ul li:last-child {
+  float: right;
+}
+
+.totals-body ul .list-heading {
+  font-weight: 700;
+}
+
+.totals-lists {
+  margin-top: 1em;
+  min-height: 100px;
+}
+
+.totals-loaded-cars .truck {
+  font-size: 3em;
+  text-align: center;
+}
+
+.totals-loaded-cars .info {
+  font-size: 0.75em;
+  text-align: center;
+  margin: 1em auto;
+  /* position: absolute; */
+}
+
+.totals-loaded-cars .btn {
+  width: 25%;
+  border: 1px solid #A3643A;
+  background: transparent;
+  color: #A3643A;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.truck {
+  position: relative;
+  left: -8%;
+}
+
+.truck-back {
+  background: transparent;
+  border: 2px solid #A3643A;
+  border-radius: 0.1em;
+  width: 60px;
+  height: 45px;
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 60%;
+}
+
+.truck-back:before {
+  content: '';
+  position: absolute;
+  top: 35px;
+  left: 10%;
+  width: 10px;
+  height: 10px;
+  border: 5px solid #A3643A;
+  border-radius: 50%;
+}
+
+.truck-back:after {
+  content: '';
+  position: absolute;
+  top: 35px;
+  left: 55%;
+  width: 10px;
+  height: 10px;
+  border: 5px solid #A3643A;
+  border-radius: 50%;
+}
+
+.truck-fill {
+  position: absolute;
+  top: 80%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #A3643A;
+  z-index: 1;
+}
+
+
+
+
 
 
 

@@ -22,19 +22,22 @@ class App extends Component {
       wood: {},
       attributes: [],
       color: 'black',
-      opt1: '',
-      opt2: '',
+      opt1: 'délka dřeva',
+      opt2: 'druh dřeva',
       tab1: false,
-      tab2: true,
-      tab3: false,
+      tab2: false,
+      tab3: true,
       woodAmount: 2,
       delivery: {
         doveze_drvostep: '',
         osobni_odber: ''
       },
-      whenToDeliver: '',
-      whereToDeliver: '',
-      filterValue: ''
+      whenToDeliver: 'kdy',
+      whereToDeliver: 'obec',
+      filterValue: '',
+      totalPrice: 0,
+      recalculatedWoodAmount: 0,
+      distance: 0
     }
   }
 
@@ -66,7 +69,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ loading: false })
+
+    const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
+
+    let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
+
+    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+
+    this.setState({ loading: false, totalPrice, recalculatedWoodAmount })
   }
 
   renderTabs = () => {
@@ -114,7 +124,7 @@ class App extends Component {
             <div>{totalPrice} Kč</div>
           </div>
 
-          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
             Na dopravu
           </div>
         </div>
@@ -129,10 +139,10 @@ class App extends Component {
             <div>{totalPrice} Kč</div>
           </div>
 
-          <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false })}>
+          <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
             Na výběr dřeva
           </div>
-          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true })}>
+          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}>
             Shrnutí
           </div>
         </div>
@@ -147,12 +157,14 @@ class App extends Component {
             <div>{totalPrice} Kč</div>
           </div>
 
-          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
             Na dopravu
           </div>
         </div>
       )
     }
+
+
   }
 
   increaseWood = () => {
@@ -167,12 +179,12 @@ class App extends Component {
     }
   }
 
-  handleOptionClick = (e, id, opt) => {
+  handleOptionClick = (e, id, opt, distance) => {
 
     // console.log(id, opt);
 
     if (id === 14) {
-      return this.setState({ whereToDeliver: opt })
+      return this.setState({ whereToDeliver: opt, distance })
     }
 
     if (id === 11 || id === 12 || id === 13) {
@@ -210,11 +222,24 @@ class App extends Component {
     return this.setState({ filterValue: e })
   }
 
+  handleFullyLoad = () => {
+
+    const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
+
+    // now this.state.woodAmount should be 7 :
+
+    let recalculatedWoodAmount = (7 * 1.1).toFixed(1)
+
+    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+
+    return this.setState({ recalculatedWoodAmount, totalPrice })
+  }
+
   render() {
 
     const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
-    // console.log(this.state);
+    // console.log(this.state.woodAmount);
 
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
@@ -265,7 +290,10 @@ class App extends Component {
               handleFilterValue={this.handleFilterValue}
               filterValue={this.state.filterValue}
             />}
-            {this.state.tab3 && <Tab3 />}
+            {this.state.tab3 && <Tab3
+              data={this.state}
+              handleFullyLoad={this.handleFullyLoad}
+            />}
 
           </div>
         </div>

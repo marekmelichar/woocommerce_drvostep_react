@@ -55,7 +55,7 @@ export default class Tab2 extends Component {
                         type="radio"
                         name={o.Obec}
                         value={o.Obec}
-                        onChange={(e) => this.props.handleOptionClick(e, 14, o.Obec)}
+                        onChange={(e) => this.props.handleOptionClick(e, 14, o.Obec, o.Vzdalenost)}
                         checked={whereToDeliver === o.Obec}
                       />
                       <label
