@@ -76,8 +76,6 @@ export default class Tab2 extends Component {
   render() {
     const {delivery, whenToDeliver} = this.props
 
-    // console.log(whereToDeliver);
-
     return(
       <div className="delivery-body">
         <h2>Kdo doveze?</h2>

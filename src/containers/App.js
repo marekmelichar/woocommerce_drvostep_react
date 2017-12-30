@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-
-import * as actions from '../actions';
-import { connect } from 'react-redux';
-
 import axios from 'axios'
 import _ from 'lodash'
 
-import Spinner from '../components/spinner/Spinner';
+import Spinner from '../components/Spinner';
 
 import Tab1 from './Tab1'
 import Tab2 from './Tab2'
 import Tab3 from './Tab3'
+
+const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
 
 class App extends Component {
 
@@ -21,7 +19,6 @@ class App extends Component {
       loading: false,
       wood: {},
       attributes: [],
-      color: 'black',
       opt1: 'délka dřeva',
       opt2: 'druh dřeva',
       tab1: true,
@@ -37,7 +34,8 @@ class App extends Component {
       filterValue: '',
       totalPrice: 0,
       recalculatedWoodAmount: 0,
-      distance: 0
+      distance: 0,
+      deliveryPrice: 0
     }
   }
 
@@ -55,6 +53,7 @@ class App extends Component {
 
     instance()
       .then(data => {
+        console.log(data);
         const wood = _.find(data.data, { 'id': 3642 })
         const attributes = wood.attributes
         this.setState({
@@ -70,8 +69,6 @@ class App extends Component {
 
   componentDidMount() {
 
-    const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
-
     let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
@@ -80,24 +77,29 @@ class App extends Component {
   }
 
   renderTabs = () => {
+
+    let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
+
+    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+
     const {tab1, tab2, tab3} = this.state
 
     return(
       <div className="tabs">
         <div className="tab">
-          <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false })}>
+          <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
             <i className="fas fa-tree"></i>
           </div>
           <div className="tab-heading">1. Dřevo</div>
         </div>
         <div className="tab">
-          <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false })}>
+          <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
             <i className="fas fa-truck"></i>
           </div>
           <div className="tab-heading">2. Doprava</div>
         </div>
         <div className="tab">
-          <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true })}>
+          <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}>
             <i className="fas fa-list-ul"></i>
           </div>
           <div className="tab-heading">3. Shrnutí</div>
@@ -108,13 +110,12 @@ class App extends Component {
 
   calculateTotalPrice = () => {
 
-    const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
-
     let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
     const {tab1, tab2, tab3} = this.state
+
 
     if (tab1) {
       return(
@@ -149,17 +150,20 @@ class App extends Component {
       )
     }
 
+    let orderLink = ''
+    // https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}
+    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=25cm&attribute_pa_drevo=Suchý%20buk&quantity=3&price=3500
+    // &quantity=3
+
     if (tab3) {
       return(
         <div className="total-price">
-          <div className="total-price-info">
-            <div><strong>Celková cena:</strong></div>
-            <div>{totalPrice} Kč</div>
-          </div>
-
-          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+          <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
             Na dopravu
           </div>
+          <a href={orderLink} className="total-price-btn">
+            Objednat
+          </a>
         </div>
       )
     }
@@ -181,10 +185,23 @@ class App extends Component {
 
   handleOptionClick = (e, id, opt, distance) => {
 
-    // console.log(id, opt);
+    let deliveryPrice = 0;
+
+    if (distance) {
+      deliveryPrice = +distance * 20
+    } else {
+      deliveryPrice = +this.state.distance * 20
+    }
 
     if (id === 14) {
-      return this.setState({ whereToDeliver: opt, distance })
+      if (this.state.delivery.osobni_odber) {
+        return this.setState({
+          whereToDeliver: opt,
+          distance,
+          deliveryPrice: 0
+        })
+      }
+      return this.setState({ whereToDeliver: opt, distance, deliveryPrice })
     }
 
     if (id === 11 || id === 12 || id === 13) {
@@ -196,7 +213,9 @@ class App extends Component {
         delivery: {
           doveze_drvostep: opt,
           osobni_odber: ''
-        }
+        },
+        distance: this.state.distance,
+        deliveryPrice
       })
     }
 
@@ -205,7 +224,9 @@ class App extends Component {
         delivery: {
           doveze_drvostep: '',
           osobni_odber: opt
-        }
+        },
+        distance: this.state.distance,
+        deliveryPrice: 0
       })
     }
 
@@ -224,8 +245,6 @@ class App extends Component {
 
   handleFullyLoad = () => {
 
-    const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
-
     // now this.state.woodAmount should be 7 :
 
     let recalculatedWoodAmount = (7 * 1.1).toFixed(1)
@@ -239,7 +258,7 @@ class App extends Component {
 
     const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
-    // console.log(this.state.woodAmount);
+    // console.log(this.state);
 
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
@@ -293,6 +312,7 @@ class App extends Component {
             {this.state.tab3 && <Tab3
               data={this.state}
               handleFullyLoad={this.handleFullyLoad}
+              calculateTotalPrice={this.calculateTotalPrice}
             />}
 
           </div>
@@ -302,44 +322,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  // console.log('state', state);
-  return {
-    // authorized: state.auth.payload
-  };
-}
-
-export default connect(mapStateToProps, actions)(App);
-
-
-/**
- * INFO
- */
-
-
- // 7.7 prms je 1 vozik
- // naskakuje to po 1.1
- // pomer sucheho ku mokremu drevu do vypoctu mnozstvi dreva
- // defaultni mnozstvi cca za 3000 kc
- // 15% je suche drevo
- // 50% je mokre drevo
-
- // suche vs. mokre
- // 1.1 = 1.6
- // 2.2 = 3.3
- // 3.3 = 4.9
- // 4.4 = 6.5
- // 5.5 = 8.1
- // 6.6 = 9.8
- // 7.7 = 11.4
- //
- // vzit to z drvostepu stavajiciho
- //
- // ceny:
- // 1.1 = 1790
- // 2.2 = 3580
- // 3.3 = 5370
- // 4.4 = 7160
- // 5.5 = 8950
- // 6.6 = 10740
- // 7.7 = 12530
+export default App

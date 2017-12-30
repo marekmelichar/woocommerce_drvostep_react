@@ -6,10 +6,6 @@ export default class Tab3 extends Component {
 
     const load = Math.round(data.recalculatedWoodAmount / 7.7 * 100)
 
-    console.log(data);
-
-    const deliveryPrice = +data.distance * 20
-
     return(
       <div className="totals-body">
         <div className="totals-lists">
@@ -23,7 +19,7 @@ export default class Tab3 extends Component {
             <li className="list-heading">Doprava</li>
             <li>{data.whereToDeliver}</li>
             <li>{data.distance} km</li>
-            <li>{deliveryPrice} Kč</li>
+            <li>{data.deliveryPrice} Kč</li>
           </ul>
           <ul>
             <li className="list-heading">Vytížení</li>
@@ -42,8 +38,9 @@ export default class Tab3 extends Component {
         </div>
         <div className="total-to-order">
           <div className="left">Konečná cena</div>
-          <div className="right">{data.totalPrice + deliveryPrice} Kč</div>
+          <div className="right">{data.totalPrice + data.deliveryPrice} Kč</div>
         </div>
+        {this.props.calculateTotalPrice()}
       </div>
     )
   }

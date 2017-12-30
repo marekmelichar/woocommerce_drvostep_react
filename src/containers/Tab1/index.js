@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
 
-import * as actions from '../../actions';
-import { connect } from 'react-redux';
+import Spinner from '../../components/Spinner';
 
-// import axios from 'axios'
-// import _ from 'lodash'
-
-import Spinner from '../../components/spinner/Spinner';
-
-class Tab1 extends Component {
+export default class Tab1 extends Component {
 
   constructor() {
     super()
 
-    this.state = {
-      // loading: false,
-      // wood: {},
-      // attributes: [],
-      // color: 'black',
-      // opt1: '',
-      // opt2: '',
-      // tab1: true,
-      // tab2: false,
-      // tab3: false,
-      // woodAmount: 2,
-    }
+    this.state = {}
   }
 
   renderAttributes = () => {
@@ -39,7 +22,6 @@ class Tab1 extends Component {
                 <h2>{itm.name}</h2>
                 <ul className="flex">
                   {itm.options.map((opt, i) => {
-                    // console.log(opt === opt1 || opt === opt2);
                     return (
                       <li className="item-wrapper" key={opt}>
                         <input
@@ -119,9 +101,6 @@ class Tab1 extends Component {
     return(
       <div className="wood-range-input">
         <h2>Množství</h2>
-
-
-
         <div className="wood-actual-info">
           <strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého
           <span className="tooltip-holder">
@@ -142,58 +121,12 @@ class Tab1 extends Component {
   }
 
   render() {
-
-    // const {opt1, opt2, wood, tab1, tab2, tab3} = this.state
-
     return this.props.loading ? <div><Spinner /></div> : (
       <div>
         {this.renderAttributes()}
         {this.renderWoodAmount()}
         {this.props.calculateTotalPrice()}
-        {/* <a href={opt1 && opt2 ? `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}` : '#'}>SEND TO CART</a>   */}
       </div>
     )
   }
 }
-
-function mapStateToProps(state) {
-  // console.log('state', state);
-  return {
-    // authorized: state.auth.payload
-  };
-}
-
-export default connect(mapStateToProps, actions)(Tab1);
-
-
-/**
- * INFO
- */
-
-
- // 7.7 prms je 1 vozik
- // naskakuje to po 1.1
- // pomer sucheho ku mokremu drevu do vypoctu mnozstvi dreva
- // defaultni mnozstvi cca za 3000 kc
- // 15% je suche drevo
- // 50% je mokre drevo
-
- // suche vs. mokre
- // 1.1 = 1.6
- // 2.2 = 3.3
- // 3.3 = 4.9
- // 4.4 = 6.5
- // 5.5 = 8.1
- // 6.6 = 9.8
- // 7.7 = 11.4
- //
- // vzit to z drvostepu stavajiciho
- //
- // ceny:
- // 1.1 = 1790
- // 2.2 = 3580
- // 3.3 = 5370
- // 4.4 = 7160
- // 5.5 = 8950
- // 6.6 = 10740
- // 7.7 = 12530
