@@ -8,8 +8,7 @@ export default class Tab3 extends Component {
 
     console.log(data);
 
-    let title = 'aaa'
-    let you = 'aaa'
+    const deliveryPrice = +data.distance * 20
 
     return(
       <div className="totals-body">
@@ -24,7 +23,7 @@ export default class Tab3 extends Component {
             <li className="list-heading">Doprava</li>
             <li>{data.whereToDeliver}</li>
             <li>{data.distance} km</li>
-            <li>{+data.distance * 20} Kč</li>
+            <li>{deliveryPrice} Kč</li>
           </ul>
           <ul>
             <li className="list-heading">Vytížení</li>
@@ -38,8 +37,12 @@ export default class Tab3 extends Component {
               <span className="truck-fill" style={{top: 100-load + '%'}}></span>
             </span>
           </div>
-          <div className="info">{load < 100 ? `Pozor, vytížení je pouze ${load} procent, zvyšte ho a výrazně snížíte cenu za 1 prms.` : 'Výborně, efektivně vytíženo.'}</div>
+          <div className="info">{load < 100 ? `Pozor, vytížení je pouze ${load} procent, zvyšte ho a výrazně snížíte cenu za 1 prms.` : 'Efektivně vytíženo na 100%.'}</div>
           <div className="btn" onClick={handleFullyLoad}>Vytížit</div>
+        </div>
+        <div className="total-to-order">
+          <div className="left">Konečná cena</div>
+          <div className="right">{data.totalPrice + deliveryPrice} Kč</div>
         </div>
       </div>
     )

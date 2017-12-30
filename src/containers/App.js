@@ -24,9 +24,9 @@ class App extends Component {
       color: 'black',
       opt1: 'délka dřeva',
       opt2: 'druh dřeva',
-      tab1: false,
+      tab1: true,
       tab2: false,
-      tab3: true,
+      tab3: false,
       woodAmount: 2,
       delivery: {
         doveze_drvostep: '',
