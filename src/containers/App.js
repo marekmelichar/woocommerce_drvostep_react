@@ -53,7 +53,6 @@ class App extends Component {
 
     instance()
       .then(data => {
-        console.log(data);
         const wood = _.find(data.data, { 'id': 3642 })
         const attributes = wood.attributes
         this.setState({
@@ -152,7 +151,7 @@ class App extends Component {
 
     let orderLink = ''
     // https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}
-    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=25cm&attribute_pa_drevo=Suchý%20buk&quantity=3&price=3500
+    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=25cm&attribute_pa_drevo=Suchý%20buk&quantity=3&set_price=3500
     // &quantity=3
 
     if (tab3) {
@@ -251,7 +250,7 @@ class App extends Component {
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
-    return this.setState({ recalculatedWoodAmount, totalPrice })
+    return this.setState({ recalculatedWoodAmount, totalPrice, woodAmount: 7 })
   }
 
   render() {
