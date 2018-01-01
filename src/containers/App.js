@@ -8,7 +8,8 @@ import Tab1 from './Tab1'
 import Tab2 from './Tab2'
 import Tab3 from './Tab3'
 
-const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
+// const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
+const PRICE_OF_WOOD_1_PRMS = 1628
 
 class App extends Component {
 
@@ -113,7 +114,7 @@ class App extends Component {
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
-    const {tab1, tab2, tab3} = this.state
+    const {tab1, tab2, tab3, opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice} = this.state
 
 
     if (tab1) {
@@ -151,8 +152,47 @@ class App extends Component {
 
     let orderLink = ''
     // https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}
-    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=25cm&attribute_pa_drevo=Suchý%20buk&quantity=3&set_price=3500
-    // &quantity=3
+    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=25cm&attribute_pa_drevo=Suchý%20buk&quantity=1&set_price=25000
+    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&custom_options[]=description&custom_options[]=another_example_field&custom_options[]=hidden_info&custom_options[]=custom_price
+    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&price=26000
+    // &option_gift_wrap=YES
+    // &set_km=${distance}
+    // /cart nebo /eshop
+    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&quantity=1&price=26000
+
+    // loading: false,
+    // wood: {},
+    // attributes: [],
+    // opt1: 'délka dřeva',
+    // opt2: 'druh dřeva',
+    // tab1: true,
+    // tab2: false,
+    // tab3: false,
+    // woodAmount: 2,
+    // delivery: {
+    //   doveze_drvostep: '',
+    //   osobni_odber: ''
+    // },
+    // whenToDeliver: 'kdy',
+    // whereToDeliver: 'obec',
+    // filterValue: '',
+    // totalPrice: 0,
+    // recalculatedWoodAmount: 0,
+    // distance: 0,
+    // deliveryPrice: 0
+
+    if (opt1 && opt2 && woodAmount > 0 && delivery.doveze_drvostep || delivery.osobni_odber && whenToDeliver && whereToDeliver && totalPrice) {
+
+      if (delivery.doveze_drvostep) {
+        totalPrice = totalPrice + deliveryPrice
+      }
+
+      if (delivery.osobni_odber) {
+        totalPrice = totalPrice
+      }
+
+      orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}`
+    }
 
     if (tab3) {
       return(
@@ -166,8 +206,6 @@ class App extends Component {
         </div>
       )
     }
-
-
   }
 
   increaseWood = () => {
