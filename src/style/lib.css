@@ -52,9 +52,10 @@ strong {
   font-weight: 700;
 }
 
-.row {
+.row,
+.row.main-content {
   display: block;
-  width: 1080px;
+  width: 1140px;
   max-width: 100%;
   margin: 0 auto;
 }

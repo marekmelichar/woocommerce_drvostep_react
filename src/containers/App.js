@@ -48,13 +48,14 @@ class App extends Component {
       method: 'get',
       // btoa(key:secret) from WooCommerce API
       baseURL: 'https://drvostepstaging.marekmelichar.cz/wp-json/wc/v2/products',
-      headers: {'Authorization': `Basic ${btoa('ck_4e2f7290e45ea1338c626f7f0b4073f1ce190ac9:cs_b14745a6ba61f5441c6e0d4c0a1a9ad03cde89a5')}`},
+      headers: {'Authorization': `Basic ${btoa('ck_760c9cd63b37310f8faaf6ce0d52389f94fb81ad:cs_14ea24b81c0b2fa73ab109c4e5c70e9f4d7353b7')}`},
       maxRedirects: 0,
     });
 
     instance()
       .then(data => {
         const wood = _.find(data.data, { 'id': 3642 })
+
         const attributes = wood.attributes
         this.setState({
           wood,
@@ -151,44 +152,11 @@ class App extends Component {
     }
 
     let orderLink = ''
-    // https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=${wood.id}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}
-    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=25cm&attribute_pa_drevo=Suchý%20buk&quantity=1&set_price=25000
-    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&custom_options[]=description&custom_options[]=another_example_field&custom_options[]=hidden_info&custom_options[]=custom_price
-    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&price=26000
-    // &option_gift_wrap=YES
-    // &set_km=${distance}
-    // /cart nebo /eshop
-    // https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&quantity=1&price=26000
 
-    // loading: false,
-    // wood: {},
-    // attributes: [],
-    // opt1: 'délka dřeva',
-    // opt2: 'druh dřeva',
-    // tab1: true,
-    // tab2: false,
-    // tab3: false,
-    // woodAmount: 2,
-    // delivery: {
-    //   doveze_drvostep: '',
-    //   osobni_odber: ''
-    // },
-    // whenToDeliver: 'kdy',
-    // whereToDeliver: 'obec',
-    // filterValue: '',
-    // totalPrice: 0,
-    // recalculatedWoodAmount: 0,
-    // distance: 0,
-    // deliveryPrice: 0
-
-    if (opt1 && opt2 && woodAmount > 0 && delivery.doveze_drvostep || delivery.osobni_odber && whenToDeliver && whereToDeliver && totalPrice) {
+    if (opt1 && opt2 && woodAmount > 0 && (delivery.doveze_drvostep || delivery.osobni_odber) && whenToDeliver && whereToDeliver && totalPrice) {
 
       if (delivery.doveze_drvostep) {
         totalPrice = totalPrice + deliveryPrice
-      }
-
-      if (delivery.osobni_odber) {
-        totalPrice = totalPrice
       }
 
       orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}`
@@ -282,8 +250,6 @@ class App extends Component {
 
   handleFullyLoad = () => {
 
-    // now this.state.woodAmount should be 7 :
-
     let recalculatedWoodAmount = (7 * 1.1).toFixed(1)
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
@@ -295,8 +261,6 @@ class App extends Component {
 
     const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
-    // console.log(this.state);
-
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
         <div className="row main-content">
@@ -306,7 +270,7 @@ class App extends Component {
             </div>
             <div className="row">
               <div className="column size_100 text-center">
-                <p>Jmenuji se <strong>Jiří Mazanec</strong> a vyřeším s vámi vaši objednávku.</p>
+                <p className="name-under-photo">Jmenuji se <strong>Jiří Mazanec</strong> a vyřeším s vámi vaši objednávku.</p>
               </div>
             </div>
             <div className="row">

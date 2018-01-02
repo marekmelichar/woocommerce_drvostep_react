@@ -23,7 +23,7 @@ export default class Tab1 extends Component {
                 <ul className="flex">
                   {itm.options.map((opt, i) => {
                     return (
-                      <li className="item-wrapper" key={opt}>
+                      <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt}>
                         <input
                           id={opt}
                           type="radio"

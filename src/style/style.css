@@ -4,16 +4,16 @@
 *  basic: #A3643A
 */
 
-body {
+/* body {
   font-size: 1.125em;
-}
+} */
 
 a {
   color: #A3643A;
 }
 
 h2 {
-  font-size: 1.375em;
+  font-size: 22px;
 }
 
 .no-select {
@@ -27,12 +27,12 @@ h2 {
 }
 
 .error {
-  margin: 2em auto;
-  padding: 0.5em 0;
+  margin: 32px auto;
+  padding: 8px 0;
   text-align: center;
   color: #c0392b;
   border: 1px solid #c0392b;
-  border-radius: 0.25em;
+  border-radius: 4px;
 }
 
 .error svg {
@@ -44,27 +44,32 @@ h2 {
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: cover;
-  padding: 1em 0.5em;
+  padding: 16px 8px;
 }
 
 .main-content {
   background-color: rgba(255,255,255,0.8);
   color: #A3643A;
-  border-radius: 0.3em;
+  border-radius: 4px;
 }
 
 .image {
   margin-left: -10px;
-  padding: 1em;
+  padding: 16px;
 }
 
 .image img {
-  border-radius: 0.4em;
+  border-radius: 6px;
 }
 
 .contact-info {
-  margin: 1em 0;
+  margin: 16px 0;
   text-align: center;
+  font-size: 16px;
+}
+
+.name-under-photo {
+  font-size: 18px;
 }
 
 
@@ -73,19 +78,20 @@ h2 {
 .tabs {
   display: flex;
   justify-content: space-around;
-  margin: 1em auto;
+  margin: 16px auto;
 }
 
 .tab-icon {
-  width: 50px;
+  width: 60px;
+  height: 60px;
   border: 1px solid #A3643A;
   border-radius: 50%;
-  padding: 1.2em;
+  padding: 25px;
   line-height: 1;
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 30px;
   position: relative;
 }
 
@@ -99,6 +105,11 @@ h2 {
 .tab-active {
   background-color: #A3643A;
   color: #fff;
+}
+
+.tab-heading {
+  font-size: 16px;
+  margin-top: 5px;
 }
 
 .tab-active ~ .tab-heading {
@@ -116,22 +127,22 @@ h2 {
 
 .attributes .flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   list-style-type: none;
 }
 
 .attributes h2 {
   text-align: center;
   font-weight: 700;
-  margin: 0.75em auto;
+  margin: 12px auto;
 }
 
 .attribute:nth-child(1) h2 {
-  margin: -0.25em auto 0.75em auto;
+  margin: 12px auto;
 }
 
 .attribute:nth-child(2) h2 {
-  margin: 1em auto 0.75em auto;
+  margin: 16px auto 12px auto;
 }
 
 .attributes input[type="radio"] {
@@ -141,9 +152,11 @@ h2 {
 
 .attributes input[type="radio"] + label {
   border: 1px solid #A3643A;
-  padding: 0.75em 1.25em;
-  border-radius: 0.25em;
+  padding: 14px 24px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
 }
 
 .checked {
@@ -152,6 +165,13 @@ h2 {
   color: #fff;
 }
 
+.item-wrapper.drevina {
+  list-style-type: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
 
 
 /* PLACEHOLDERS FOR ATTRIBUTES */
@@ -159,9 +179,9 @@ h2 {
 .attributes.placeholders h2 {
   text-align: center;
   font-weight: 700;
-  margin: 1.25em auto;
-  width: 9em;
-  height: 1.5em;
+  margin: 20px auto;
+  width: 144px;
+  height: 24px;
   border: 1px solid #A3643A;
 }
 
@@ -172,8 +192,8 @@ h2 {
 }
 
 .attributes.placeholders ul li {
-  padding: 1.5em 4em;
-  border-radius: 0.25em;
+  padding: 24px 64px;
+  border-radius: 4px;
 }
 
 /* SPINNER */
@@ -198,7 +218,7 @@ h2 {
 /* WOOD RANGE INPUT */
 
 .wood-range-input {
-  margin: 2em auto 1.2em auto;
+  margin: 20px auto;
 }
 
 .wood-range-input h2 {
@@ -208,11 +228,12 @@ h2 {
 
 .wood-actual-info {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 16px;
+  font-size: 16px;
 }
 
 .wood-actual-info .tooltip-holder {
-  margin-left: 0.5em;
+  margin-left: 8px;
 }
 
 .wood-body {
@@ -227,7 +248,7 @@ h2 {
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  border-radius: 0.15em;
+  border-radius: 2px;
 }
 
 .wood-counter .filling {
@@ -239,7 +260,7 @@ h2 {
 
 .wood-handler-left,
 .wood-handler-right {
-  font-size: 2em;
+  font-size: 35px;
   cursor: pointer;
 
   background: #A3643A;
@@ -247,7 +268,7 @@ h2 {
   width: 40px;
   text-align: center;
   height: 44px;
-  border-radius: 0.1em;
+  border-radius: 2px;
 }
 
 .wood-handler-left {
@@ -264,11 +285,12 @@ h2 {
 
 .wood-comparison {
   text-align: center;
-  margin: 0.5em auto;
+  margin: 8px auto;
+  font-size: 16px;
 }
 
 .wood-info {
-  font-size: 0.75em;
+  font-size: 13px;
   text-align: center;
 }
 
@@ -286,6 +308,7 @@ h2 {
 .total-price-info {
   text-align: center;
   float: left;
+  font-size: 16px;
 }
 
 .total-price:after {
@@ -296,30 +319,30 @@ h2 {
 .total-price-btn {
   text-align: center;
   float: right;
-
+  font-size: 16px;
   border: 1px solid #A3643A;
   background: #A3643A;
   color: #fff;
-  padding: 0.75em 1.25em;
-  border-radius: 0.25em;
+  padding: 12px 20px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .total-price .back-btn {
   text-align: center;
   float: left;
-
+  font-size: 16px;
   border: 1px solid #A3643A;
   background: transparent;
   color: #A3643A;
-  padding: 0.75em 1.25em;
-  border-radius: 0.25em;
+  padding: 12px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  margin-left: 5em;
+  margin-left: 80px;
 }
 
 .total-price {
-  margin-top: 0;
+  margin-top: 44px;
 }
 
 
@@ -330,7 +353,7 @@ h2 {
 /* DELIVERY TAB & CONTENT */
 
 .delivery-body {
-  margin-top: -0.25em;
+  margin-top: -4px;
 }
 
 .delivery-body h2 {
@@ -339,31 +362,31 @@ h2 {
 }
 
 .delivery-info {
-  font-size: 0.75em;
+  font-size: 12px;
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 0;
 }
 
 .delivery-body form {
-  margin: 1em auto 1.5em auto;
+  margin: 16px auto;
 }
 
 .delivery-body input#obceFilterInput {
   border: 1px solid #A3643A;
   background: transparent;
-  padding: 0.5em 1em;
-  margin-top: 0.25em;
-  border-radius: 0.25em;
-  width: 90%;
+  padding: 8px 16px;
+  margin-top: 4px;
+  border-radius: 4px;
+  width: 100%;
   color: #A3643A;
-  font-size: 1.125em;
+  font-size: 18px;
 }
 
 .delivery-body input#obceFilterInput::placeholder {
   color: #A3643A;
   font-style: italic;
   opacity: 0.4;
-  font-size: 0.8em;
+  font-size: 14px;
 }
 
 .delivery-body input#obceFilterInput:focus::placeholder {
@@ -372,11 +395,11 @@ h2 {
 
 .where-to-deliver .attributes input[type="radio"] + label {
   border: 1px solid #A3643A;
-  padding: 0.25em 1em;
-  border-radius: 0.25em;
+  padding: 4px 16px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9em;
-  margin: 0.1em;
+  font-size: 14px;
+  margin: 2px;
 }
 
 .where-to-deliver {
@@ -389,7 +412,7 @@ h2 {
 }
 
 .delivery-body .total-price {
-  margin-top: 5.5em;
+  margin-top: 94px;
 }
 
 
@@ -404,8 +427,6 @@ h2 {
 
 .totals-body ul {
   list-style-type: none;
-  /* display: flex; */
-  /* justify-content: space-between; */
   width: 100%;
 }
 
@@ -415,12 +436,26 @@ h2 {
 }
 
 .totals-body ul li {
-  width: 25%;
+  width: 23%;
   float: left;
+  margin: 0.75%;
+}
+
+.totals-body ul li:first-child {
+  text-align: left;
+}
+
+.totals-body ul li:nth-child(2) {
+  text-align: center;
+}
+
+.totals-body ul li:nth-child(3) {
+  text-align: center;
 }
 
 .totals-body ul li:last-child {
   float: right;
+  text-align: right;
 }
 
 .totals-body ul .list-heading {
@@ -428,23 +463,26 @@ h2 {
 }
 
 .totals-lists {
-  margin-top: 1em;
+  margin-top: 40px;
   min-height: 100px;
+  font-size: 16px;
 }
 
 .totals-loaded-cars {
   position: relative;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .totals-loaded-cars .truck {
-  font-size: 3em;
+  font-size: 48px;
   text-align: center;
 }
 
 .totals-loaded-cars .info {
-  font-size: 0.75em;
+  font-size: 14px;
   text-align: center;
-  margin: 1em auto;
+  margin: 16px auto;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -452,15 +490,19 @@ h2 {
 }
 
 .totals-loaded-cars .btn {
-  width: 25%;
   border: 1px solid #A3643A;
-  background: transparent;
-  color: #A3643A;
-  padding: 0.25em 1em;
-  border-radius: 0.25em;
+  background: #A3643A;
+  color: #fff;
+  padding: 12px 40px !important;
+  border-radius: 4px !important;
   cursor: pointer;
   text-align: center;
-  margin: 4em auto 0 auto;
+  margin: 64px auto 0 auto;
+  font-size: 16px !important;
+}
+
+.totals-loaded-cars .btn:hover {
+  color: #66ab36;
 }
 
 .truck {
@@ -471,22 +513,22 @@ h2 {
 .truck-back {
   background: transparent;
   border: 2px solid #A3643A;
-  border-radius: 0.1em;
+  border-radius: 4px;
   width: 60px;
-  height: 45px;
+  height: 40px;
   display: block;
   position: absolute;
-  top: 10px;
-  left: 60%;
+  top: 0;
+  left: 56%;
 }
 
 .truck-back:before {
   content: '';
   position: absolute;
-  top: 35px;
+  top: 26px;
   left: 10%;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   border: 5px solid #A3643A;
   border-radius: 50%;
 }
@@ -494,10 +536,10 @@ h2 {
 .truck-back:after {
   content: '';
   position: absolute;
-  top: 35px;
+  top: 26px;
   left: 55%;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   border: 5px solid #A3643A;
   border-radius: 50%;
 }
@@ -513,8 +555,9 @@ h2 {
 }
 
 .total-to-order {
-  margin-top: 3em;
+  margin-top: 48px;
   border-top: 3px solid #A3643A;
+  font-size: 24px;
 }
 
 .total-to-order:after {
@@ -524,22 +567,22 @@ h2 {
 
 .total-to-order .left {
   float: left;
-  margin-top: 1em;
+  margin-top: 16px;
   font-weight: 700;
 }
 
 .total-to-order .right {
   float: right;
-  margin-top: 1em;
+  margin-top: 16px;
   font-weight: 700;
 }
 
 .totals-body .total-price {
-  margin-top: 5.5em;
+  margin-top: 136px;
 }
 
 .totals-body .total-price .back-btn {
-  margin-left: 12em;
+  margin-left: 192px;
 }
 
 
@@ -547,6 +590,145 @@ h2 {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+********* MEDIA QUERIES
+*/
+
+@media screen and (min-width: 769px) and (max-width: 1100px) {
+
+  .total-price-btn {
+    margin-bottom: 20px;
+  }
+
+  .truck-back {
+    left: 60%;
+  }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 768px) {
+
+  .wood-counter {
+    width: 70%;
+  }
+
+  .total-price-btn {
+    margin-bottom: 20px;
+  }
+
+  .attributes input[type="radio"] + label {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .total-price .back-btn {
+    margin-left: 20px;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .totals-body .total-price .back-btn {
+    margin-left: 0;
+  }
+
+  .truck-back {
+    left: 60%;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+
+  .wood-counter {
+    width: 70%;
+  }
+
+  .total-price-btn {
+    margin-bottom: 20px;
+  }
+
+  .attributes input[type="radio"] + label {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .delivery-body .total-price-info {
+    float: none;
+    margin: -50px 0 35px 0;
+  }
+
+  .total-price .back-btn {
+    margin-left: 10px;
+  }
+
+  .truck-back {
+    left: 60%;
+  }
+
+  .totals-loaded-cars .btn {
+    margin: 80px auto 0 auto;
+  }
+
+  .totals-body .total-price .back-btn {
+    margin-left: 2px;
+  }
+
+  .totals-body ul li {
+    font-size: 14px;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+}
+
+@media screen and (max-width: 321px) {
+
+  .totals-body ul li {
+    font-size: 12px;
+  }
+
+  .truck-back {
+    left: 64%;
+  }
+
+  .totals-loaded-cars .btn {
+    margin: 100px auto 0 auto;
+  }
+
+  .attributes input[type="radio"] + label {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .total-price-info {
+    float: none;
+    margin: -50px 0 35px 0;
+  }
+
+}
 
 
 
