@@ -159,7 +159,8 @@ class App extends Component {
         totalPrice = totalPrice + deliveryPrice
       }
 
-      orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}`
+      orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+      // orderLink = `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     if (tab3) {

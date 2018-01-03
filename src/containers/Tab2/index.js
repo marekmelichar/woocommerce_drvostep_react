@@ -91,12 +91,12 @@ export default class Tab2 extends Component {
                   type="radio"
                   name="osobniOdber"
                   value="Osobní odběr"
-                  onChange={(e) => this.props.handleOptionClick(e, 9, 'osobniOdber')}
-                  checked={delivery === 'osobniOdber'}
+                  onChange={(e) => this.props.handleOptionClick(e, 9, 'osobní odběr')}
+                  checked={delivery === 'osobní odběr'}
                 />
                 <label
                   htmlFor="osobniOdber"
-                  className={delivery === 'osobniOdber' ? 'checked' : ''}
+                  className={delivery === 'osobní odběr' ? 'checked' : ''}
                 >Osobní odběr</label>
               </li>
               <li className="item-wrapper">
@@ -105,12 +105,12 @@ export default class Tab2 extends Component {
                   type="radio"
                   name="dovezeDrvostep"
                   value="Doveze Drvoštěp"
-                  onChange={(e) => this.props.handleOptionClick(e, 10, 'dovezeDrvostep')}
-                  checked={delivery === 'dovezeDrvostep'}
+                  onChange={(e) => this.props.handleOptionClick(e, 10, 'doveze Drvoštěp')}
+                  checked={delivery === 'doveze Drvoštěp'}
                 />
                 <label
                   htmlFor="dovezeDrvostep"
-                  className={delivery === 'dovezeDrvostep' ? 'checked' : ''}
+                  className={delivery === 'doveze Drvoštěp' ? 'checked' : ''}
                 >Doveze Drvoštěp</label>
               </li>
             </ul>
@@ -127,12 +127,12 @@ export default class Tab2 extends Component {
                   type="radio"
                   name="coNejdrive"
                   value="Co nejdříve"
-                  onChange={(e) => this.props.handleOptionClick(e, 11, 'coNejdrive')}
-                  checked={whenToDeliver === 'coNejdrive'}
+                  onChange={(e) => this.props.handleOptionClick(e, 11, 'co nejdříve')}
+                  checked={whenToDeliver === 'co nejdříve'}
                 />
                 <label
                   htmlFor="coNejdrive"
-                  className={whenToDeliver === 'coNejdrive' ? 'checked' : ''}
+                  className={whenToDeliver === 'co nejdříve' ? 'checked' : ''}
                 >Co nejdříve</label>
               </li>
               <li className="item-wrapper">
@@ -141,12 +141,12 @@ export default class Tab2 extends Component {
                   type="radio"
                   name="doTydne"
                   value="Do týdne"
-                  onChange={(e) => this.props.handleOptionClick(e, 12, 'doTydne')}
-                  checked={whenToDeliver === 'doTydne'}
+                  onChange={(e) => this.props.handleOptionClick(e, 12, 'do týdne')}
+                  checked={whenToDeliver === 'do týdne'}
                 />
                 <label
                   htmlFor="doTydne"
-                  className={whenToDeliver === 'doTydne' ? 'checked' : ''}
+                  className={whenToDeliver === 'do týdne' ? 'checked' : ''}
                 >Do týdne</label>
               </li>
               <li className="item-wrapper">
@@ -155,12 +155,12 @@ export default class Tab2 extends Component {
                   type="radio"
                   name="doMesice"
                   value="Do měsíce"
-                  onChange={(e) => this.props.handleOptionClick(e, 13, 'doMesice')}
-                  checked={whenToDeliver === 'doMesice'}
+                  onChange={(e) => this.props.handleOptionClick(e, 13, 'do měsíce')}
+                  checked={whenToDeliver === 'do měsíce'}
                 />
                 <label
                   htmlFor="doMesice"
-                  className={whenToDeliver === 'doMesice' ? 'checked' : ''}
+                  className={whenToDeliver === 'do měsíce' ? 'checked' : ''}
                 >Do měsíce</label>
               </li>
             </ul>
