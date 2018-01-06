@@ -34,7 +34,7 @@ export default class Tab3 extends Component {
             </span>
           </div>
           <div className="info">{load < 100 ? `Pozor, vytížení je pouze ${load} procent, zvyšte ho a výrazně snížíte cenu za 1 prms.` : 'Efektivně vytíženo na 100%.'}</div>
-          <div className="btn" onClick={handleFullyLoad}>Vytížit</div>
+          <div className="fully-load-btn" onClick={handleFullyLoad}>Vytížit</div>
         </div>
         <div className="total-to-order">
           <div className="left">Konečná cena</div>

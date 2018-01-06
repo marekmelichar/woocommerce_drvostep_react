@@ -31,7 +31,7 @@ class App extends Component {
         osobni_odber: ''
       },
       whenToDeliver: 'kdy',
-      whereToDeliver: 'obec',
+      whereToDeliver: '',
       filterValue: '',
       totalPrice: 0,
       recalculatedWoodAmount: 0,
@@ -120,14 +120,17 @@ class App extends Component {
 
     if (tab1) {
       return(
-        <div className="total-price">
-          <div className="total-price-info">
-            <div><strong>Celková cena:</strong></div>
-            <div>{totalPrice} Kč</div>
-          </div>
-
-          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
-            Na dopravu
+        <div className="total-price _row not-fit">
+          <div className="_row">
+            <div className="_column size_100 flex">
+              <div className="total-price-info">
+                <div><strong>Celková cena:</strong></div>
+                <div>{totalPrice} Kč</div>
+              </div>
+              <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+                Na dopravu
+              </div>
+            </div>
           </div>
         </div>
       )
@@ -135,17 +138,20 @@ class App extends Component {
 
     if (tab2) {
       return(
-        <div className="total-price">
-          <div className="total-price-info">
-            <div><strong>Celková cena:</strong></div>
-            <div>{totalPrice} Kč</div>
-          </div>
-
-          <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
-            Na výběr dřeva
-          </div>
-          <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}>
-            Shrnutí
+        <div className="total-price _row not-fit">
+          <div className="_row">
+            <div className="_column size_100 flex">
+              <div className="total-price-info">
+                <div><strong>Celková cena:</strong></div>
+                <div>{totalPrice} Kč</div>
+              </div>
+              <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
+                Na výběr dřeva
+              </div>
+              <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}>
+                Shrnutí
+              </div>
+            </div>
           </div>
         </div>
       )
@@ -160,16 +166,15 @@ class App extends Component {
       }
 
       orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-      // orderLink = `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     if (tab3) {
       return(
-        <div className="total-price">
-          <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+        <div className="total-price _row not-fit">
+          <div className="back-btn _column size_50" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
             Na dopravu
           </div>
-          <a href={orderLink} className="total-price-btn">
+          <a href={orderLink} className="total-price-btn _column size_50">
             Objednat
           </a>
         </div>
@@ -204,7 +209,8 @@ class App extends Component {
         return this.setState({
           whereToDeliver: opt,
           distance,
-          deliveryPrice: 0
+          deliveryPrice: 0,
+          filterValue: opt
         })
       }
       return this.setState({ whereToDeliver: opt, distance, deliveryPrice })
@@ -260,33 +266,36 @@ class App extends Component {
 
   render() {
 
+    // console.log('state.whereToDeliver', this.state.whereToDeliver);
+    // console.log('state.filterValue', this.state.filterValue);
+
     const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
-        <div className="row main-content">
-          <div className="column size_50">
+        <div className="_row main-content">
+          <div className="_column size_50 person">
             <div className="image">
                 <img src="/images/mazanec.png" alt="Jiri Mazanec - Drvostep" />
             </div>
-            <div className="row">
-              <div className="column size_100 text-center">
+            <div className="_row">
+              <div className="_column size_100 text-center">
                 <p className="name-under-photo">Jmenuji se <strong>Jiří Mazanec</strong> a vyřeším s vámi vaši objednávku.</p>
               </div>
             </div>
-            <div className="row">
-              <div className="column size_50 contact-info">
+            <div className="_row">
+              <div className="_column size_50 contact-info">
                 <p>E-mail:</p>
                 <a href="mailto:jiri.mazanec@drvostep.eu">jiri.mazanec@drvostep.eu</a>
               </div>
-              <div className="column size_50 contact-info">
+              <div className="_column size_50 contact-info">
                 <p>Telefon:</p>
                 <a href="tel:+420 999 999 999">+420 999 999 999</a>
               </div>
-              <div className="column size_50"></div>
+              <div className="_column size_50"></div>
             </div>
           </div>
-          <div className="column size_50">
+          <div className="_column size_50">
 
             {this.renderTabs()}
 

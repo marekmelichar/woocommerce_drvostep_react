@@ -17,10 +17,17 @@ export default class Tab2 extends Component {
     this.setState({ Obce })
   }
 
+  handleCityValue = e => {
+    console.log(e);
+    // return
+  }
+
   renderObceFilter = () => {
     const {Obce} = this.state
 
     const {whereToDeliver, filterValue} = this.props
+
+    console.log(whereToDeliver, filterValue);
 
     let obj = _.map(Obce, o => {
       // to be able to filter value without diacritics
@@ -40,6 +47,8 @@ export default class Tab2 extends Component {
             type="text"
             placeholder="název města kam se poveze dřevo"
             onChange={e => this.props.handleFilterValue(e.target.value)}
+            onFocus={() => this.props.handleFilterValue('')}
+            // value={filterValue ? filterValue : whereToDeliver ? whereToDeliver : ''}
             value={filterValue}
           />
         </div>
@@ -82,7 +91,7 @@ export default class Tab2 extends Component {
         <p className="delivery-info">
           Dovážíme od 3.3prms. Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy.
         </p>
-        <form className="attributes">
+        <form className="attributes who">
           <div className="attribute">
             <ul className="flex">
               <li className="item-wrapper">
@@ -118,7 +127,7 @@ export default class Tab2 extends Component {
         </form>
 
         <h2>Kdy?</h2>
-        <form className="attributes">
+        <form className="attributes when">
           <div className="attribute">
             <ul className="flex">
               <li className="item-wrapper">

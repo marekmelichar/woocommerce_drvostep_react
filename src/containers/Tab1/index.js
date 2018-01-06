@@ -104,7 +104,7 @@ export default class Tab1 extends Component {
         <div className="wood-actual-info">
           <strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého
           <span className="tooltip-holder">
-            <span className="info-icon top" data-tooltip={'tady bude nejaky info text'}><i className="fas fa-info-circle"></i></span>
+            <span className="info-icon top" data-tooltip={'Štípané dříví sypané do prostoru krychle o rozměru 1x1x1 metru.'}><i className="fas fa-info-circle"></i></span>
           </span>
         </div>
         <div className="wood-body">
@@ -122,7 +122,7 @@ export default class Tab1 extends Component {
 
   render() {
     return this.props.loading ? <div><Spinner /></div> : (
-      <div>
+      <div className="main-content-body">
         {this.renderAttributes()}
         {this.renderWoodAmount()}
         {this.props.calculateTotalPrice()}
