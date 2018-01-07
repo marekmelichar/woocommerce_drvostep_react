@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactTooltip from 'react-tooltip'
 
 import Spinner from '../../components/Spinner';
 
@@ -103,8 +104,8 @@ export default class Tab1 extends Component {
         <h2>Množství</h2>
         <div className="wood-actual-info">
           <strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého
-          <span className="tooltip-holder">
-            <span className="info-icon top" data-tooltip={'Štípané dříví sypané do prostoru krychle o rozměru 1x1x1 metru.'}><i className="fas fa-info-circle"></i></span>
+          <span className="tooltip-holder" data-tip='Štípané dříví sypané do prostoru krychle o rozměru 1x1x1 metru.'>
+            <i className="info-icon fas fa-info-circle"></i>
           </span>
         </div>
         <div className="wood-body">
@@ -126,6 +127,7 @@ export default class Tab1 extends Component {
         {this.renderAttributes()}
         {this.renderWoodAmount()}
         {this.props.calculateTotalPrice()}
+        <ReactTooltip place="top" />
       </div>
     )
   }

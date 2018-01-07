@@ -8,7 +8,7 @@
 
 
 /*
-*  OVERRIDE BOOTSTRAP:
+*  OVERRIDE BOOTSTRAP AND THEME:
 *
 *
 */
@@ -30,6 +30,17 @@
   margin-bottom: 0;
 }
 
+p {
+  margin: 0 !important;
+}
+
+ul, ol {
+  margin: 0 !important;
+}
+
+.menu3dmega > ul li > a {
+  border-radius: 4px;
+}
 
 
 
@@ -44,6 +55,7 @@
 
 .wrapper-wood h2 {
   font-size: 22px;
+  line-height: 1.5;
 }
 
 .wrapper-wood .no-select {
@@ -104,6 +116,11 @@
 
 .wrapper-wood .contact-info a {
   font-weight: 700;
+}
+
+.wrapper-wood .contact-info a:hover {
+  color: #cc804d;
+  text-decoration: none;  
 }
 
 .wrapper-wood .name-under-photo {
@@ -172,12 +189,24 @@
 
 /* main-content-body */
 
-.main-content-body {
+.wrapper-wood .main-content-body {
   background-color: rgba(255,255,255,0.8);
   color: #A3643A;
   border-radius: 4px;
   padding: 13px 50px;
   margin-top: 10px;
+}
+
+.wrapper-wood .total-price._row.not-fit {
+  margin-top: 48px;
+}
+
+.wrapper-wood .delivery-body .total-price._row.not-fit {
+  margin-top: 39px;
+}
+
+.wrapper-wood .totals-body .total-price._row.not-fit {
+  margin-top: 124px;
 }
 
 .wrapper-wood input[type="radio"] + label,
@@ -195,6 +224,7 @@
   border: 1px solid #cc804d;
   background-color: #cc804d;
   color: #fff;
+  text-decoration: none;
 }
 
 .wrapper-wood input[type="radio"] + label.checked:hover {
@@ -432,10 +462,6 @@
   margin-left: 46px;
 }
 
-.wrapper-wood .total-price._row.not-fit {
-  margin-top: 33px;
-}
-
 .wrapper-wood .total-price .flex {
   display: flex;
   justify-content: space-between;
@@ -526,9 +552,9 @@
   justify-content: space-between;
 }
 
-.wrapper-wood .delivery-body .total-price {
+/* .wrapper-wood .delivery-body .total-price {
   margin-top: 94px;
-}
+} */
 
 .wrapper-wood .delivery-info {
   font-size: 12px;
@@ -576,6 +602,9 @@
   width: 23%;
   float: left;
   margin: 0.75%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
 
 .wrapper-wood .totals-body ul li:first-child {
@@ -618,7 +647,7 @@
 .wrapper-wood .totals-loaded-cars .info {
   font-size: 14px;
   text-align: center;
-  margin: 16px auto;
+  margin: 11px auto;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -653,7 +682,7 @@
   height: 40px;
   display: block;
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 58%;
 }
 
@@ -712,10 +741,6 @@
   font-weight: 700;
 }
 
-.wrapper-wood .totals-body .total-price._row.not-fit {
-  margin-top: 95px;
-}
-
 .wrapper-wood .totals-body .total-price .back-btn {
   margin-left: 41%;
 }
@@ -752,115 +777,256 @@
 
 @media screen and (min-width: 769px) and (max-width: 1100px) {
 
-  .wrapper-wood .total-price-btn {
-    margin-bottom: 20px;
-  }
-
   .wrapper-wood .truck-back {
     left: 60%;
+  }
+
+  .wrapper-wood .totals-body .total-price .back-btn {
+    margin-left: 30%;
+  }
+
+  .wrapper-wood .attributes input[type="radio"] + label {
+    padding: 14px 34px;
+  }
+
+  .wrapper-wood .wood-actual-info .tooltip-holder {
+    right: 25%;
+  }
+
+  .wrapper-wood .wood-counter {
+    width: 75%;
+  }
+
+  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
+    padding: 14px 34px;
+  }
+
+  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
+    padding: 14px 21px;
+  }
+
+  .wrapper-wood .total-price .back-btn {
+    margin-left: 0;
+  }
+
+  .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
+    width: 118px;
   }
 
 }
 
 @media screen and (min-width: 767px) and (max-width: 768px) {
 
+  .wrapper-wood .main-content-body {
+    padding: 13px;
+  }
+
+  .wrapper-wood .attributes input[type="radio"] + label {
+    padding: 14px 30px;
+  }
+
+  .wrapper-wood .wood-actual-info .tooltip-holder {
+    right: 20%;
+  }
+
   .wrapper-wood .wood-counter {
     width: 70%;
   }
 
-  .wrapper-wood .total-price-btn {
-    margin-bottom: 20px;
+  .wrapper-wood .delivery-body {
+    padding: 13px;
   }
 
-  .wrapper-wood .attributes input[type="radio"] + label {
-    font-size: 14px;
-    padding: 10px;
+  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label,
+  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
+    padding: 14px;
+  }
+
+  .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
+    width: 100px;
   }
 
   .wrapper-wood .total-price .back-btn {
-    margin-left: 20px;
     padding: 12px;
-    font-size: 12px;
-  }
-
-  .wrapper-wood .totals-body .total-price .back-btn {
     margin-left: 0;
   }
 
+  .wrapper-wood .delivery-body .total-price-btn {
+    padding: 12px 6px;
+  }
+
+  .wrapper-wood .totals-body {
+    padding: 13px;
+  }
+
   .wrapper-wood .truck-back {
-    left: 60%;
+    left: 61%;
+  }
+
+  .wrapper-wood .totals-body .total-price .back-btn {
+    margin-left: 26%;
   }
 
 }
 
 @media screen and (max-width: 767px) {
 
-  .wrapper-wood .wood-counter {
-    width: 70%;
+  .wrapper-wood .person {
+    display: none;
   }
 
-  .wrapper-wood .total-price-btn {
-    margin-bottom: 20px;
-  }
-
-  .wrapper-wood .attributes input[type="radio"] + label {
-    font-size: 14px;
+  .wrapper-wood .main-content-body,
+  .wrapper-wood .delivery-body,
+  .wrapper-wood .totals-body {
     padding: 10px;
   }
 
-  .wrapper-wood .delivery-body .total-price-info {
-    float: none;
-    margin: -50px 0 35px 0;
+  .wrapper-wood .attributes input[type="radio"] + label {
+    padding: 14px 36px;
+  }
+
+  .wrapper-wood .wood-actual-info .tooltip-holder {
+    right: 23%;
+  }
+
+  .wrapper-wood .wood-counter {
+    width: 75%;
+  }
+
+  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
+    padding: 14px 30px;
+  }
+
+  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
+    padding: 14px 18px;
+  }
+
+  .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
+    width: 112px;
   }
 
   .wrapper-wood .total-price .back-btn {
-    margin-left: 10px;
+    margin-left: 0;
+  }
+
+  .wrapper-wood .total-price .back-btn {
+    padding: 12px;
   }
 
   .wrapper-wood .truck-back {
     left: 60%;
   }
 
-  .wrapper-wood .totals-loaded-cars .fully-load-btn {
-    margin: 80px auto 0 auto;
-  }
-
   .wrapper-wood .totals-body .total-price .back-btn {
-    margin-left: 2px;
-  }
-
-  .wrapper-wood .totals-body ul li {
-    font-size: 14px;
+    margin-left: 35%;
   }
 
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 400px) {
+
+  .wrapper-wood .attributes input[type="radio"] + label {
+    padding: 14px 26px;
+  }
+
+  .wrapper-wood .wood-actual-info .tooltip-holder {
+    right: 20%;
+  }
+
+  .wrapper-wood .wood-counter {
+    width: 70%;
+  }
+
+  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
+    padding: 14px 16px;
+  }
+
+  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
+    padding: 8px;
+  }
+
+  .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
+    width: 95px;
+  }
+
+  .wrapper-wood .total-price .back-btn {
+    margin-left: 0;
+    padding: 5px;
+    line-height: 2.25;
+  }
+
+  .wrapper-wood .total-price-btn {
+    padding: 5px;
+    line-height: 2.25;
+  }
+
+  .wrapper-wood .truck-back {
+    left: 61%;
+  }
+
+  .wrapper-wood .totals-body .total-price .back-btn {
+    margin-left: 39%;
+  }
 
 }
 
 @media screen and (max-width: 321px) {
 
-  .wrapper-wood .totals-body ul li {
-    font-size: 12px;
+  .wrapper-wood .tab-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
   }
 
-  .wrapper-wood .truck-back {
-    left: 64%;
+  .wrapper-wood .attributes .drevina input[type="radio"] + label {
+    padding: 14px 52px;
   }
 
-  .wrapper-wood .totals-loaded-cars .fully-load-btn {
-    margin: 100px auto 0 auto;
+  .wrapper-wood .wood-actual-info .tooltip-holder {
+    right: 15%;
   }
 
   .wrapper-wood .attributes input[type="radio"] + label {
-    font-size: 14px;
-    padding: 8px;
+    padding: 14px 20px;
   }
 
-  .wrapper-wood .total-price-info {
-    float: none;
-    margin: -50px 0 35px 0;
+  .wrapper-wood .wood-counter {
+    width: 66%;
+  }
+
+  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
+    padding: 14px 4px;
+  }
+
+  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
+    padding: 14px 2px;
+  }
+
+  .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
+    width: 77px;
+  }
+
+  .wrapper-wood .total-price-info,
+  .wrapper-wood .total-price .back-btn,
+  .wrapper-wood .total-price-btn {
+    font-size: 13px;
+  }
+
+  .wrapper-wood .truck-back {
+    left: 63%;
+  }
+
+  .wrapper-wood .totals-body ul li {
+    font-size: 14px;
+  }
+
+  .wrapper-wood .totals-loaded-cars .fully-load-btn {
+    width: 180px;
+    margin-top: 84px;
+  }
+
+  .wrapper-wood .totals-body .total-price._row.not-fit {
+    margin-top: 84px;
   }
 
 }
