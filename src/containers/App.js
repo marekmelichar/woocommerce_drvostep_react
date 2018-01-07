@@ -21,7 +21,7 @@ class App extends Component {
       wood: {},
       attributes: [],
       opt1: 'délka dřeva',
-      opt2: 'druh dřeva',
+      opt2: '',
       tab1: true,
       tab2: false,
       tab3: false,
@@ -171,12 +171,16 @@ class App extends Component {
     if (tab3) {
       return(
         <div className="total-price _row not-fit">
-          <div className="back-btn _column size_50" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
-            Na dopravu
+          <div className="_row">
+            <div className="_column size_100 flex">
+              <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+                Na dopravu
+              </div>
+              <a href={orderLink} className="total-price-btn">
+                Objednat
+              </a>
+            </div>
           </div>
-          <a href={orderLink} className="total-price-btn _column size_50">
-            Objednat
-          </a>
         </div>
       )
     }
@@ -210,7 +214,6 @@ class App extends Component {
           whereToDeliver: opt,
           distance,
           deliveryPrice: 0,
-          filterValue: opt
         })
       }
       return this.setState({ whereToDeliver: opt, distance, deliveryPrice })

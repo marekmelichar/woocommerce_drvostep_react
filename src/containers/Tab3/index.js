@@ -13,17 +13,17 @@ export default class Tab3 extends Component {
             <li className="list-heading">Dřevo</li>
             <li>{data.opt2}</li>
             <li>{data.recalculatedWoodAmount} prms</li>
-            <li>{data.totalPrice} Kč</li>
+            <li><strong>{data.totalPrice} Kč</strong></li>
           </ul>
           <ul>
             <li className="list-heading">Doprava</li>
             <li>{data.whereToDeliver}</li>
             <li>{data.distance} km</li>
-            <li>{data.deliveryPrice} Kč</li>
+            <li><strong>{data.deliveryPrice} Kč</strong></li>
           </ul>
           <ul>
             <li className="list-heading">Vytížení</li>
-            <li>{load} %</li>
+            <li><strong>{load} %</strong></li>
           </ul>
         </div>
         <div className="totals-loaded-cars">

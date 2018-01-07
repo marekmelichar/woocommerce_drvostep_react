@@ -10,6 +10,8 @@ export default class Tab2 extends Component {
 
     this.state = {
       Obce: [],
+      filterValue: '',
+      showFilterResults: false
     }
   }
 
@@ -17,17 +19,23 @@ export default class Tab2 extends Component {
     this.setState({ Obce })
   }
 
-  handleCityValue = e => {
-    console.log(e);
-    // return
+  handleFiltering = e => {
+    this.props.handleOptionClick(e, 14, '', '')
+    this.setState({
+      filterValue: e.target.value,
+      showFilterResults: true
+    })
+  }
+
+  handleOptionClick = (e, id, obec, vzdalenost) => {
+    this.props.handleOptionClick(e, id, obec, vzdalenost)
+    this.setState({ showFilterResults: false })
   }
 
   renderObceFilter = () => {
-    const {Obce} = this.state
+    const {Obce, filterValue, showFilterResults} = this.state
 
-    const {whereToDeliver, filterValue} = this.props
-
-    console.log(whereToDeliver, filterValue);
+    const {whereToDeliver} = this.props
 
     let obj = _.map(Obce, o => {
       // to be able to filter value without diacritics
@@ -46,31 +54,30 @@ export default class Tab2 extends Component {
             id="obceFilterInput"
             type="text"
             placeholder="název města kam se poveze dřevo"
-            onChange={e => this.props.handleFilterValue(e.target.value)}
-            onFocus={() => this.props.handleFilterValue('')}
-            // value={filterValue ? filterValue : whereToDeliver ? whereToDeliver : ''}
-            value={filterValue}
+            onChange={e => this.handleFiltering(e)}
+            value={whereToDeliver ? whereToDeliver : filterValue}
           />
         </div>
         <div className="text-center filtered-values">
           <form className="attributes">
             <div className="attribute">
               <ul className="flex">
-                {final.slice(0, 3).map(o => {
+                {showFilterResults && final.slice(0, 3).map(o => {
                   return(
-                    <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper">
-                      <input
-                        id={o.Obec}
-                        type="radio"
-                        name={o.Obec}
-                        value={o.Obec}
-                        onChange={(e) => this.props.handleOptionClick(e, 14, o.Obec, o.Vzdalenost)}
-                        checked={whereToDeliver === o.Obec}
-                      />
-                      <label
-                        htmlFor={o.Obec}
-                        className={whereToDeliver === o.Obec ? 'checked' : ''}
-                      >{o.Obec}</label>
+                    <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper __tooltip-holder">
+                      <div className="__info-icon __top" data-tooltip={o.Obec}>
+                        <input
+                          id={o.Obec}
+                          type="radio"
+                          name={o.Obec}
+                          value={o.Obec}
+                          onChange={e => this.handleOptionClick(e, 14, o.Obec, o.Vzdalenost)}
+                        />
+                        <label
+                          htmlFor={o.Obec}
+                          className={whereToDeliver === o.Obec ? 'checked' : ''}
+                        >{o.Obec}</label>
+                      </div>
                     </li>
                   )
                 })}

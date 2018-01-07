@@ -190,7 +190,8 @@
 .wrapper-wood .attributes input[type="radio"] + label:hover,
 .wrapper-wood .total-price-btn:hover,
 .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label:hover,
-.wrapper-wood .total-price .back-btn:hover {
+.wrapper-wood .total-price .back-btn:hover,
+.wrapper-wood .totals-loaded-cars .fully-load-btn:hover {
   border: 1px solid #cc804d;
   background-color: #cc804d;
   color: #fff;
@@ -444,7 +445,7 @@
 .wrapper-wood .delivery-body .total-price .flex {
   display: flex;
   justify-content: space-between;
-  margin-top: 69px;
+  margin-top: 67px;
 }
 
 
@@ -471,10 +472,14 @@
   margin: 16px auto;
 }
 
+.wrapper-wood .delivery-body form.when {
+  margin: 6px auto 16px auto;
+}
+
 .wrapper-wood .delivery-body input#obceFilterInput {
   border: 1px solid #A3643A;
   background: transparent;
-  padding: 8px 16px;
+  padding: 14px;
   margin-top: 4px;
   border-radius: 4px;
   width: 100%;
@@ -495,11 +500,16 @@
 
 .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
   border: 1px solid #A3643A;
-  padding: 4px 16px;
+  padding: 14px 7px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   margin-right: 16px;
+
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  width: 140px;
 }
 
 .wrapper-wood .where-to-deliver {
@@ -513,7 +523,7 @@
 
 .wrapper-wood .filtered-values .attributes .flex {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .wrapper-wood .delivery-body .total-price {
@@ -548,6 +558,8 @@
   background-color: rgba(255,255,255,0.8);
   color: #A3643A;
   border-radius: 4px;
+  padding: 13px 50px;
+  margin-top: 10px;
 }
 
 .wrapper-wood .totals-body ul {
@@ -588,7 +600,6 @@
 }
 
 .wrapper-wood .totals-lists {
-  margin-top: 40px;
   min-height: 100px;
   font-size: 16px;
 }
@@ -624,11 +635,10 @@
   text-align: center;
   margin: 64px auto 0 auto;
   font-size: 16px !important;
+  width: 230px;
 }
 
-.wrapper-wood .totals-loaded-cars .fully-load-btn:hover {
-  color: #66ab36;
-}
+
 
 .wrapper-wood .truck {
   position: relative;
@@ -643,8 +653,8 @@
   height: 40px;
   display: block;
   position: absolute;
-  top: 0;
-  left: 56%;
+  top: 10px;
+  left: 58%;
 }
 
 .wrapper-wood .truck-back:before {
@@ -682,7 +692,7 @@
 .wrapper-wood .total-to-order {
   margin-top: 48px;
   border-top: 3px solid #A3643A;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .wrapper-wood .total-to-order:after {
@@ -702,12 +712,12 @@
   font-weight: 700;
 }
 
-.wrapper-wood .totals-body .total-price {
-  margin-top: 136px;
+.wrapper-wood .totals-body .total-price._row.not-fit {
+  margin-top: 95px;
 }
 
 .wrapper-wood .totals-body .total-price .back-btn {
-  margin-left: 192px;
+  margin-left: 41%;
 }
 
 
