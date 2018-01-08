@@ -133,12 +133,17 @@ ul, ol {
 
 .wrapper-wood .tabs {
   display: flex;
-  justify-content: center;
-  padding: 16px;
+  justify-content: space-between;
+  padding: 13px 50px 10px 50px;
 
   background-color: rgba(255,255,255,0.8);
   color: #A3643A;
   border-radius: 4px;
+}
+
+.tabs svg.fa-angle-right {
+  font-size: 40px;
+  margin-top: 25px;
 }
 
 .wrapper-wood .tab-icon {
@@ -149,7 +154,7 @@ ul, ol {
   padding: 25px;
   line-height: 1;
   text-align: center;
-  margin: 0 25px;
+  margin: 0 auto;
   cursor: pointer;
   font-size: 30px;
   position: relative;
@@ -198,15 +203,15 @@ ul, ol {
 }
 
 .wrapper-wood .total-price._row.not-fit {
-  margin-top: 39px;
+  margin-top: 56px;
 }
 
 .wrapper-wood .delivery-body .total-price._row.not-fit {
-  margin-top: 40px;
+  margin-top: 44px;
 }
 
 .wrapper-wood .totals-body .total-price._row.not-fit {
-  margin-top: 124px;
+  margin-top: 87px;
 }
 
 .wrapper-wood input[type="radio"] + label,
@@ -240,7 +245,10 @@ ul, ol {
 }
 
 
-
+/*
+** cau, v te sekci 2.Doprava je to tak, ze az zacnes hledat a objevi se tam ty moznosti, tak jsou zarovnany s ostatnima sekcema,
+jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
+*/
 
 
 
@@ -356,7 +364,7 @@ ul, ol {
 .wrapper-wood .wood-actual-info {
   position: relative;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   font-size: 16px;
 }
 
@@ -392,11 +400,11 @@ ul, ol {
 }
 
 .wrapper-wood .wood-counter {
-  /* outline: auto; */
   background-color: rgba(255,255,255,0.25);
   width: 80%;
   border-radius: 2px;
   height: 44px;
+  margin-bottom: 3px;
 }
 
 .wrapper-wood .wood-counter .filling {
@@ -486,9 +494,13 @@ ul, ol {
   border: 1px solid #A3643A;
   background-color: #A3643A;
   color: #fff;
-  padding: 12px 20px;
+  padding: 14px 10px;
   border-radius: 4px;
   cursor: pointer;
+
+  width: 140px;
+  line-height: 1.5;
+  height: 50px;
 }
 
 .wrapper-wood .total-price .back-btn {
@@ -497,10 +509,14 @@ ul, ol {
   border: 1px solid #A3643A;
   background-color: transparent;
   color: #A3643A;
-  padding: 12px 20px;
+  padding: 14px 10px;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 46px;
+  margin-left: 0;
+
+  width: 140px;
+  line-height: 1.5;
+  height: 50px;
 }
 
 .wrapper-wood .total-price .flex {
@@ -608,7 +624,9 @@ ul, ol {
 }
 
 .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-  padding: 14px 28px;
+  padding: 14px 20px;
+  width: 136px;
+  text-align: center;
 }
 
 
@@ -676,7 +694,7 @@ ul, ol {
 
 .wrapper-wood .totals-loaded-cars {
   position: relative;
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -760,7 +778,7 @@ ul, ol {
 }
 
 .wrapper-wood .total-to-order {
-  margin-top: 48px;
+  margin-top: 70px;
   border-top: 3px solid #A3643A;
   font-size: 22px;
 }
@@ -783,7 +801,7 @@ ul, ol {
 }
 
 .wrapper-wood .totals-body .total-price .back-btn {
-  margin-left: 41%;
+  margin-left: 31%;
 }
 
 
@@ -858,6 +876,10 @@ ul, ol {
 
 @media screen and (min-width: 767px) and (max-width: 768px) {
 
+  .wrapper-wood .tabs {
+    padding: 13px 10px 10px 10px;
+  }
+
   .wrapper-wood .main-content-body {
     padding: 13px;
   }
@@ -878,9 +900,13 @@ ul, ol {
     padding: 13px;
   }
 
+  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
+    width: 100px;
+  }
+
   .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label,
   .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 14px;
+    padding: 14px 5px;
   }
 
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
@@ -890,6 +916,9 @@ ul, ol {
   .wrapper-wood .total-price .back-btn {
     padding: 12px;
     margin-left: 0;
+    font-size: 12px;
+    line-height: 2;
+    margin-right: 5px;
   }
 
   .wrapper-wood .delivery-body .total-price-btn {
@@ -911,6 +940,10 @@ ul, ol {
 }
 
 @media screen and (max-width: 767px) {
+
+  .wrapper-wood .tabs {
+    padding: 13px 10px 10px 10px;
+  }
 
   .wrapper-wood .person {
     display: none;
@@ -939,7 +972,8 @@ ul, ol {
   }
 
   .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 14px 18px;
+    padding: 14px 0;
+    width: 116px;
   }
 
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
@@ -948,6 +982,9 @@ ul, ol {
 
   .wrapper-wood .total-price .back-btn {
     margin-left: 0;
+    font-size: 12px;
+    line-height: 2;
+    margin-right: 5px;
   }
 
   .wrapper-wood .total-price .back-btn {
@@ -983,7 +1020,8 @@ ul, ol {
   }
 
   .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 8px;
+    padding: 14px 0;
+    width: 100px;
   }
 
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
@@ -993,7 +1031,7 @@ ul, ol {
   .wrapper-wood .total-price .back-btn {
     margin-left: 0;
     padding: 5px;
-    line-height: 2.25;
+    line-height: 3;
   }
 
   .wrapper-wood .total-price-btn {
@@ -1012,6 +1050,11 @@ ul, ol {
 }
 
 @media screen and (max-width: 321px) {
+
+  .tabs svg.fa-angle-right {
+    font-size: 30px;
+    margin-top: 20px;
+  }
 
   .wrapper-wood .tab-icon {
     width: 36px;
@@ -1041,6 +1084,8 @@ ul, ol {
 
   .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
     padding: 14px 2px;
+    width: 80px;
+    font-size: 13px;
   }
 
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
@@ -1051,6 +1096,15 @@ ul, ol {
   .wrapper-wood .total-price .back-btn,
   .wrapper-wood .total-price-btn {
     font-size: 13px;
+  }
+
+  .wrapper-wood .total-price-btn {
+    padding: 5px;
+    line-height: 3;
+  }
+
+  .wrapper-wood .total-price .back-btn {
+    line-height: 1.5;
   }
 
   .wrapper-wood .truck-back {
