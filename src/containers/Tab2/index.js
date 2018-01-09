@@ -64,7 +64,7 @@ export default class Tab2 extends Component {
               <ul className="flex">
                 {showFilterResults && final.slice(0, 3).map(o => {
                   return(
-                    <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper __tooltip-holder">
+                    <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper" style={{ width: 32 + '%' }}>
                       <div className="__info-icon __top" data-tooltip={o.Obec}>
                         <input
                           id={o.Obec}
