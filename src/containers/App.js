@@ -93,14 +93,14 @@ class App extends Component {
           </div>
           <div className="tab-heading">1. Dřevo</div>
         </div>
-        <i class="fas fa-angle-right"></i>
+        <i className="fas fa-angle-right"></i>
         <div className="tab">
           <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
             <i className="fas fa-truck"></i>
           </div>
           <div className="tab-heading">2. Doprava</div>
         </div>
-        <i class="fas fa-angle-right"></i>
+        <i className="fas fa-angle-right"></i>
         <div className="tab">
           <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}>
             <i className="fas fa-list-ul"></i>

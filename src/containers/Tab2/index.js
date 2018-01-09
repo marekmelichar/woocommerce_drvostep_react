@@ -93,15 +93,15 @@ export default class Tab2 extends Component {
     const {delivery, whenToDeliver} = this.props
 
     return(
-      <div className="delivery-body">
-        <h2>Kdo doveze?</h2>
+      <div className="-delivery-body main-content-body tab2">
+        <h2 className="pt-15">Kdo doveze?</h2>
         <p className="delivery-info">
           Dovážíme od 3.3prms. Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy.
         </p>
         <form className="attributes who">
           <div className="attribute">
             <ul className="flex">
-              <li className="item-wrapper">
+              <li className="item-wrapper" style={{ width: 48.25 + '%' }}>
                 <input
                   id="osobniOdber"
                   type="radio"
@@ -115,7 +115,7 @@ export default class Tab2 extends Component {
                   className={delivery === 'osobní odběr' ? 'checked' : ''}
                 >Osobní odběr</label>
               </li>
-              <li className="item-wrapper">
+              <li className="item-wrapper" style={{ width: 48.25 + '%' }}>
                 <input
                   id="dovezeDrvostep"
                   type="radio"
@@ -137,7 +137,7 @@ export default class Tab2 extends Component {
         <form className="attributes when">
           <div className="attribute">
             <ul className="flex">
-              <li className="item-wrapper">
+              <li className="item-wrapper" style={{ width: 31 + '%' }}>
                 <input
                   id="coNejdrive"
                   type="radio"
@@ -151,7 +151,7 @@ export default class Tab2 extends Component {
                   className={whenToDeliver === 'co nejdříve' ? 'checked' : ''}
                 >Co nejdříve</label>
               </li>
-              <li className="item-wrapper">
+              <li className="item-wrapper" style={{ width: 31 + '%' }}>
                 <input
                   id="doTydne"
                   type="radio"
@@ -165,7 +165,7 @@ export default class Tab2 extends Component {
                   className={whenToDeliver === 'do týdne' ? 'checked' : ''}
                 >Do týdne</label>
               </li>
-              <li className="item-wrapper">
+              <li className="item-wrapper" style={{ width: 31 + '%' }}>
                 <input
                   id="doMesice"
                   type="radio"

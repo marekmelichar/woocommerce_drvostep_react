@@ -7,7 +7,7 @@ export default class Tab3 extends Component {
     const load = Math.round(data.recalculatedWoodAmount / 7.7 * 100)
 
     return(
-      <div className="totals-body">
+      <div className="-totals-body main-content-body tab3">
         <div className="totals-lists">
           <ul>
             <li className="list-heading">Dřevo</li>
@@ -34,7 +34,7 @@ export default class Tab3 extends Component {
             </span>
           </div>
           <div className="info">{load < 100 ? `Pozor, vytížení je pouze ${load} procent, zvyšte ho a výrazně snížíte cenu za 1 prms.` : 'Efektivně vytíženo na 100%.'}</div>
-          <div className="fully-load-btn" onClick={handleFullyLoad}>Vytížit</div>
+          <div className="fully-load-btn" onClick={handleFullyLoad} style={{ width: 48.25 + '%' }}>Vytížit</div>
         </div>
         <div className="total-to-order">
           <div className="left">Konečná cena</div>

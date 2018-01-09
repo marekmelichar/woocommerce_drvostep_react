@@ -24,7 +24,7 @@ export default class Tab1 extends Component {
                 <ul className="flex">
                   {itm.options.map((opt, i) => {
                     return (
-                      <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt}>
+                      <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt} style={itm.options.length > 1 ? { width: Math.floor(100/itm.options.length) - 2 + '%' } : { width: 100 / 2 + '%' }}>
                         <input
                           id={opt}
                           type="radio"
@@ -110,9 +110,6 @@ export default class Tab1 extends Component {
         </div>
         <div className="wood-body">
           <div className="wood-handler-left no-select" onClick={decreaseWood}>-</div>
-          {/* <div className="wood-counter">
-            <div className="filling" style={{ width: 100 / 7 * woodAmount + '%' }}></div>
-          </div> */}
           <div className="wood-counter progress">
             <div className="filling progress-bar" role="progressbar" style={{ width: 100 / 7 * woodAmount + '%' }} aria-valuenow={100 / 7 * woodAmount} aria-valuemin="0" aria-valuemax="100"></div>
           </div>
@@ -126,7 +123,7 @@ export default class Tab1 extends Component {
 
   render() {
     return this.props.loading ? <div><Spinner /></div> : (
-      <div className="main-content-body">
+      <div className="main-content-body tab1">
         {this.renderAttributes()}
         {this.renderWoodAmount()}
         {this.props.calculateTotalPrice()}

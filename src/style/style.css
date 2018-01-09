@@ -2,8 +2,48 @@
 *  COLORS:
 *
 *  basic: #A3643A
+*  hover: #cc804d;
 */
 
+/*
+*  GLOBALS:
+*
+*
+*/
+
+.wrapper-wood .attributes input[type="radio"] + label,
+.wrapper-wood .total-price-btn,
+.wrapper-wood .total-price .back-btn,
+.wrapper-wood .totals-loaded-cars .fully-load-btn {
+  border: 1px solid #A3643A;
+  padding: 0 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 3.5;
+}
+
+.wrapper-wood .total-price-btn,
+.wrapper-wood .total-price .back-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 50px;
+}
+
+.wrapper-wood .total-price .back-btn {
+  right: 25%;
+}
+
+.wrapper-wood .total-price-info {
+  text-align: center;
+  font-size: 16px;
+  padding-top: 8px;
+  position: absolute;
+  bottom: 15px;
+}
 
 
 
@@ -143,7 +183,7 @@ ul, ol {
 
 .tabs svg.fa-angle-right {
   font-size: 40px;
-  margin-top: 25px;
+  margin-top: 13px;
 }
 
 .wrapper-wood .tab-icon {
@@ -198,20 +238,20 @@ ul, ol {
   background-color: rgba(255,255,255,0.8);
   color: #A3643A;
   border-radius: 4px;
-  padding: 13px 50px;
+  padding: 0 50px;
   margin-top: 10px;
+  min-height: 547px;
+  position: relative;
+}
+
+.wrapper-wood .main-content-body h2 {
+  text-align: center;
+  font-weight: 700;
 }
 
 .wrapper-wood .total-price._row.not-fit {
-  margin-top: 56px;
-}
-
-.wrapper-wood .delivery-body .total-price._row.not-fit {
-  margin-top: 44px;
-}
-
-.wrapper-wood .totals-body .total-price._row.not-fit {
-  margin-top: 87px;
+  margin-top: 16px;
+  padding-bottom: 15px;
 }
 
 .wrapper-wood input[type="radio"] + label,
@@ -245,10 +285,8 @@ ul, ol {
 }
 
 
-/*
-** cau, v te sekci 2.Doprava je to tak, ze az zacnes hledat a objevi se tam ty moznosti, tak jsou zarovnany s ostatnima sekcema,
-jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
-*/
+
+
 
 
 
@@ -262,31 +300,19 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   list-style-type: none;
 }
 
-.wrapper-wood .attributes h2 {
-  text-align: center;
-  font-weight: 700;
-}
-
-.wrapper-wood .attribute:nth-child(1) h2 {
+.wrapper-wood .main-content:nth-child(1) h2 {
+  padding-top: 15px;
   margin-bottom: 5px;
 }
 
-.wrapper-wood .attribute:nth-child(2) h2 {
-  margin-top: 20px;
+.wrapper-wood .main-content:nth-child(2) h2 {
+  margin-top: 30px;
   margin-bottom: 5px;
 }
 
 .wrapper-wood .attributes input[type="radio"] {
   visibility: hidden;
   display: none;
-}
-
-.wrapper-wood .attributes input[type="radio"] + label {
-  border: 1px solid #A3643A;
-  padding: 14px 48px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
 }
 
 .wrapper-wood .checked {
@@ -301,34 +327,52 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   text-align: center;
 }
 
-.wrapper-wood .attributes .drevina input[type="radio"] + label {
-  padding: 14px 72px;
-}
 
 
 
 
 /* PLACEHOLDERS FOR ATTRIBUTES */
 
+.wrapper-wood .attributes.placeholders {
+  position: relative;
+  top: 15px;
+  height: 228px;
+}
+
+.wrapper-wood .attributes.placeholders h2:nth-child(1) {
+  position: absolute;
+  top: 0;
+}
+
+.wrapper-wood .attributes.placeholders h2:nth-child(2) {
+  position: absolute;
+  top: 80px;
+}
+
+.wrapper-wood .attributes.placeholders h2:nth-child(3) {
+  position: absolute;
+  top: 160px;
+}
+
 .wrapper-wood .attributes.placeholders h2 {
-  text-align: center;
-  font-weight: 700;
-  margin: 29px auto;
-  width: 144px;
-  height: 36px;
   border: 1px solid #A3643A;
+  width: 144px;
+  height: 50px;
+  line-height: 2.3;
+  padding-top: 0;
+  margin-bottom: 0;
+
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.wrapper-wood .attributes.placeholders ul {
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-}
 
-.wrapper-wood .attributes.placeholders ul li {
-  padding: 24px 64px;
-  border-radius: 4px;
-}
+
+
+
+
 
 /* SPINNER */
 
@@ -336,7 +380,6 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   width: 20%;
   text-align: center;
   display: inline-block;
-  /* vertical-align: top; */
 }
 
 .wrapper-wood .loader svg path,
@@ -350,16 +393,6 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
 
 
 /* WOOD RANGE INPUT */
-
-.wrapper-wood .wood-range-input {
-  /* margin: 20px auto; */
-}
-
-.wrapper-wood .wood-range-input h2 {
-  text-align: center;
-  font-weight: 700;
-  margin-top: 20px;
-}
 
 .wrapper-wood .wood-actual-info {
   position: relative;
@@ -412,55 +445,6 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   min-width: 0;
 }
 
-/* .wrapper-wood .wood-body {
-  position: relative;
-  height: 44px;
-}
-
-.wrapper-wood .wood-counter {
-  border: 1px solid #A3643A;
-  background: transparent;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  border-radius: 2px;
-  height: 44px;
-}
-
-.wrapper-wood .wood-counter .filling {
-  background: #A3643A;
-  display: block;
-  border: 1px solid #A3643A;
-  border-radius: 2px;
-  height: 42px;
-}
-
-.wrapper-wood .wood-handler-left,
-.wrapper-wood .wood-handler-right {
-  font-size: 35px;
-  cursor: pointer;
-
-  background-color: #A3643A;
-  color: #fff;
-  width: 40px;
-  text-align: center;
-  height: 44px;
-  border-radius: 2px;
-}
-
-.wrapper-wood .wood-handler-left {
-  position: absolute;
-  left: 0;
-  line-height: 1.2;
-}
-
-.wrapper-wood .wood-handler-right {
-  position: absolute;
-  right: 0;
-  line-height: 1.3;
-} */
-
 .wrapper-wood .wood-comparison {
   text-align: center;
   margin: 8px auto;
@@ -478,46 +462,7 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
 
 
 
-
-
-
 /* TOTAL PRICE */
-
-.wrapper-wood .total-price-info {
-  text-align: center;
-  font-size: 16px;
-}
-
-.wrapper-wood .total-price-btn {
-  text-align: center;
-  font-size: 16px;
-  border: 1px solid #A3643A;
-  background-color: #A3643A;
-  color: #fff;
-  padding: 14px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-
-  width: 140px;
-  line-height: 1.5;
-  height: 50px;
-}
-
-.wrapper-wood .total-price .back-btn {
-  text-align: center;
-  font-size: 16px;
-  border: 1px solid #A3643A;
-  background-color: transparent;
-  color: #A3643A;
-  padding: 14px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 0;
-
-  width: 140px;
-  line-height: 1.5;
-  height: 50px;
-}
 
 .wrapper-wood .total-price .flex {
   display: flex;
@@ -525,11 +470,6 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   margin-top: 0;
 }
 
-.wrapper-wood .delivery-body .total-price .flex {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 67px;
-}
 
 
 
@@ -538,46 +478,24 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
 
 /* DELIVERY TAB & CONTENT */
 
-.wrapper-wood .delivery-body {
-  background-color: rgba(255,255,255,0.8);
-  color: #A3643A;
-  border-radius: 4px;
-  padding: 13px 50px;
-  margin-top: 10px;
-}
-
-.wrapper-wood .delivery-body h2 {
-  text-align: center;
-  font-weight: 700;
-}
-
-.wrapper-wood .delivery-body form {
-  margin: 16px auto;
-}
-
-.wrapper-wood .delivery-body form.when {
-  margin: 6px auto 16px auto;
-}
-
-.wrapper-wood .delivery-body input#obceFilterInput {
+.wrapper-wood .main-content input#obceFilterInput {
   border: 1px solid #A3643A;
   background: transparent;
   padding: 14px;
-  margin-top: 4px;
   border-radius: 4px;
   width: 100%;
   color: #A3643A;
   font-size: 18px;
 }
 
-.wrapper-wood .delivery-body input#obceFilterInput::placeholder {
+.wrapper-wood .main-content input#obceFilterInput::placeholder {
   color: #A3643A;
   font-style: italic;
   opacity: 0.4;
   font-size: 14px;
 }
 
-.wrapper-wood .delivery-body input#obceFilterInput:focus::placeholder {
+.wrapper-wood .main-content input#obceFilterInput:focus::placeholder {
   opacity: 0;
 }
 
@@ -609,24 +527,10 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   justify-content: space-between;
 }
 
-/* .wrapper-wood .delivery-body .total-price {
-  margin-top: 94px;
-} */
-
 .wrapper-wood .delivery-info {
   font-size: 12px;
   text-align: center;
-  margin-bottom: 0;
-}
-
-.wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
-  padding: 14px 48px;
-}
-
-.wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-  padding: 14px 20px;
-  width: 136px;
-  text-align: center;
+  margin-bottom: 18px !important;
 }
 
 
@@ -639,25 +543,17 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
 
 /* TOTALS TAB */
 
-.wrapper-wood .totals-body {
-  background-color: rgba(255,255,255,0.8);
-  color: #A3643A;
-  border-radius: 4px;
-  padding: 13px 50px;
-  margin-top: 10px;
-}
-
-.wrapper-wood .totals-body ul {
+.wrapper-wood .main-content ul {
   list-style-type: none;
   width: 100%;
 }
 
-.wrapper-wood .totals-body ul:after {
+.wrapper-wood .main-content ul:after {
   content: '';
   clear: both;
 }
 
-.wrapper-wood .totals-body ul li {
+.wrapper-wood .main-content ul li {
   width: 23%;
   float: left;
   margin: 0.75%;
@@ -666,30 +562,31 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   text-overflow: ellipsis;
 }
 
-.wrapper-wood .totals-body ul li:first-child {
+.wrapper-wood .main-content ul li:first-child {
   text-align: left;
 }
 
-.wrapper-wood .totals-body ul li:nth-child(2) {
+.wrapper-wood .main-content ul li:nth-child(2) {
   text-align: center;
 }
 
-.wrapper-wood .totals-body ul li:nth-child(3) {
+.wrapper-wood .main-content ul li:nth-child(3) {
   text-align: center;
 }
 
-.wrapper-wood .totals-body ul li:last-child {
+.wrapper-wood .main-content ul li:last-child {
   float: right;
   text-align: right;
 }
 
-.wrapper-wood .totals-body ul .list-heading {
+.wrapper-wood .main-content ul .list-heading {
   font-weight: 700;
 }
 
 .wrapper-wood .totals-lists {
   min-height: 100px;
   font-size: 16px;
+  padding-top: 15px;
 }
 
 .wrapper-wood .totals-loaded-cars {
@@ -707,26 +604,11 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   font-size: 14px;
   text-align: center;
   margin: 11px auto;
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
 }
-
-.wrapper-wood .totals-loaded-cars .fully-load-btn {
-  border: 1px solid #A3643A;
-  background: #A3643A;
-  color: #fff;
-  padding: 12px 40px !important;
-  border-radius: 4px !important;
-  cursor: pointer;
-  text-align: center;
-  margin: 64px auto 0 auto;
-  font-size: 16px !important;
-  width: 230px;
-}
-
-
 
 .wrapper-wood .truck {
   position: relative;
@@ -800,10 +682,9 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   font-weight: 700;
 }
 
-.wrapper-wood .totals-body .total-price .back-btn {
-  margin-left: 31%;
+.wrapper-wood .totals-loaded-cars .fully-load-btn {
+  margin: 0 auto;
 }
-
 
 
 
@@ -840,32 +721,12 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
     left: 60%;
   }
 
-  .wrapper-wood .totals-body .total-price .back-btn {
-    margin-left: 30%;
-  }
-
-  .wrapper-wood .attributes input[type="radio"] + label {
-    padding: 14px 34px;
-  }
-
   .wrapper-wood .wood-actual-info .tooltip-holder {
     right: 25%;
   }
 
   .wrapper-wood .wood-counter {
     width: 75%;
-  }
-
-  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
-    padding: 14px 34px;
-  }
-
-  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 14px 21px;
-  }
-
-  .wrapper-wood .total-price .back-btn {
-    margin-left: 0;
   }
 
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
@@ -881,11 +742,7 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
   }
 
   .wrapper-wood .main-content-body {
-    padding: 13px;
-  }
-
-  .wrapper-wood .attributes input[type="radio"] + label {
-    padding: 14px 30px;
+    padding: 0 13px;
   }
 
   .wrapper-wood .wood-actual-info .tooltip-holder {
@@ -896,45 +753,12 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
     width: 70%;
   }
 
-  .wrapper-wood .delivery-body {
-    padding: 13px;
-  }
-
-  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    width: 100px;
-  }
-
-  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label,
-  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 14px 5px;
-  }
-
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
     width: 100px;
   }
 
-  .wrapper-wood .total-price .back-btn {
-    padding: 12px;
-    margin-left: 0;
-    font-size: 12px;
-    line-height: 2;
-    margin-right: 5px;
-  }
-
-  .wrapper-wood .delivery-body .total-price-btn {
-    padding: 12px 6px;
-  }
-
-  .wrapper-wood .totals-body {
-    padding: 13px;
-  }
-
   .wrapper-wood .truck-back {
     left: 61%;
-  }
-
-  .wrapper-wood .totals-body .total-price .back-btn {
-    margin-left: 26%;
   }
 
 }
@@ -949,14 +773,12 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
     display: none;
   }
 
-  .wrapper-wood .main-content-body,
-  .wrapper-wood .delivery-body,
-  .wrapper-wood .totals-body {
-    padding: 10px;
+  .wrapper-wood .main-content-body {
+    padding: 0 10px;
   }
 
   .wrapper-wood .attributes input[type="radio"] + label {
-    padding: 14px 36px;
+    /* padding: 14px 36px; */
   }
 
   .wrapper-wood .wood-actual-info .tooltip-holder {
@@ -967,45 +789,17 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
     width: 75%;
   }
 
-  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
-    padding: 14px 30px;
-  }
-
-  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 14px 0;
-    width: 116px;
-  }
-
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
     width: 112px;
-  }
-
-  .wrapper-wood .total-price .back-btn {
-    margin-left: 0;
-    font-size: 12px;
-    line-height: 2;
-    margin-right: 5px;
-  }
-
-  .wrapper-wood .total-price .back-btn {
-    padding: 12px;
   }
 
   .wrapper-wood .truck-back {
     left: 60%;
   }
 
-  .wrapper-wood .totals-body .total-price .back-btn {
-    margin-left: 35%;
-  }
-
 }
 
 @media screen and (max-width: 400px) {
-
-  .wrapper-wood .attributes input[type="radio"] + label {
-    padding: 14px 26px;
-  }
 
   .wrapper-wood .wood-actual-info .tooltip-holder {
     right: 20%;
@@ -1015,36 +809,12 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
     width: 70%;
   }
 
-  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
-    padding: 14px 16px;
-  }
-
-  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 14px 0;
-    width: 100px;
-  }
-
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
     width: 95px;
   }
 
-  .wrapper-wood .total-price .back-btn {
-    margin-left: 0;
-    padding: 5px;
-    line-height: 3;
-  }
-
-  .wrapper-wood .total-price-btn {
-    padding: 5px;
-    line-height: 2.25;
-  }
-
   .wrapper-wood .truck-back {
     left: 61%;
-  }
-
-  .wrapper-wood .totals-body .total-price .back-btn {
-    margin-left: 39%;
   }
 
 }
@@ -1070,58 +840,17 @@ jeste se zeptam na tu validaci, jestli ji tam nedame v dalsim kole
     right: 15%;
   }
 
-  .wrapper-wood .attributes input[type="radio"] + label {
-    padding: 14px 20px;
-  }
-
   .wrapper-wood .wood-counter {
     width: 66%;
-  }
-
-  .wrapper-wood .delivery-body .attributes.who input[type="radio"] + label {
-    padding: 14px 4px;
-  }
-
-  .wrapper-wood .delivery-body .attributes.when input[type="radio"] + label {
-    padding: 14px 2px;
-    width: 80px;
-    font-size: 13px;
   }
 
   .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
     width: 77px;
   }
 
-  .wrapper-wood .total-price-info,
-  .wrapper-wood .total-price .back-btn,
-  .wrapper-wood .total-price-btn {
-    font-size: 13px;
-  }
-
-  .wrapper-wood .total-price-btn {
-    padding: 5px;
-    line-height: 3;
-  }
-
-  .wrapper-wood .total-price .back-btn {
-    line-height: 1.5;
-  }
-
   .wrapper-wood .truck-back {
     left: 63%;
   }
 
-  .wrapper-wood .totals-body ul li {
-    font-size: 14px;
-  }
-
-  .wrapper-wood .totals-loaded-cars .fully-load-btn {
-    width: 180px;
-    margin-top: 84px;
-  }
-
-  .wrapper-wood .totals-body .total-price._row.not-fit {
-    margin-top: 84px;
-  }
 
 }
