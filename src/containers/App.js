@@ -167,7 +167,8 @@ class App extends Component {
         totalPrice = totalPrice + deliveryPrice
       }
 
-      orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+      // orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+      orderLink = `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     if (tab3) {
@@ -179,6 +180,7 @@ class App extends Component {
                 Na dopravu
               </div>
               <a href={orderLink} className="total-price-btn">
+              {/* <a href="" className="total-price-btn" onClick={e => this.handleURL(e)}> */}
                 Objednat
               </a>
             </div>
@@ -187,6 +189,12 @@ class App extends Component {
       )
     }
   }
+
+  // handleURL = e => {
+  //   e.preventDefault()
+  //   // return this.props.history.push("/eshop/?add-to-cart=3642")
+  //   return window.location.replace('/eshop/?add-to-cart=3642')
+  // }
 
   increaseWood = () => {
     if (this.state.woodAmount < 7) {
