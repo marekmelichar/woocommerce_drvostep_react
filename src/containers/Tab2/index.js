@@ -64,7 +64,8 @@ export default class Tab2 extends Component {
               <ul className="flex">
                 {showFilterResults && final.slice(0, 3).map(o => {
                   return(
-                    <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper" style={{ width: 32 + '%' }}>
+                    // <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper" style={{ width: 32 + '%', position: 'relative' }}>
+                    <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper">
                       <div className="__info-icon __top" data-tooltip={o.Obec}>
                         <input
                           id={o.Obec}
@@ -76,6 +77,7 @@ export default class Tab2 extends Component {
                         <label
                           htmlFor={o.Obec}
                           className={whereToDeliver === o.Obec ? 'checked' : ''}
+                          style={ o.Obec.length < 15 ? { paddingTop: 17 } : {}}
                         >{o.Obec}</label>
                       </div>
                     </li>

@@ -30,6 +30,7 @@ export default class Tab3 extends Component {
           <div className="truck">
             <i className="fas fa-truck"></i>
             <span className="truck-back">
+              <span className="truck-fill-bottom"></span>
               <span className="truck-fill" style={{top: 100-load + '%'}}></span>
             </span>
           </div>
