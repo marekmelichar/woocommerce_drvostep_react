@@ -34,7 +34,8 @@ export default class Tab3 extends Component {
               <span className="truck-fill" style={{top: 100-load + '%'}}></span>
             </span>
           </div>
-          <div className="info">{load < 100 ? `Pozor, vytížení je pouze ${load} procent, zvyšte ho a výrazně snížíte cenu za 1 prms.` : 'Efektivně vytíženo na 100%.'}</div>
+          {load < 100 ? <div className="info">Pozor, vytížení je pouze {load} procent, zvyšte ho a výrazně snížíte cenu za 1 prms.</div> :
+            <div className="info">Efektivně vytíženo na 100%.<br/><br/></div>}
           <div className="fully-load-btn" onClick={handleFullyLoad} style={{ width: 48.25 + '%' }}>Vytížit</div>
         </div>
         <div className="total-to-order">
