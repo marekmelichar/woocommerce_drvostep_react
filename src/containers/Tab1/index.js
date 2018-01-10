@@ -24,7 +24,8 @@ export default class Tab1 extends Component {
                 <ul className="flex">
                   {itm.options.map((opt, i) => {
                     return (
-                      <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt} style={itm.options.length > 1 ? { width: Math.floor(100/itm.options.length) - 2 + '%' } : { width: 100 / 2 + '%' }}>
+                      // <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt} style={itm.options.length > 1 ? { width: Math.floor(100/itm.options.length) - 2 + '%' } : { width: 100 / 2 + '%' }}>
+                      <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt}>
                         <input
                           id={opt}
                           type="radio"
