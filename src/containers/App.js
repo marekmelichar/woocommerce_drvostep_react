@@ -167,7 +167,6 @@ class App extends Component {
         totalPrice = totalPrice + deliveryPrice
       }
 
-      // orderLink = `https://drvostepstaging.marekmelichar.cz/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
       orderLink = `https://drvostepstaging.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
@@ -179,8 +178,7 @@ class App extends Component {
               <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na dopravu
               </div>
-              <a href={orderLink} className="total-price-btn">
-              {/* <a href="" className="total-price-btn" onClick={e => this.handleURL(e)}> */}
+              <a rel="nofollow" href={orderLink} data-quantity="1" data-product_id="3642" data-product_sku="" className="total-price-btn">
                 Objednat
               </a>
             </div>
