@@ -453,6 +453,12 @@ ul, ol {
   right: 0;
 }
 
+.osobni-odber-veta {
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
 
 /* TAB 3 */
 
@@ -461,6 +467,14 @@ ul, ol {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.invisible-char {
+  opacity: 0;
+}
+
+.totals-lists .tooltip-holder {
+  margin-left: 5px;
 }
 
 

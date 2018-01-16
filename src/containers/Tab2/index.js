@@ -35,18 +35,33 @@ export default class Tab2 extends Component {
   renderObceFilter = () => {
     const {Obce, filterValue, showFilterResults} = this.state
 
-    const {whereToDeliver} = this.props
+    const {delivery, whereToDeliver} = this.props
 
     let obj = _.map(Obce, o => {
       // to be able to filter value without diacritics
-      if (o.Obec && o.Obec.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase().includes(filterValue.toUpperCase()) && filterValue.length) {
-        return o
+      // if (o.Obec && o.Obec.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase().includes(filterValue.toUpperCase()) && filterValue.length) {
+
+      // able to filter value without diacritics + replace space and comma to "-"
+      if (o.Obec) {
+        if (o.Obec.normalize('NFD').replace(/[\u0300-\u036f]/g, "").split(/[ ,]+/).join('-').toUpperCase().includes(filterValue.split(/[ ,]+/).join('-').toUpperCase()) ||
+            o.Obec.split(/[ ,]+/).join('-').toUpperCase().includes(filterValue.split(/[ ,]+/).join('-').toUpperCase())) {
+          return o
+        }
       }
     })
 
     let final = _.without(obj, undefined)
 
-    return(
+    if (delivery === 'osobní odběr') {
+      return (
+        <div className="where-to-deliver">
+          <h2>Kam?</h2>
+          <div className="osobni-odber-veta">Po telefonické domluvě si <br/> dřevo u nás vyzvednete.</div>
+        </div>
+      )
+    }
+
+    return (
       <div className="where-to-deliver">
         <h2>Kam?</h2>
         <div className="text-center">
@@ -64,7 +79,6 @@ export default class Tab2 extends Component {
               <ul className="flex">
                 {showFilterResults && final.slice(0, 3).map(o => {
                   return(
-                    // <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper" style={{ width: 32 + '%', position: 'relative' }}>
                     <li key={o.Obec + ' ' + o.Vzdalenost} className="item-wrapper">
                       <div className="__info-icon __top" data-tooltip={o.Obec}>
                         <input
@@ -77,12 +91,13 @@ export default class Tab2 extends Component {
                         <label
                           htmlFor={o.Obec}
                           className={whereToDeliver === o.Obec ? 'checked' : ''}
-                          style={ o.Obec.length < 15 ? { paddingTop: 14 } : {}}
+                          style={ o.Obec.length < 13 ? { paddingTop: 14 } : {}}
                         >{o.Obec}</label>
                       </div>
                     </li>
                   )
                 })}
+                {!final.length && <li>Prosím zadejte pouze platný název obce kam dřevo povezeme.</li>}
               </ul>
             </div>
           </form>

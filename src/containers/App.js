@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import _ from 'lodash'
+import accounting from 'accounting'
 
 import Spinner from '../components/Spinner';
 
@@ -127,7 +128,7 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                <div>{totalPrice} Kč</div>
+                <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div>
               </div>
               <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na dopravu
@@ -145,7 +146,7 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                <div>{totalPrice} Kč</div>
+                <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div>
               </div>
               <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na výběr dřeva
@@ -188,12 +189,6 @@ class App extends Component {
     }
   }
 
-  // handleURL = e => {
-  //   e.preventDefault()
-  //   // return this.props.history.push("/eshop/?add-to-cart=3642")
-  //   return window.location.replace('/eshop/?add-to-cart=3642')
-  // }
-
   increaseWood = () => {
     if (this.state.woodAmount < 7) {
       this.setState({ woodAmount: this.state.woodAmount + 1 })
@@ -201,7 +196,7 @@ class App extends Component {
   }
 
   decreaseWood = () => {
-    if (this.state.woodAmount > 0) {
+    if (this.state.woodAmount > 1) {
       this.setState({ woodAmount: this.state.woodAmount - 1 })
     }
   }
@@ -275,10 +270,50 @@ class App extends Component {
     return this.setState({ recalculatedWoodAmount, totalPrice, woodAmount: 7 })
   }
 
-  render() {
+  handleClickOnWood = (e, selector) => {
 
-    // console.log('state.whereToDeliver', this.state.whereToDeliver);
-    // console.log('state.filterValue', this.state.filterValue);
+    let {woodAmount} = this.state
+
+    var pos_parent = document.querySelector(selector).getBoundingClientRect();
+
+    var click_relative_in_parent = e.pageX - pos_parent.left
+
+    var result_number_in_percent = Math.round(click_relative_in_parent / pos_parent.width * 100)
+
+    let breakpoint = 100 / 7
+
+    if (result_number_in_percent < breakpoint) {
+      woodAmount = 1
+    }
+
+    if (result_number_in_percent > breakpoint && result_number_in_percent < 2 * breakpoint) {
+      woodAmount = 2
+    }
+
+    if (result_number_in_percent > 2 * breakpoint && result_number_in_percent < 3 * breakpoint) {
+      woodAmount = 3
+    }
+
+    if (result_number_in_percent > 3 * breakpoint && result_number_in_percent < 4 * breakpoint) {
+      woodAmount = 4
+    }
+
+    if (result_number_in_percent > 4 * breakpoint && result_number_in_percent < 5 * breakpoint) {
+      woodAmount = 5
+    }
+
+    if (result_number_in_percent > 5 * breakpoint && result_number_in_percent < 6 * breakpoint) {
+      woodAmount = 6
+    }
+
+    if (result_number_in_percent > 6 * breakpoint && result_number_in_percent < 7 * breakpoint) {
+      woodAmount = 7
+    }
+
+    return this.setState({ woodAmount })
+  }
+
+  render() {
 
     const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
@@ -301,7 +336,7 @@ class App extends Component {
               </div>
               <div className="_column size_50 contact-info">
                 <p>Telefon:</p>
-                <a href="tel:+420 999 999 999">+420 999 999 999</a>
+                <a href="tel:+420 737 214 666">+420 737 214 666</a>
               </div>
               <div className="_column size_50"></div>
             </div>
@@ -321,6 +356,7 @@ class App extends Component {
               calculateTotalPrice={this.calculateTotalPrice}
               opt1={this.state.opt1}
               opt2={this.state.opt2}
+              handleClickOnWood={this.handleClickOnWood}
             />}
             {this.state.tab2 && <Tab2
               handleOptionClick={this.handleOptionClick}
