@@ -70,7 +70,7 @@ export default class Tab2 extends Component {
             type="text"
             placeholder="název města kam se poveze dřevo"
             onChange={e => this.handleFiltering(e)}
-            value={whereToDeliver ? whereToDeliver : filterValue}
+            value={whereToDeliver !== null ? whereToDeliver : filterValue}
           />
         </div>
         <div className="text-center filtered-values">
