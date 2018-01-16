@@ -35,7 +35,7 @@ export default class Tab2 extends Component {
   renderObceFilter = () => {
     const {Obce, filterValue, showFilterResults} = this.state
 
-    const {delivery, whereToDeliver} = this.props
+    const {delivery, whereToDeliver, woodAmount} = this.props
 
     let obj = _.map(Obce, o => {
       // to be able to filter value without diacritics
@@ -52,11 +52,20 @@ export default class Tab2 extends Component {
 
     let final = _.without(obj, undefined)
 
-    if (delivery === 'osobní odběr') {
+    if (delivery === 'osobní odběr' && woodAmount >= 3) {
       return (
         <div className="where-to-deliver">
           <h2>Kam?</h2>
           <div className="osobni-odber-veta">Po telefonické domluvě si <br/> dřevo u nás vyzvednete.</div>
+        </div>
+      )
+    }
+
+    if (woodAmount < 3) {
+      return (
+        <div className="where-to-deliver">
+          <h2>Kam?</h2>
+          <div className="osobni-odber-veta">Máte vybráno pod 3 prms dřeva, po telefonické <br/> domluvě si dřevo u nás vyzvednete.</div>
         </div>
       )
     }
@@ -70,7 +79,7 @@ export default class Tab2 extends Component {
             type="text"
             placeholder="název města kam se poveze dřevo"
             onChange={e => this.handleFiltering(e)}
-            value={whereToDeliver !== null ? whereToDeliver : filterValue}
+            value={whereToDeliver ? whereToDeliver : filterValue}
           />
         </div>
         <div className="text-center filtered-values">
@@ -91,7 +100,7 @@ export default class Tab2 extends Component {
                         <label
                           htmlFor={o.Obec}
                           className={whereToDeliver === o.Obec ? 'checked' : ''}
-                          style={ o.Obec.length < 13 ? { paddingTop: 14 } : {}}
+                          style={ o.Obec.length <= 14 ? { paddingTop: 14 } : {}}
                         >{o.Obec}</label>
                       </div>
                     </li>
@@ -125,7 +134,7 @@ export default class Tab2 extends Component {
                   name="osobniOdber"
                   value="Osobní odběr"
                   onChange={(e) => this.props.handleOptionClick(e, 9, 'osobní odběr')}
-                  checked={delivery === 'osobní odběr'}
+                  checked={delivery === 'osobní odběr' || this.state.osobniOdber}
                 />
                 <label
                   htmlFor="osobniOdber"

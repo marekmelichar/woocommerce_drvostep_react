@@ -19,6 +19,17 @@ export default class Tab3 extends Component {
       )
     }
 
+    if (data.woodAmount < 3) {
+      return (
+        <ul>
+          <li className="list-heading">Doprava</li>
+          <li className="invisible-char">--</li>
+          <li className="invisible-char">--</li>
+          <li>{data.delivery.osobni_odber}</li>
+        </ul>
+      )
+    }
+
     return (
       <ul>
         <li className="list-heading">Doprava</li>
@@ -29,7 +40,6 @@ export default class Tab3 extends Component {
             <i className="info-icon fas fa-info-circle"></i>
           </span>
         </li>
-        {/* <li><strong>{2 * data.deliveryPrice} Kč</strong></li> */}
         <li><strong>{accounting.formatMoney(2 * data.deliveryPrice, '', ',')} Kč</strong></li>
       </ul>
     )
@@ -47,7 +57,6 @@ export default class Tab3 extends Component {
             <li className="list-heading">Dřevo</li>
             <li>{data.opt2}</li>
             <li>{data.recalculatedWoodAmount} prms</li>
-            {/* <li><strong>{data.totalPrice} Kč</strong></li> */}
             <li><strong>{accounting.formatMoney(data.totalPrice, '', ',')} Kč</strong></li>
           </ul>
           {this.renderDeliery()}
@@ -70,7 +79,6 @@ export default class Tab3 extends Component {
         </div>
         <div className="total-to-order">
           <div className="left">Konečná cena</div>
-          {/* <div className="right">{data.totalPrice + (2 * data.deliveryPrice)} Kč</div> */}
           <div className="right">{accounting.formatMoney(data.totalPrice + (2 * data.deliveryPrice), '', ',')} Kč</div>
         </div>
         {this.props.calculateTotalPrice()}

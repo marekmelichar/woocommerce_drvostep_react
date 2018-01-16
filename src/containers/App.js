@@ -88,7 +88,7 @@ class App extends Component {
       woodAmount: +localStorage.getItem('woodAmount') || +woodAmount,
       delivery: {
         doveze_drvostep: localStorage.getItem('doveze_drvostep'),
-        osobni_odber: localStorage.getItem('osobni_odber')
+        osobni_odber: localStorage.getItem('osobni_odber') || 'osobní odběr'
       },
       whenToDeliver: localStorage.getItem('whenToDeliver'),
       whereToDeliver: localStorage.getItem('whereToDeliver'),
@@ -420,6 +420,7 @@ class App extends Component {
               calculateTotalPrice={this.calculateTotalPrice}
               handleFilterValue={this.handleFilterValue}
               filterValue={this.state.filterValue}
+              woodAmount={this.state.woodAmount}
             />}
             {this.state.tab3 && <Tab3
               data={this.state}
