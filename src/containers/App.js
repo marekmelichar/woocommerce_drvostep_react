@@ -21,7 +21,7 @@ class App extends Component {
       loading: false,
       wood: {},
       attributes: [],
-      opt1: 'délka dřeva',
+      opt1: '',
       opt2: '',
       tab1: true,
       tab2: false,
@@ -31,7 +31,7 @@ class App extends Component {
         doveze_drvostep: '',
         osobni_odber: ''
       },
-      whenToDeliver: 'kdy',
+      whenToDeliver: '',
       whereToDeliver: '',
       filterValue: '',
       totalPrice: 0,
@@ -71,20 +71,69 @@ class App extends Component {
 
   componentDidMount() {
 
-    let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
+    const {woodAmount} = this.state
+
+    let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
-    this.setState({ loading: false, totalPrice, recalculatedWoodAmount })
+    const localStorage = window.localStorage
+
+    return this.setState({
+      loading: false,
+      totalPrice,
+      recalculatedWoodAmount,
+      opt1: localStorage.getItem('opt1'),
+      opt2: localStorage.getItem('opt2'),
+      woodAmount: +localStorage.getItem('woodAmount') || +woodAmount,
+      delivery: {
+        doveze_drvostep: localStorage.getItem('doveze_drvostep'),
+        osobni_odber: localStorage.getItem('osobni_odber')
+      },
+      whenToDeliver: localStorage.getItem('whenToDeliver'),
+      whereToDeliver: localStorage.getItem('whereToDeliver'),
+      deliveryPrice: localStorage.getItem('deliveryPrice'),
+      distance: localStorage.getItem('distance')
+    })
+  }
+
+  componentDidUpdate() {
+    const {opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice, distance} = this.state
+
+    const localStorage = window.localStorage
+
+    localStorage.setItem('opt1', opt1)
+    localStorage.setItem('opt2', opt2)
+    localStorage.setItem('woodAmount', woodAmount)
+    localStorage.setItem('doveze_drvostep', delivery.doveze_drvostep)
+    localStorage.setItem('osobni_odber', delivery.osobni_odber)
+    localStorage.setItem('whenToDeliver', whenToDeliver)
+    localStorage.setItem('whereToDeliver', whereToDeliver)
+    localStorage.setItem('deliveryPrice', deliveryPrice)
+    localStorage.setItem('distance', distance)
+  }
+
+  componentWillUnmount() {
+    const localStorage = window.localStorage
+
+    localStorage.removeItem('opt1')
+    localStorage.removeItem('opt2')
+    localStorage.removeItem('woodAmount')
+    localStorage.removeItem('doveze_drvostep')
+    localStorage.removeItem('osobni_odber')
+    localStorage.removeItem('whenToDeliver')
+    localStorage.removeItem('whereToDeliver')
+    localStorage.removeItem('deliveryPrice')
+    localStorage.removeItem('distance')
   }
 
   renderTabs = () => {
 
-    let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
+    const {tab1, tab2, tab3, woodAmount} = this.state
+
+    let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
-
-    const {tab1, tab2, tab3} = this.state
 
     return(
       <div className="tabs">
