@@ -50,6 +50,11 @@
   right: 35%;
 }
 
+.woocommerce td.product-name dl.variation p,
+.woocommerce td.product-name dl.variation dt {
+  font-size: 11px;
+}
+
 
 
 

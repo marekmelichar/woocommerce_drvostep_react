@@ -118,7 +118,7 @@ class App extends Component {
 
     let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
-    const {tab1, tab2, tab3, opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice} = this.state
+    const {tab1, tab2, tab3, opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice, distance} = this.state
 
 
     if (tab1) {
@@ -162,13 +162,18 @@ class App extends Component {
 
     let orderLink = ''
 
-    if (opt1 && opt2 && woodAmount > 0 && (delivery.doveze_drvostep || delivery.osobni_odber) && whenToDeliver && whereToDeliver && totalPrice) {
+    // this is for delivery = doveze_drvostep
+    if (opt1 && opt2 && woodAmount > 0 && delivery.doveze_drvostep && whenToDeliver && whereToDeliver && totalPrice) {
 
-      if (delivery.doveze_drvostep) {
-        totalPrice = totalPrice + deliveryPrice
-      }
+      totalPrice = totalPrice + 2*deliveryPrice
 
-      orderLink = `https://drvostepstagingbrown.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+      orderLink = `https://drvostepstagingbrown.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+    }
+
+    // this is for delivery = osobni odber
+    if (opt1 && opt2 && woodAmount > 0 && delivery.osobni_odber && whenToDeliver && totalPrice) {
+
+      orderLink = `https://drvostepstagingbrown.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     if (tab3) {
