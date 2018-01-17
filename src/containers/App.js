@@ -26,7 +26,7 @@ class App extends Component {
       tab1: true,
       tab2: false,
       tab3: false,
-      woodAmount: 2,
+      woodAmount: 3,
       delivery: {
         doveze_drvostep: '',
         osobni_odber: ''
@@ -83,17 +83,17 @@ class App extends Component {
       loading: false,
       totalPrice,
       recalculatedWoodAmount,
-      opt1: localStorage.getItem('opt1'),
-      opt2: localStorage.getItem('opt2'),
+      opt1: localStorage.getItem('opt1') || '',
+      opt2: localStorage.getItem('opt2') || '',
       woodAmount: +localStorage.getItem('woodAmount') || +woodAmount,
       delivery: {
-        doveze_drvostep: localStorage.getItem('doveze_drvostep'),
-        osobni_odber: localStorage.getItem('osobni_odber') || 'osobní odběr'
+        doveze_drvostep: localStorage.getItem('doveze_drvostep') || 'doveze Drvoštěp',
+        osobni_odber: localStorage.getItem('osobni_odber') || ''
       },
-      whenToDeliver: localStorage.getItem('whenToDeliver'),
-      whereToDeliver: localStorage.getItem('whereToDeliver'),
-      deliveryPrice: localStorage.getItem('deliveryPrice'),
-      distance: localStorage.getItem('distance')
+      whenToDeliver: localStorage.getItem('whenToDeliver') || 'do měsíce',
+      whereToDeliver: localStorage.getItem('whereToDeliver') || '',
+      deliveryPrice: localStorage.getItem('deliveryPrice') || '',
+      distance: localStorage.getItem('distance') || ''
     })
   }
 
@@ -177,7 +177,8 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div>
+                {/* <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div> */}
+                <div>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</div>
               </div>
               <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na dopravu
@@ -195,7 +196,8 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div>
+                {/* <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div> */}
+                <div>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</div>
               </div>
               <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na výběr dřeva
@@ -244,14 +246,42 @@ class App extends Component {
   }
 
   increaseWood = () => {
-    if (this.state.woodAmount < 7) {
-      this.setState({ woodAmount: this.state.woodAmount + 1 })
+
+    let {woodAmount} = this.state
+
+    if (woodAmount < 7) {
+
+      this.setState({ woodAmount: woodAmount + 1 }, () => {
+        // here must use this.state.woodAmount otherwise it doesnt work
+        if (this.state.woodAmount < 3) {
+          this.setState({
+            delivery: {
+              doveze_drvostep: '',
+              osobni_odber: 'osobní odběr'
+            }
+          })
+        }
+      })
     }
   }
 
   decreaseWood = () => {
-    if (this.state.woodAmount > 1) {
-      this.setState({ woodAmount: this.state.woodAmount - 1 })
+
+    let {woodAmount} = this.state
+
+    if (woodAmount > 1) {
+
+      this.setState({ woodAmount: woodAmount - 1 }, () => {
+        // here must use this.state.woodAmount otherwise it doesnt work
+        if (this.state.woodAmount < 3) {
+          this.setState({
+            delivery: {
+              doveze_drvostep: '',
+              osobni_odber: 'osobní odběr'
+            }
+          })
+        }
+      })
     }
   }
 
@@ -364,7 +394,16 @@ class App extends Component {
       woodAmount = 7
     }
 
-    return this.setState({ woodAmount })
+    return this.setState({ woodAmount }, () => {
+      if (this.state.woodAmount < 3) {
+        this.setState({
+          delivery: {
+            doveze_drvostep: '',
+            osobni_odber: 'osobní odběr'
+          }
+        })
+      }
+    })
   }
 
   render() {

@@ -464,6 +464,14 @@ ul, ol {
   text-align: center;
 }
 
+.obec-text-inside {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 100%;
+}
+
 
 /* TAB 3 */
 

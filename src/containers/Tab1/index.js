@@ -116,7 +116,7 @@ export default class Tab1 extends Component {
           <div className="wood-handler-right no-select" onClick={increaseWood}>+</div>
         </div>
         <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
-        <div className="wood-info">Suché dřevo má výtopnost až o <strong>30 procent</strong> lepší a šetří vaše kamna i sousedské vztahy.</div>
+        <div className="wood-info">Suché dřevo má výtopnost až o <strong>30 procent</strong> lepší a šetří vaše kamna <br/> i sousedské vztahy.</div>
       </div>
     )
   }

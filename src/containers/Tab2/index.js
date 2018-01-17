@@ -38,8 +38,6 @@ export default class Tab2 extends Component {
     const {delivery, whereToDeliver, woodAmount} = this.props
 
     let obj = _.map(Obce, o => {
-      // to be able to filter value without diacritics
-      // if (o.Obec && o.Obec.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase().includes(filterValue.toUpperCase()) && filterValue.length) {
 
       // able to filter value without diacritics + replace space and comma to "-"
       if (o.Obec) {
@@ -65,7 +63,7 @@ export default class Tab2 extends Component {
       return (
         <div className="where-to-deliver">
           <h2>Kam?</h2>
-          <div className="osobni-odber-veta">Máte vybráno pod 3 prms dřeva, po telefonické <br/> domluvě si dřevo u nás vyzvednete.</div>
+          <div className="osobni-odber-veta">Máte vybráno pod 3.3 prms dřeva, po telefonické <br/> domluvě si dřevo u nás vyzvednete.</div>
         </div>
       )
     }
@@ -100,8 +98,7 @@ export default class Tab2 extends Component {
                         <label
                           htmlFor={o.Obec}
                           className={whereToDeliver === o.Obec ? 'checked' : ''}
-                          style={ o.Obec.length <= 14 ? { paddingTop: 14 } : {}}
-                        >{o.Obec}</label>
+                        ><span className="obec-text-inside">{o.Obec}</span></label>
                       </div>
                     </li>
                   )
@@ -122,7 +119,7 @@ export default class Tab2 extends Component {
       <div className="-delivery-body main-content-body tab2">
         <h2 className="pt-15">Kdo doveze?</h2>
         <p className="delivery-info">
-          Dovážíme od 3.3prms. Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy.
+          <strong>Dovážíme od 3.3prms.</strong> Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy.
         </p>
         <form className="attributes who">
           <div className="attribute">
@@ -134,7 +131,7 @@ export default class Tab2 extends Component {
                   name="osobniOdber"
                   value="Osobní odběr"
                   onChange={(e) => this.props.handleOptionClick(e, 9, 'osobní odběr')}
-                  checked={delivery === 'osobní odběr' || this.state.osobniOdber}
+                  checked={delivery === 'osobní odběr'}
                 />
                 <label
                   htmlFor="osobniOdber"
@@ -153,6 +150,7 @@ export default class Tab2 extends Component {
                 <label
                   htmlFor="dovezeDrvostep"
                   className={delivery === 'doveze Drvoštěp' ? 'checked' : ''}
+                  style={ this.props.woodAmount < 3 ? { pointerEvents: 'none' } : {}}
                 >Doveze Drvoštěp</label>
               </li>
             </ul>
