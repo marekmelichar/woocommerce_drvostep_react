@@ -12,9 +12,9 @@ import Tab3 from './Tab3'
 // const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
 // const PRICE_OF_WOOD_1_PRMS = 1628
 
-const PRICE_OF_WOOD_25CM = 1855
-const PRICE_OF_WOOD_33CM = 1790
-const PRICE_OF_WOOD_50CM = 1790
+const PRICE_OF_WOOD_25CM = 1855 / 1.1
+const PRICE_OF_WOOD_33CM = 1790 / 1.1
+const PRICE_OF_WOOD_50CM = 1790 / 1.1
 
 const calculate = (opt1, recalculatedWoodAmount) => {
 
