@@ -40,7 +40,6 @@ export default class Tab3 extends Component {
             <i className="info-icon fas fa-info-circle"></i>
           </span>
         </li>
-        {/* <li><strong>{accounting.formatMoney(2 * data.deliveryPrice, '', ',')} Kč</strong></li> */}
         <li><strong>{accounting.formatNumber(2 * data.deliveryPrice, 0, ' ')} Kč</strong></li>
       </ul>
     )
@@ -51,6 +50,15 @@ export default class Tab3 extends Component {
 
     const load = Math.round(data.recalculatedWoodAmount / 7.7 * 100)
 
+    // to calculate:
+    // NOT_FULL_CAR = half full car / prms = x kc price for 1 prms
+    // FULL_CAR = full car / prms = x kc price for 1 prms
+
+    const FULL_CAR = (data.totalPrice + (2 * data.deliveryPrice)) / 7.7
+    const NOT_FULL_CAR = (data.totalPrice + (2 * data.deliveryPrice)) / +data.recalculatedWoodAmount
+    const X = FULL_CAR - NOT_FULL_CAR
+    const Y = 7.7 * X
+
     return(
       <div className="-totals-body main-content-body tab3">
         <div className="totals-lists">
@@ -58,16 +66,15 @@ export default class Tab3 extends Component {
             <li className="list-heading">Dřevo</li>
             <li>{data.opt2}</li>
             <li>{data.recalculatedWoodAmount} prms</li>
-            {/* <li><strong>{accounting.formatMoney(data.totalPrice, '', ',')} Kč</strong></li> */}
             <li><strong>{accounting.formatNumber(data.totalPrice, 0, ' ')} Kč</strong></li>
           </ul>
           {this.renderDeliery()}
-          <ul>
+          {!data.delivery.osobni_odber && <ul>
             <li className="list-heading">Vytížení</li>
             <li><strong>{load} %</strong></li>
-          </ul>
+          </ul>}
         </div>
-        <div className="totals-loaded-cars">
+        {!data.delivery.osobni_odber && <div className="totals-loaded-cars">
           <div className="truck">
             <i className="fas fa-truck"></i>
             <span className="truck-back">
@@ -75,10 +82,15 @@ export default class Tab3 extends Component {
               <span className="truck-fill" style={{top: 100-load + '%'}}></span>
             </span>
           </div>
-          {load < 100 ? <div className="info">Pozor, vytížení je pouze {load}%, zvyšte ho a o 145 Kč snížíte <br/> cenu za 1 prms, to je o 8% méně.</div> :
+          {/* {load < 100 ? <div className="info">Pozor, vytížení je pouze {load}%, zvyšte ho a o 145 Kč snížíte <br/> cenu za 1 prms, to je o 8% méně.</div> :
             <div className="info">Efektivně vytíženo na 100%.<br/><br/></div>}
           <div className="fully-load-btn" onClick={handleFullyLoad}>Vytížit</div>
-        </div>
+        </div>} */}
+        {/* {load < 100 ? <div className="info">Při 100% vytížení uspoříte {accounting.formatNumber((data.totalPrice + (2 * data.deliveryPrice)) / data.recalculatedWoodAmount, 0, ' ')} Kč na každém prms, <br/> celkem {accounting.formatNumber((data.totalPrice + (2 * data.deliveryPrice)) / data.recalculatedWoodAmount * 7.7, 0, ' ')} Kč na celé dodávce.</div> : */}
+        {load < 100 ? <div className="info">Při 100% vytížení uspoříte {accounting.formatNumber(Math.abs(X), 0, ' ')} Kč na každém prms, <br/> celkem {accounting.formatNumber(Math.abs(Y), 0, ' ')} Kč na celé dodávce.</div> :
+            <div className="info">Efektivně vytíženo na 100%.<br/><br/></div>}
+          <div className="fully-load-btn" onClick={handleFullyLoad}>Vytížit</div>
+        </div>}
         <div className="total-to-order">
           <div className="left">Konečná cena</div>
           {/* <div className="right">{accounting.formatMoney(data.totalPrice + (2 * data.deliveryPrice), '', ',')} Kč</div> */}

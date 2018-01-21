@@ -99,7 +99,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    const {opt1, opt2, woodAmount} = this.state
+    const {opt1, woodAmount} = this.state
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 

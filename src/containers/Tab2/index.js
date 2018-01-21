@@ -53,7 +53,7 @@ export default class Tab2 extends Component {
     if (delivery === 'osobní odběr' && woodAmount >= 3) {
       return (
         <div className="where-to-deliver">
-          <h2>Kam?</h2>
+          <h2>Název obce</h2>
           <div className="osobni-odber-veta">Po telefonické domluvě si <br/> dřevo u nás vyzvednete.</div>
         </div>
       )
@@ -62,7 +62,7 @@ export default class Tab2 extends Component {
     if (woodAmount < 3) {
       return (
         <div className="where-to-deliver">
-          <h2>Kam?</h2>
+          <h2>Název obce</h2>
           <div className="osobni-odber-veta">Máte vybráno pod 3.3 prms dřeva, po telefonické <br/> domluvě si dřevo u nás vyzvednete.</div>
         </div>
       )
@@ -70,7 +70,7 @@ export default class Tab2 extends Component {
 
     return (
       <div className="where-to-deliver">
-        <h2>Kam?</h2>
+        <h2>Název obce</h2>
         <div className="text-center">
           <input
             id="obceFilterInput"

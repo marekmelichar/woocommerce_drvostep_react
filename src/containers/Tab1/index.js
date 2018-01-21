@@ -64,6 +64,7 @@ export default class Tab1 extends Component {
     const {woodAmount, increaseWood, decreaseWood, handleClickOnWood} = this.props
 
     let compareToMoistWood = 0
+    let savedAmount = 0
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
@@ -73,30 +74,37 @@ export default class Tab1 extends Component {
 
     if (recalculatedWoodAmount === '1.1') {
       compareToMoistWood = 1.6
+      savedAmount = 1025
     }
 
     if (recalculatedWoodAmount === '2.2') {
       compareToMoistWood = 3.3
+      savedAmount = 2230
     }
 
     if (recalculatedWoodAmount === '3.3') {
       compareToMoistWood = 4.9
+      savedAmount = 3255
     }
 
     if (recalculatedWoodAmount === '4.4') {
       compareToMoistWood = 6.5
+      savedAmount = 4280
     }
 
     if (recalculatedWoodAmount === '5.5') {
       compareToMoistWood = 8.1
+      savedAmount = 5305
     }
 
     if (recalculatedWoodAmount === '6.6') {
       compareToMoistWood = 9.8
+      savedAmount = 6510
     }
 
     if (recalculatedWoodAmount === '7.7') {
       compareToMoistWood = 11.4
+      savedAmount = 7535
     }
 
     return(
@@ -116,7 +124,8 @@ export default class Tab1 extends Component {
           <div className="wood-handler-right no-select" onClick={increaseWood}>+</div>
         </div>
         <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
-        <div className="wood-info">Suché dřevo má výtopnost až o <strong>30 procent</strong> lepší a šetří vaše kamna <br/> i sousedské vztahy.</div>
+        {/* <div className="wood-info">Suché dřevo má výtopnost až o <strong>30 procent</strong> lepší a šetří vaše kamna <br/> i sousedské vztahy.</div> */}
+        <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.</div>
       </div>
     )
   }
