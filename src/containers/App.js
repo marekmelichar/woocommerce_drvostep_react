@@ -10,7 +10,34 @@ import Tab2 from './Tab2'
 import Tab3 from './Tab3'
 
 // const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
-const PRICE_OF_WOOD_1_PRMS = 1628
+// const PRICE_OF_WOOD_1_PRMS = 1628
+
+const PRICE_OF_WOOD_25CM = 1855
+const PRICE_OF_WOOD_33CM = 1790
+const PRICE_OF_WOOD_50CM = 1790
+
+const calculate = (opt1, recalculatedWoodAmount) => {
+
+  let totalPrice
+
+  if (!opt1) {
+    totalPrice = 0
+  }
+
+  if (opt1 === '25cm') {
+    totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_25CM)
+  }
+
+  if (opt1 === '33cm') {
+    totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_33CM)
+  }
+
+  if (opt1 === '50cm') {
+    totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_50CM)
+  }
+
+  return totalPrice
+}
 
 class App extends Component {
 
@@ -58,9 +85,10 @@ class App extends Component {
         const wood = _.find(data.data, { 'id': 3642 })
 
         const attributes = wood.attributes
+
         this.setState({
           wood,
-          attributes
+          attributes,
         })
       })
       .catch(error => {
@@ -71,11 +99,13 @@ class App extends Component {
 
   componentDidMount() {
 
-    const {woodAmount} = this.state
+    const {opt1, opt2, woodAmount} = this.state
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
-    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+    // let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+
+    let totalPrice = calculate(opt1, recalculatedWoodAmount)
 
     const localStorage = window.localStorage
 
@@ -129,11 +159,13 @@ class App extends Component {
 
   renderTabs = () => {
 
-    const {tab1, tab2, tab3, woodAmount} = this.state
+    const {opt1, tab1, tab2, tab3, woodAmount} = this.state
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
-    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+    // let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+
+    let totalPrice = calculate(opt1, recalculatedWoodAmount)
 
     return(
       <div className="tabs">
@@ -163,12 +195,11 @@ class App extends Component {
 
   calculateTotalPrice = () => {
 
-    let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
-
-    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
-
     const {tab1, tab2, tab3, opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice, distance} = this.state
 
+    let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
+
+    let totalPrice = calculate(opt1, recalculatedWoodAmount)
 
     if (tab1) {
       return(
@@ -177,7 +208,6 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                {/* <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div> */}
                 <div>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</div>
               </div>
               <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
@@ -196,7 +226,6 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                {/* <div>{accounting.formatMoney(totalPrice, '', ',')} Kč</div> */}
                 <div>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</div>
               </div>
               <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
@@ -347,9 +376,11 @@ class App extends Component {
 
   handleFullyLoad = () => {
 
+    const {opt1, loading} = this.state
+
     let recalculatedWoodAmount = (7 * 1.1).toFixed(1)
 
-    let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
+    let totalPrice = calculate(opt1, recalculatedWoodAmount, loading)
 
     return this.setState({ recalculatedWoodAmount, totalPrice, woodAmount: 7 })
   }
