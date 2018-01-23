@@ -50,13 +50,9 @@ export default class Tab3 extends Component {
 
     const load = Math.round(data.recalculatedWoodAmount / 7.7 * 100)
 
-    // to calculate:
-    // NOT_FULL_CAR = half full car / prms = x kc price for 1 prms
-    // FULL_CAR = full car / prms = x kc price for 1 prms
-
-    const FULL_CAR = (data.totalPrice + (2 * data.deliveryPrice)) / 7.7
-    const NOT_FULL_CAR = (data.totalPrice + (2 * data.deliveryPrice)) / +data.recalculatedWoodAmount
-    const X = FULL_CAR - NOT_FULL_CAR
+    const FULL_CAR = (2 * data.deliveryPrice) / 7.7
+    const NOT_FULL_CAR = (2 * data.deliveryPrice) / +data.recalculatedWoodAmount
+    const X = NOT_FULL_CAR - FULL_CAR
     const Y = 7.7 * X
 
     return(

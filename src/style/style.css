@@ -55,6 +55,20 @@
   font-size: 11px;
 }
 
+.error-info-warning,
+.drevina-error-info-warning {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 8px 0 0 0;
+  color: red;
+}
+
+.drevina-error-info-warning {
+  margin: 58px 0 0 0;
+}
+
+
 
 
 
@@ -381,6 +395,14 @@ ul, ol {
 .wrapper-wood .tab1 .wood-range-input {
   margin-top: 30px;
   margin-bottom: 5px;
+}
+
+.minitext {
+  font-size: 12px;
+}
+
+.predsuch input[type="radio"] + label {
+  padding: 2.5px 7px !important;
 }
 
 

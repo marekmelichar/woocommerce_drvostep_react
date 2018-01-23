@@ -14,7 +14,7 @@ import Tab3 from './Tab3'
 
 const PRICE_OF_WOOD_25CM = 1855 / 1.1
 const PRICE_OF_WOOD_33CM = 1790 / 1.1
-const PRICE_OF_WOOD_50CM = 1790 / 1.1
+const PRICE_OF_WOOD_50CM = 1450 / 1.1
 
 const calculate = (opt1, recalculatedWoodAmount) => {
 
@@ -64,7 +64,9 @@ class App extends Component {
       totalPrice: 0,
       recalculatedWoodAmount: 0,
       distance: 0,
-      deliveryPrice: 0
+      deliveryPrice: 0,
+      mustHaveWoodLength: false,
+      mustHaveWoodType: false
     }
   }
 
@@ -75,8 +77,8 @@ class App extends Component {
     var instance = axios.create({
       method: 'get',
       // btoa(key:secret) from WooCommerce API
-      baseURL: 'https://drvostepstaging.marekmelichar.cz/wp-json/wc/v2/products',
-      headers: {'Authorization': `Basic ${btoa('ck_760c9cd63b37310f8faaf6ce0d52389f94fb81ad:cs_14ea24b81c0b2fa73ab109c4e5c70e9f4d7353b7')}`},
+      baseURL: 'https://drvostepstagingbrown.marekmelichar.cz/wp-json/wc/v2/products',
+      headers: {'Authorization': `Basic ${btoa('ck_890d5fac6c5984059c4db0519a3ac259043f80a4:cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903')}`},
       maxRedirects: 0,
     });
 
@@ -85,6 +87,8 @@ class App extends Component {
         const wood = _.find(data.data, { 'id': 3642 })
 
         const attributes = wood.attributes
+
+        // console.dir(attributes);
 
         this.setState({
           wood,
@@ -177,7 +181,8 @@ class App extends Component {
         </div>
         <i className="fas fa-angle-right"></i>
         <div className="tab">
-          <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+          {/* <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}> */}
+          <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
             <i className="fas fa-truck"></i>
           </div>
           <div className="tab-heading">2. Doprava</div>
@@ -191,6 +196,44 @@ class App extends Component {
         </div>
       </div>
     )
+  }
+
+  handleGoToTab2 = (totalPrice, recalculatedWoodAmount) => {
+
+    const {opt1, opt2, tab1, tab2, tab3} = this.state
+
+    if (tab1) {
+      if (!opt1 && opt2) {
+        return this.setState({
+          mustHaveWoodLength: true,
+          mustHaveWoodType: false
+        })
+      }
+
+      if (opt1 && !opt2) {
+        return this.setState({
+          mustHaveWoodLength: false,
+          mustHaveWoodType: true
+        })
+      }
+
+      if (!opt1 && !opt2) {
+        return this.setState({
+          mustHaveWoodLength: true,
+          mustHaveWoodType: true
+        })
+      }
+
+      return this.setState({
+        tab1: false,
+        tab2: true,
+        tab3: false,
+        totalPrice,
+        recalculatedWoodAmount,
+        mustHaveWoodLength: false,
+        mustHaveWoodType: false
+      })
+    }
   }
 
   calculateTotalPrice = () => {
@@ -210,7 +253,7 @@ class App extends Component {
                 <div><strong>Celková cena:</strong></div>
                 <div>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</div>
               </div>
-              <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+              <div className="total-price-btn" onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
                 Na dopravu
               </div>
             </div>
@@ -362,11 +405,17 @@ class App extends Component {
     }
 
     if (id === 8) {
-      return this.setState({ opt1: opt })
+      return this.setState({
+        opt1: opt,
+        mustHaveWoodLength: false
+      })
     }
 
     if (id === 7) {
-      return this.setState({ opt2: opt })
+      return this.setState({
+        opt2: opt,
+        mustHaveWoodType: false
+      })
     }
   }
 
@@ -481,6 +530,8 @@ class App extends Component {
               opt1={this.state.opt1}
               opt2={this.state.opt2}
               handleClickOnWood={this.handleClickOnWood}
+              mustHaveWoodLength={this.state.mustHaveWoodLength}
+              mustHaveWoodType={this.state.mustHaveWoodType}
             />}
             {this.state.tab2 && <Tab2
               handleOptionClick={this.handleOptionClick}

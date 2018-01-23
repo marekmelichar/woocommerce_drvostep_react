@@ -5,45 +5,127 @@ import Spinner from '../../components/Spinner';
 
 export default class Tab1 extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {}
   }
 
+  // renderAttributes = () => {
+  //   const {wood, attributes, opt1, opt2} = this.props
+  //
+  //   if (wood.id) {
+  //     return (
+  //       <form className="attributes">
+  //         {attributes.map(itm => {
+  //           return(
+  //             <div key={itm.id} className="attribute">
+  //               <h2>{itm.name}</h2>
+  //               <ul className="flex">
+  //                 {itm.options.map((opt, i) => {
+  //                   // console.log(opt,i);
+  //                   return (
+  //                     <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt}>
+  //                       <input
+  //                         id={opt}
+  //                         type="radio"
+  //                         name={`wood${itm.id}`}
+  //                         value={opt}
+  //                         onChange={(e) => this.props.handleOptionClick(e, itm.id, opt)}
+  //                         checked={opt === opt1 || opt === opt2}
+  //                       />
+  //                       <label
+  //                         htmlFor={opt}
+  //                         className={opt === opt1 || opt === opt2 ? 'checked' : ''}
+  //                       >{opt}</label>
+  //                     </li>
+  //                   )
+  //                 })}
+  //               </ul>
+  //             </div>
+  //           )
+  //         })}
+  //       </form>
+  //     )
+  //   }
+
   renderAttributes = () => {
-    const {wood, attributes, opt1, opt2} = this.props
+    const {wood, attributes, opt1, opt2, mustHaveWoodLength, mustHaveWoodType} = this.props
+
+    // console.log(mustHaveWoodType);
 
     if (wood.id) {
       return (
         <form className="attributes">
-          {attributes.map(itm => {
-            return(
-              <div key={itm.id} className="attribute">
-                <h2>{itm.name}</h2>
-                <ul className="flex">
-                  {itm.options.map((opt, i) => {
-                    return (
-                      <li className={itm.id === 7 ? "item-wrapper drevina" : "item-wrapper"} key={opt}>
-                        <input
-                          id={opt}
-                          type="radio"
-                          name={`wood${itm.id}`}
-                          value={opt}
-                          onChange={(e) => this.props.handleOptionClick(e, itm.id, opt)}
-                          checked={opt === opt1 || opt === opt2}
-                        />
-                        <label
-                          htmlFor={opt}
-                          className={opt === opt1 || opt === opt2 ? 'checked' : ''}
-                        >{opt}</label>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          })}
+          <div className="attribute">
+            <h2>{attributes[0].name}</h2>
+            <ul className="flex">
+              {attributes[0].options.map((opt, i) => {
+                return (
+                  <li key={`${opt}_${i}`} className={"item-wrapper"}>
+                    <input
+                      id={opt}
+                      type="radio"
+                      name={`wood${attributes[0].id}`}
+                      value={opt}
+                      onChange={(e) => this.props.handleOptionClick(e, attributes[0].id, opt)}
+                      checked={opt === opt1}
+                    />
+                    <label
+                      htmlFor={opt}
+                      className={opt === opt1 ? 'checked' : ''}
+                    >{opt}</label>
+                  </li>
+                )
+              })}
+            </ul>
+            {mustHaveWoodLength && <div className="error-info-warning">
+              Vyberte délku dřeva
+            </div>}
+          </div>
+
+          <div className="attribute">
+            <h2>{attributes[1].name}</h2>
+            <ul className="flex">
+
+              {opt1 === '50cm' &&
+                <li className={"item-wrapper drevina predsuch"}>
+                  <input
+                    id={attributes[1].options[0]}
+                    type="radio"
+                    name={`wood${attributes[1].id}`}
+                    value={attributes[1].options[0]}
+                    onChange={(e) => this.props.handleOptionClick(e, attributes[1].id, attributes[1].options[0])}
+                    checked={attributes[1].options[0] === opt2}
+                  />
+                  <label
+                    htmlFor={attributes[1].options[0]}
+                    className={attributes[1].options[0] === opt2 ? 'checked' : ''}
+                  >{attributes[1].options[0]} <br/> <span className="minitext">vlhkost do 30%</span></label>
+                </li>
+              }
+
+              {opt1 !== '50cm' &&
+                <li className={"item-wrapper drevina"}>
+                  <input
+                    id={attributes[1].options[1]}
+                    type="radio"
+                    name={`wood${attributes[1].id}`}
+                    value={attributes[1].options[1]}
+                    onChange={(e) => this.props.handleOptionClick(e, attributes[1].id, attributes[1].options[1])}
+                    checked={attributes[1].options[1] === opt2}
+                  />
+                  <label
+                    htmlFor={attributes[1].options[1]}
+                    className={attributes[1].options[1] === opt2 ? 'checked' : ''}
+                  >{attributes[1].options[1]}</label>
+                </li>
+              }
+              {mustHaveWoodType && <div className="drevina-error-info-warning">
+                Vyberte dřevinu
+              </div>}
+            </ul>
+          </div>
         </form>
       )
     }
@@ -61,7 +143,7 @@ export default class Tab1 extends Component {
 
   renderWoodAmount = () => {
 
-    const {woodAmount, increaseWood, decreaseWood, handleClickOnWood} = this.props
+    const {opt1, woodAmount, increaseWood, decreaseWood, handleClickOnWood} = this.props
 
     let compareToMoistWood = 0
     let savedAmount = 0
@@ -123,9 +205,10 @@ export default class Tab1 extends Component {
           </div>
           <div className="wood-handler-right no-select" onClick={increaseWood}>+</div>
         </div>
-        <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
-        {/* <div className="wood-info">Suché dřevo má výtopnost až o <strong>30 procent</strong> lepší a šetří vaše kamna <br/> i sousedské vztahy.</div> */}
-        <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.</div>
+        {opt1 !== '50cm' && <div>
+          <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
+          <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.</div>
+        </div>}
       </div>
     )
   }
