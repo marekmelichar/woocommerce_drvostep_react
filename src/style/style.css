@@ -56,7 +56,8 @@
 }
 
 .error-info-warning,
-.drevina-error-info-warning {
+.drevina-error-info-warning,
+.input-error-info-warning {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -66,6 +67,15 @@
 
 .drevina-error-info-warning {
   margin: 58px 0 0 0;
+}
+
+.input-error-info-warning {
+  right: 0;
+  text-align: right;
+  left: 0;
+  width: 100%;
+  transform: none;
+  padding-right: 15px;
 }
 
 
@@ -403,6 +413,31 @@ ul, ol {
 
 .predsuch input[type="radio"] + label {
   padding: 2.5px 7px !important;
+}
+
+.tooltip-holder .__tooltip {
+  opacity: 0;
+  position: absolute;
+  top: 30px;
+  left: -130px;
+  width: 300px;
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+  font-size: 11px;
+  border-radius: 5px;
+  padding: 10px;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+  max-width: 250px;
+}
+
+.tooltip-holder .__tooltip img {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.tooltip-holder:hover .__tooltip {
+  opacity: 1;
 }
 
 

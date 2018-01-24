@@ -35,7 +35,7 @@ export default class Tab2 extends Component {
   renderObceFilter = () => {
     const {Obce, filterValue, showFilterResults} = this.state
 
-    const {delivery, whereToDeliver, woodAmount} = this.props
+    const {delivery, whereToDeliver, woodAmount, mustHaveWhereToDeliver} = this.props
 
     let obj = _.map(Obce, o => {
 
@@ -68,6 +68,8 @@ export default class Tab2 extends Component {
       )
     }
 
+    // console.log('mustHaveWhereToDeliver', mustHaveWhereToDeliver);
+
     return (
       <div className="where-to-deliver">
         <h2>Název obce (bez ulice)</h2>
@@ -79,6 +81,7 @@ export default class Tab2 extends Component {
             onChange={e => this.handleFiltering(e)}
             value={whereToDeliver ? whereToDeliver : filterValue}
           />
+          {mustHaveWhereToDeliver && <span className="input-error-info-warning">* povinné pole</span>}
         </div>
         <div className="text-center filtered-values">
           <form className="attributes">

@@ -194,8 +194,14 @@ export default class Tab1 extends Component {
         <h2>Množství</h2>
         <div className="wood-actual-info">
           <strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého
-          <span className="tooltip-holder" data-tip='Štípané dříví sypané do prostoru krychle o rozměru 1x1x1 metru.'>
+          {/* <span className="tooltip-holder" data-tip='Štípané dříví sypané do prostoru krychle o rozměru 1x1x1 metru.'> */}
+          <span className="tooltip-holder">
             <i className="info-icon fas fa-info-circle"></i>
+            <div className="__tooltip">
+              <div>1 prms = prostor objemu 1 m3, ve kterém jsou volně nasypaná polínka.</div>
+              <img src="/images/info1.png" alt="Drvostep - info co je to 1 prms" />
+              <div>Bedny plníme 1,1 prms syrového dřeva, proto lze objednat jen násobky této míry. Dřevo během vysychání ztratí 10% objemu.</div>
+            </div>
           </span>
         </div>
         <div className="wood-body">
@@ -212,6 +218,18 @@ export default class Tab1 extends Component {
       </div>
     )
   }
+
+  // infoTooltip = () => {
+  //   return (
+  //     <div>
+  //       1 prms = prostor objemu 1 m3, ve kterém jsou volně nasypaná polínka.
+  //
+  //       Pod tento text Umístit fotku v příloze této bubliny. Pod fotkou pokračovat textem:
+  //
+  //       Bedny plníme 1,1 prms syrového dřeva, proto lze objednat jen násobky této míry. Dřevo během vysychání ztratí 10% objemu.
+  //     </div>
+  //   )
+  // }
 
   render() {
     return this.props.loading ? <div><Spinner /></div> : (

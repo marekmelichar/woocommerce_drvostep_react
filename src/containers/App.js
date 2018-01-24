@@ -66,7 +66,8 @@ class App extends Component {
       distance: 0,
       deliveryPrice: 0,
       mustHaveWoodLength: false,
-      mustHaveWoodType: false
+      mustHaveWoodType: false,
+      mustHaveWhereToDeliver: false
     }
   }
 
@@ -189,7 +190,8 @@ class App extends Component {
         </div>
         <i className="fas fa-angle-right"></i>
         <div className="tab">
-          <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}>
+          {/* <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}> */}
+          <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab3(totalPrice, recalculatedWoodAmount)}>
             <i className="fas fa-list-ul"></i>
           </div>
           <div className="tab-heading">3. Shrnutí</div>
@@ -200,7 +202,7 @@ class App extends Component {
 
   handleGoToTab2 = (totalPrice, recalculatedWoodAmount) => {
 
-    const {opt1, opt2, tab1, tab2, tab3} = this.state
+    const {opt1, opt2, tab1, tab3} = this.state
 
     if (tab1) {
       if (!opt1 && opt2) {
@@ -211,6 +213,13 @@ class App extends Component {
       }
 
       if (opt1 && !opt2) {
+        return this.setState({
+          mustHaveWoodLength: false,
+          mustHaveWoodType: true
+        })
+      }
+
+      if (opt1 === '50cm' && opt2 !== 'Předsušený buk') {
         return this.setState({
           mustHaveWoodLength: false,
           mustHaveWoodType: true
@@ -232,6 +241,38 @@ class App extends Component {
         recalculatedWoodAmount,
         mustHaveWoodLength: false,
         mustHaveWoodType: false
+      })
+    }
+
+    if (tab3) {
+      return this.setState({
+        tab1: false,
+        tab2: true,
+        tab3: false,
+        totalPrice,
+        recalculatedWoodAmount,
+      })
+    }
+  }
+
+  handleGoToTab3 = (totalPrice, recalculatedWoodAmount) => {
+
+    const {whereToDeliver} = this.state
+
+    if (whereToDeliver === '') {
+      this.setState({
+        mustHaveWhereToDeliver: true
+      })
+    }
+
+    if (whereToDeliver) {
+      return this.setState({
+        tab1: false,
+        tab2: false,
+        tab3: true,
+        totalPrice,
+        recalculatedWoodAmount,
+        mustHaveWhereToDeliver: false
       })
     }
   }
@@ -274,7 +315,8 @@ class App extends Component {
               <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na výběr dřeva
               </div>
-              <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}>
+              {/* <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}> */}
+              <div className="total-price-btn" onClick={() => this.handleGoToTab3(totalPrice, recalculatedWoodAmount)}>
                 Shrnutí
               </div>
             </div>
@@ -375,7 +417,12 @@ class App extends Component {
           deliveryPrice: 0,
         })
       }
-      return this.setState({ whereToDeliver: opt, distance, deliveryPrice })
+      return this.setState({
+        whereToDeliver: opt,
+        distance,
+        deliveryPrice,
+        mustHaveWhereToDeliver: false
+      })
     }
 
     if (id === 11 || id === 12 || id === 13) {
@@ -407,13 +454,15 @@ class App extends Component {
     if (id === 8) {
       return this.setState({
         opt1: opt,
-        mustHaveWoodLength: false
+        mustHaveWoodLength: false,
+        mustHaveWoodType: false
       })
     }
 
     if (id === 7) {
       return this.setState({
         opt2: opt,
+        mustHaveWoodLength: false,
         mustHaveWoodType: false
       })
     }
@@ -542,6 +591,7 @@ class App extends Component {
               handleFilterValue={this.handleFilterValue}
               filterValue={this.state.filterValue}
               woodAmount={this.state.woodAmount}
+              mustHaveWhereToDeliver={this.state.mustHaveWhereToDeliver}
             />}
             {this.state.tab3 && <Tab3
               data={this.state}
