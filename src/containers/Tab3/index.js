@@ -83,9 +83,14 @@ export default class Tab3 extends Component {
           <div className="fully-load-btn" onClick={handleFullyLoad}>Vytížit</div>
         </div>} */}
         {/* {load < 100 ? <div className="info">Při 100% vytížení uspoříte {accounting.formatNumber((data.totalPrice + (2 * data.deliveryPrice)) / data.recalculatedWoodAmount, 0, ' ')} Kč na každém prms, <br/> celkem {accounting.formatNumber((data.totalPrice + (2 * data.deliveryPrice)) / data.recalculatedWoodAmount * 7.7, 0, ' ')} Kč na celé dodávce.</div> : */}
-        {load < 100 ? <div className="info">Při 100% vytížení uspoříte {accounting.formatNumber(Math.abs(X), 0, ' ')} Kč na každém prms, <br/> celkem {accounting.formatNumber(Math.abs(Y), 0, ' ')} Kč na celé dodávce.</div> :
-            <div className="info">Efektivně vytíženo na 100%.<br/><br/></div>}
-          <div className="fully-load-btn" onClick={handleFullyLoad}>Vytížit</div>
+        {load < 100 ? <div>
+          <div className="info">Při 100% vytížení uspoříte {accounting.formatNumber(Math.abs(X), 0, ' ')} Kč na každém prms, <br/> celkem {accounting.formatNumber(Math.abs(Y), 0, ' ')} Kč na celé dodávce.</div>
+            <div className="fully-load-btn" onClick={handleFullyLoad}>Vytížit</div>
+          </div> :
+          <div>
+            <div className="info">Efektivně vytíženo na 100%.<br/><br/></div>
+            <img src="/images/ikona_eko.png" alt="Drvostep - ekologické a ekonomické obrázek" />
+          </div>}
         </div>}
         <div className="total-to-order">
           <div className="left">Konečná cena</div>

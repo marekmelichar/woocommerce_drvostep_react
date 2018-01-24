@@ -197,12 +197,12 @@ export default class Tab1 extends Component {
           {/* <span className="tooltip-holder" data-tip='Štípané dříví sypané do prostoru krychle o rozměru 1x1x1 metru.'> */}
           <span className="tooltip-holder">
             <i className="info-icon fas fa-info-circle"></i>
-            <div className="__tooltip">
-              <div>1 prms = prostor objemu 1 m3, ve kterém jsou volně nasypaná polínka.</div>
-              <img src="/images/info1.png" alt="Drvostep - info co je to 1 prms" />
-              <div>Bedny plníme 1,1 prms syrového dřeva, proto lze objednat jen násobky této míry. Dřevo během vysychání ztratí 10% objemu.</div>
-            </div>
           </span>
+          <div className="__tooltip">
+            <div>1 prms = prostor objemu 1 m3, ve kterém jsou volně nasypaná polínka.</div>
+            <img src="/images/info1.png" alt="Drvostep - info co je to 1 prms" />
+            <div>Bedny plníme 1,1 prms syrového dřeva, proto lze objednat jen násobky této míry. Dřevo během vysychání ztratí 10% objemu.</div>
+          </div>
         </div>
         <div className="wood-body">
           <div className="wood-handler-left no-select" onClick={decreaseWood}>-</div>
