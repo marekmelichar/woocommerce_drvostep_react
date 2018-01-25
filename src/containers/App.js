@@ -12,11 +12,14 @@ import Tab3 from './Tab3'
 // const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
 // const PRICE_OF_WOOD_1_PRMS = 1628
 
-const PRICE_OF_WOOD_25CM = 1855 / 1.1
-const PRICE_OF_WOOD_33CM = 1790 / 1.1
-const PRICE_OF_WOOD_50CM = 1450 / 1.1
+const PRICE_OF_WOOD_25CM = 1955 / 1.1
+const PRICE_OF_WOOD_25CM_PREDSUCH = 1755 / 1.1
+const PRICE_OF_WOOD_33CM = 1890 / 1.1
+const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
+// const PRICE_OF_WOOD_50CM = ??? / 1.1
+const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
-const calculate = (opt1, recalculatedWoodAmount) => {
+const calculate = (opt1, opt2, recalculatedWoodAmount) => {
 
   let totalPrice
 
@@ -24,16 +27,28 @@ const calculate = (opt1, recalculatedWoodAmount) => {
     totalPrice = 0
   }
 
-  if (opt1 === '25cm') {
+  if (opt1 === '25cm' && opt2 === 'Suchý buk') {
     totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_25CM)
   }
 
-  if (opt1 === '33cm') {
+  if (opt1 === '25cm' && opt2 === 'Předsušený buk') {
+    totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_25CM_PREDSUCH)
+  }
+
+  if (opt1 === '33cm' && opt2 === 'Suchý buk') {
     totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_33CM)
   }
 
-  if (opt1 === '50cm') {
-    totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_50CM)
+  if (opt1 === '33cm' && opt2 === 'Předsušený buk') {
+    totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_33CM_PREDSUCH)
+  }
+
+  // if (opt1 === '50cm' && opt2 === 'Suchý buk') {
+  //   totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_50CM)
+  // }
+
+  if (opt1 === '50cm' && opt2 === 'Předsušený buk') {
+    totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_50CM_PREDSUCH)
   }
 
   return totalPrice
@@ -104,13 +119,13 @@ class App extends Component {
 
   componentDidMount() {
 
-    const {opt1, woodAmount} = this.state
+    const {opt1, opt2, woodAmount} = this.state
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
     // let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
-    let totalPrice = calculate(opt1, recalculatedWoodAmount)
+    let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
     const localStorage = window.localStorage
 
@@ -164,13 +179,13 @@ class App extends Component {
 
   renderTabs = () => {
 
-    const {opt1, tab1, tab2, tab3, woodAmount} = this.state
+    const {opt1, opt2, tab1, tab2, tab3, woodAmount} = this.state
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
     // let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
-    let totalPrice = calculate(opt1, recalculatedWoodAmount)
+    let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
     return(
       <div className="tabs">
@@ -283,7 +298,7 @@ class App extends Component {
 
     let recalculatedWoodAmount = (this.state.woodAmount * 1.1).toFixed(1)
 
-    let totalPrice = calculate(opt1, recalculatedWoodAmount)
+    let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
     if (tab1) {
       return(
@@ -476,11 +491,11 @@ class App extends Component {
 
   handleFullyLoad = () => {
 
-    const {opt1, loading} = this.state
+    const {opt1, opt2, loading} = this.state
 
     let recalculatedWoodAmount = (7 * 1.1).toFixed(1)
 
-    let totalPrice = calculate(opt1, recalculatedWoodAmount, loading)
+    let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount, loading)
 
     return this.setState({ recalculatedWoodAmount, totalPrice, woodAmount: 7 })
   }

@@ -81,7 +81,7 @@ export default class Tab2 extends Component {
             onChange={e => this.handleFiltering(e)}
             value={whereToDeliver ? whereToDeliver : filterValue}
           />
-          {mustHaveWhereToDeliver && <span className="input-error-info-warning">* povinné pole</span>}
+          {mustHaveWhereToDeliver && <span className="input-error-info-warning" onClick={() => document.getElementById('obceFilterInput').focus()}>* povinné pole</span>}
         </div>
         <div className="text-center filtered-values">
           <form className="attributes">
@@ -116,6 +116,7 @@ export default class Tab2 extends Component {
   }
 
   render() {
+    // console.log(this.state.color);
     const {delivery, whenToDeliver} = this.props
 
     return(
@@ -123,6 +124,7 @@ export default class Tab2 extends Component {
         <h2 className="pt-15">Kdo doveze?</h2>
         <p className="delivery-info">
           <strong>Dovážíme od 3.3prms.</strong> Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy.
+          {/* <strong style={ this.state.color ? { color: this.state.color } : {}}>Dovážíme od 3.3prms.</strong> Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy. */}
         </p>
         <form className="attributes who">
           <div className="attribute">
@@ -153,7 +155,9 @@ export default class Tab2 extends Component {
                 <label
                   htmlFor="dovezeDrvostep"
                   className={delivery === 'doveze Drvoštěp' ? 'checked' : ''}
+                  // disabled={this.props.woodAmount < 3 ? true : false}
                   style={ this.props.woodAmount < 3 ? { pointerEvents: 'none' } : {}}
+                  // onClick={this.props.woodAmount < 3 ? () => this.setState({ color: 'red' }) : '' }
                 >Doveze Drvoštěp</label>
               </li>
             </ul>

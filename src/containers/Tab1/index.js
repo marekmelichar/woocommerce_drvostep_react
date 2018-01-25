@@ -88,8 +88,8 @@ export default class Tab1 extends Component {
             <h2>{attributes[1].name}</h2>
             <ul className="flex">
 
-              {opt1 === '50cm' &&
-                <li className={"item-wrapper drevina predsuch"}>
+              {/* {opt1 === '50cm' && */}
+                <li className={opt1 === '50cm' ? "item-wrapper drevina predsuch centered" : "item-wrapper drevina predsuch"}>
                   <input
                     id={attributes[1].options[0]}
                     type="radio"
@@ -103,10 +103,10 @@ export default class Tab1 extends Component {
                     className={attributes[1].options[0] === opt2 ? 'checked' : ''}
                   >{attributes[1].options[0]} <br/> <span className="minitext">vlhkost do 30%</span></label>
                 </li>
-              }
+              {/* } */}
 
-              {opt1 !== '50cm' &&
-                <li className={"item-wrapper drevina"}>
+              {/* {opt1 !== '50cm' && */}
+                <li className={opt1 === '50cm' ? "item-wrapper drevina hidden" : "item-wrapper drevina"}>
                   <input
                     id={attributes[1].options[1]}
                     type="radio"
@@ -120,7 +120,7 @@ export default class Tab1 extends Component {
                     className={attributes[1].options[1] === opt2 ? 'checked' : ''}
                   >{attributes[1].options[1]}</label>
                 </li>
-              }
+              {/* } */}
               {mustHaveWoodType && <div className="drevina-error-info-warning">
                 Vyberte dřevinu
               </div>}
@@ -143,7 +143,7 @@ export default class Tab1 extends Component {
 
   renderWoodAmount = () => {
 
-    const {opt1, woodAmount, increaseWood, decreaseWood, handleClickOnWood} = this.props
+    const {opt2, woodAmount, increaseWood, decreaseWood, handleClickOnWood} = this.props
 
     let compareToMoistWood = 0
     let savedAmount = 0
@@ -211,7 +211,19 @@ export default class Tab1 extends Component {
           </div>
           <div className="wood-handler-right no-select" onClick={increaseWood}>+</div>
         </div>
-        {opt1 !== '50cm' && <div>
+        {opt2 !== 'Předsušený buk' && <div className="moisted-wood-comparison">
+          <span className="tooltip-holder">
+            <i className="info-icon fas fa-info-circle"></i>
+          </span>
+          <div className="__tooltip mokre-drevo-i">
+            <div>
+              - Spálíte více dřeva na stejné teplo <br/>
+              - Mokré je těžké - drahá doprava <br/>
+              - Až 2000 Kč ročně navíc za nadměrné opotřebení topení
+            </div>
+            <img src="/images/info2.png" alt="Drvostep - horici komin" />
+            <div>Topení mokrým = nebezpečí požáru díky zanesenému komínu</div>
+          </div>
           <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
           <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.</div>
         </div>}

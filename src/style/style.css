@@ -76,6 +76,7 @@
   width: 100%;
   transform: none;
   padding-right: 15px;
+  pointer-events: none;
 }
 
 
@@ -374,8 +375,7 @@ ul, ol {
   left: 0;
 }
 
-.wrapper-wood .tab1 .flex .item-wrapper:nth-child(2),
-.wrapper-wood .tab1 .flex .item-wrapper.drevina {
+.wrapper-wood .tab1 .flex .item-wrapper:nth-child(2) {
   width: 130px;
   position: absolute;
   left: 50%;
@@ -388,8 +388,25 @@ ul, ol {
   right: 0;
 }
 
-.wrapper-wood .tab1 .flex .item-wrapper.drevina {
-  width: 200px;
+.wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(1) {
+  width: 210px;
+  position: absolute;
+  left: 0;
+}
+
+.wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(2) {
+  width: 210px;
+  position: absolute;
+  left: 100%;
+  transform: translateX(-100%);
+  right: 0;
+}
+
+.wrapper-wood .tab1 .flex .item-wrapper.drevina.predsuch.centered {
+  width: 210px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .wrapper-wood .tab1 .attributes .attribute:nth-child(1) {
@@ -439,6 +456,21 @@ ul, ol {
 
 .tooltip-holder:hover ~ .__tooltip {
   opacity: 1;
+}
+
+.moisted-wood-comparison {
+  text-align: center;
+}
+
+.moisted-wood-comparison svg {
+  margin-top: 5px;
+  margin-bottom: -8px;
+  font-size: 1.25em;
+}
+
+.moisted-wood-comparison .tooltip-holder ~ .__tooltip {
+  top: 70px;
+  left: 27%;
 }
 
 
@@ -993,6 +1025,11 @@ ul, ol {
 
 @media screen and (min-width: 767px) and (max-width: 768px) {
 
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(1),
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(2) {
+    width: 200px;
+  }
+
   .wrapper-wood .tabs {
     padding: 13px 10px 10px 10px;
   }
@@ -1054,6 +1091,11 @@ ul, ol {
 }
 
 @media screen and (max-width: 767px) {
+
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(1),
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(2) {
+    width: 180px;
+  }
 
   .wrapper-wood .tabs {
     padding: 13px 10px 10px 10px;
@@ -1141,6 +1183,11 @@ ul, ol {
 
 @media screen and (max-width: 400px) {
 
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(1),
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(2) {
+    width: 155px;
+  }
+
   .wrapper-wood .wood-actual-info .tooltip-holder {
     right: 20%;
   }
@@ -1225,6 +1272,11 @@ ul, ol {
 
 @media screen and (max-width: 321px) {
 
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(1),
+  .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(2) {
+    width: 128px;
+  }
+
   .wrapper-wood .main-content-body {
     min-height: 584px;
   }
@@ -1286,5 +1338,10 @@ ul, ol {
 
   .tooltip-holder ~ .__tooltip {
     left: 10%;
+  }
+
+  .moisted-wood-comparison .tooltip-holder ~ .__tooltip {
+    top: 70px;
+    left: 7%;
   }
 }
