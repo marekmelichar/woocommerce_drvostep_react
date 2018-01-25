@@ -19,6 +19,8 @@ const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
 // const PRICE_OF_WOOD_50CM = ??? / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
+const PRODUCT_ID = 3642
+
 const calculate = (opt1, opt2, recalculatedWoodAmount) => {
 
   let totalPrice
@@ -93,14 +95,16 @@ class App extends Component {
     var instance = axios.create({
       method: 'get',
       // btoa(key:secret) from WooCommerce API
-      baseURL: 'https://drvostepstagingbrown.marekmelichar.cz/wp-json/wc/v2/products',
+      baseURL: `https://drvostepstagingbrown.marekmelichar.cz/wp-json/wc/v2/products/${PRODUCT_ID}`,
       headers: {'Authorization': `Basic ${btoa('ck_890d5fac6c5984059c4db0519a3ac259043f80a4:cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903')}`},
       maxRedirects: 0,
     });
 
     instance()
       .then(data => {
-        const wood = _.find(data.data, { 'id': 3642 })
+        // console.log(data.data);
+        // const wood = _.find(data.data, { 'id': 3642 })
+        const wood = data.data
 
         const attributes = wood.attributes
 
@@ -348,14 +352,14 @@ class App extends Component {
       totalPrice = totalPrice + 2*deliveryPrice
 
       // orderLink = `https://drvostepstagingbrown.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-      orderLink = `/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+      orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     // this is for delivery = osobni odber
     if (opt1 && opt2 && woodAmount > 0 && delivery.osobni_odber && whenToDeliver && totalPrice) {
 
       // orderLink = `https://drvostepstagingbrown.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-      orderLink = `/cart/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+      orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     if (tab3) {
@@ -366,7 +370,7 @@ class App extends Component {
               <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na dopravu
               </div>
-              <a rel="nofollow" href={orderLink} data-quantity="1" data-product_id="3642" data-product_sku="" className="total-price-btn">
+              <a rel="nofollow" href={orderLink} data-quantity="1" data-product_id={PRODUCT_ID} data-product_sku="" className="total-price-btn">
                 Objednat
               </a>
             </div>
