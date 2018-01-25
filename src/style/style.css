@@ -332,6 +332,10 @@ ul, ol {
   color: #fff;
 }
 
+.wrapper-wood .attributes input[type="radio"] + label.disabled {
+  background-color: transparent;
+  color: #A3643A;
+}
 
 
 

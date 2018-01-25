@@ -11,7 +11,8 @@ export default class Tab2 extends Component {
     this.state = {
       Obce: [],
       filterValue: '',
-      showFilterResults: false
+      showFilterResults: false,
+      showError: false
     }
   }
 
@@ -29,7 +30,7 @@ export default class Tab2 extends Component {
 
   handleOptionClick = (e, id, obec, vzdalenost) => {
     this.props.handleOptionClick(e, id, obec, vzdalenost)
-    this.setState({ showFilterResults: false })
+    this.setState({ showFilterResults: false, showError: false })
   }
 
   renderObceFilter = () => {
@@ -115,9 +116,17 @@ export default class Tab2 extends Component {
     )
   }
 
+  handleDovezeDrvostepIfLessThan = e => {
+    e.preventDefault()
+
+    this.setState({ showError: true })
+  }
+
   render() {
     // console.log(this.state.color);
-    const {delivery, whenToDeliver} = this.props
+    const {delivery, whenToDeliver, woodAmount} = this.props
+
+    const {showError} = this.state
 
     return(
       <div className="-delivery-body main-content-body tab2">
@@ -154,15 +163,16 @@ export default class Tab2 extends Component {
                 />
                 <label
                   htmlFor="dovezeDrvostep"
-                  className={delivery === 'doveze Drvoštěp' ? 'checked' : ''}
+                  className={delivery === 'doveze Drvoštěp' ? 'checked' : woodAmount < 3 ? 'disabled' : ''}
                   // disabled={this.props.woodAmount < 3 ? true : false}
-                  style={ this.props.woodAmount < 3 ? { pointerEvents: 'none' } : {}}
-                  // onClick={this.props.woodAmount < 3 ? () => this.setState({ color: 'red' }) : '' }
+                  // style={ this.props.woodAmount < 3 ? { pointerEvents: 'none' } : {}}
+                  onClick={woodAmount < 3 ? (e) => this.handleDovezeDrvostepIfLessThan(e) : '' }
                 >Doveze Drvoštěp</label>
               </li>
             </ul>
           </div>
         </form>
+        {showError && <div className="error-info-warning">Dovážíme od 3.3prms.</div>}
 
         <h2>Kdy?</h2>
         <form className="attributes when">
