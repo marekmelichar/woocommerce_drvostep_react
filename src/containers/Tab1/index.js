@@ -89,7 +89,7 @@ export default class Tab1 extends Component {
             <ul className="flex">
 
               {/* {opt1 === '50cm' && */}
-                <li className={opt1 === '50cm' ? "item-wrapper drevina predsuch centered" : "item-wrapper drevina predsuch"}>
+                <li className={opt1 === '50cm' ? "item-wrapper drevina tworowstext centered" : "item-wrapper drevina tworowstext"}>
                   <input
                     id={attributes[1].options[0]}
                     type="radio"
@@ -106,7 +106,7 @@ export default class Tab1 extends Component {
               {/* } */}
 
               {/* {opt1 !== '50cm' && */}
-                <li className={opt1 === '50cm' ? "item-wrapper drevina hidden" : "item-wrapper drevina"}>
+                <li className={opt1 === '50cm' ? "item-wrapper drevina tworowstext hidden" : "item-wrapper drevina tworowstext"}>
                   <input
                     id={attributes[1].options[1]}
                     type="radio"
@@ -118,7 +118,7 @@ export default class Tab1 extends Component {
                   <label
                     htmlFor={attributes[1].options[1]}
                     className={attributes[1].options[1] === opt2 ? 'checked' : ''}
-                  >{attributes[1].options[1]}</label>
+                  >{attributes[1].options[1]} <br/> <span className="minitext">vlhkost pod 20%</span></label>
                 </li>
               {/* } */}
               {mustHaveWoodType && <div className="drevina-error-info-warning">
@@ -212,36 +212,25 @@ export default class Tab1 extends Component {
           <div className="wood-handler-right no-select" onClick={increaseWood}>+</div>
         </div>
         {opt2 !== 'Předsušený buk' && <div className="moisted-wood-comparison">
-          <span className="tooltip-holder">
-            <i className="info-icon fas fa-info-circle"></i>
-          </span>
-          <div className="__tooltip mokre-drevo-i">
-            <div>
-              - Spálíte více dřeva na stejné teplo <br/>
-              - Mokré je těžké - drahá doprava <br/>
-              - Až 2000 Kč ročně navíc za nadměrné opotřebení topení
-            </div>
-            <img src="/images/info2.png" alt="Drvostep - horici komin" />
-            <div>Topení mokrým = nebezpečí požáru díky zanesenému komínu</div>
-          </div>
           <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
-          <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.</div>
+          <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.
+            <span className="tooltip-holder">
+              <i className="info-icon fas fa-info-circle"></i>
+            </span>
+            <div className="__tooltip mokre-drevo-i">
+              <div>
+                - Spálíte více dřeva na stejné teplo <br/>
+                - Mokré je těžké - drahá doprava <br/>
+                - Až 2000 Kč ročně navíc za nadměrné opotřebení topení
+              </div>
+              <img src="/images/info2.png" alt="Drvostep - horici komin" />
+              <div>Topení mokrým = nebezpečí požáru díky zanesenému komínu</div>
+            </div>
+          </div>
         </div>}
       </div>
     )
   }
-
-  // infoTooltip = () => {
-  //   return (
-  //     <div>
-  //       1 prms = prostor objemu 1 m3, ve kterém jsou volně nasypaná polínka.
-  //
-  //       Pod tento text Umístit fotku v příloze této bubliny. Pod fotkou pokračovat textem:
-  //
-  //       Bedny plníme 1,1 prms syrového dřeva, proto lze objednat jen násobky této míry. Dřevo během vysychání ztratí 10% objemu.
-  //     </div>
-  //   )
-  // }
 
   render() {
     return this.props.loading ? <div><Spinner /></div> : (
