@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import _ from 'lodash'
+// import _ from 'lodash'
 import accounting from 'accounting'
 
 import Spinner from '../components/Spinner';
@@ -20,7 +20,7 @@ const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
 const PRODUCT_ID = 3642
-const PAGE_ID = 3642
+// const PAGE_ID = 3642
 
 const calculate = (opt1, opt2, recalculatedWoodAmount) => {
 

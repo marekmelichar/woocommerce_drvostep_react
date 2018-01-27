@@ -79,6 +79,13 @@
   pointer-events: none;
 }
 
+.__react_component_tooltip.type-dark {
+  background-color: #A3643A !important;
+}
+
+.__react_component_tooltip.type-dark.place-top:after {
+  border-top-color: #A3643A !important;
+}
 
 
 
@@ -553,7 +560,7 @@ ul, ol {
 }
 
 .osobni-odber-veta {
-  margin-top: 20px;
+  margin-top: 40px;
   font-size: 16px;
   text-align: center;
 }
