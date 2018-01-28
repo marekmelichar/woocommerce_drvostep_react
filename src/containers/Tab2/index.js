@@ -167,7 +167,7 @@ export default class Tab2 extends Component {
                   className={delivery === 'doveze Drvoštěp' ? 'checked' : woodAmount < 3 ? 'disabled' : ''}
                   // disabled={this.props.woodAmount < 3 ? true : false}
                   // style={ this.props.woodAmount < 3 ? { pointerEvents: 'none' } : {}}
-                  onClick={woodAmount < 3 ? (e) => this.handleDovezeDrvostepIfLessThan(e) : '' }
+                  onClick={woodAmount < 3 ? (e) => this.handleDovezeDrvostepIfLessThan(e) : null }
                 >Doveze Drvoštěp</label>
               </li>
             </ul>

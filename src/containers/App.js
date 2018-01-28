@@ -277,7 +277,7 @@ class App extends Component {
 
   handleGoToTab3 = (totalPrice, recalculatedWoodAmount) => {
 
-    const {whereToDeliver} = this.state
+    const {whereToDeliver, delivery} = this.state
 
     if (whereToDeliver === '') {
       this.setState({
@@ -285,7 +285,7 @@ class App extends Component {
       })
     }
 
-    if (whereToDeliver) {
+    if (whereToDeliver || delivery.osobni_odber) {
       return this.setState({
         tab1: false,
         tab2: false,
