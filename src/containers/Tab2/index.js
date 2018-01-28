@@ -79,7 +79,7 @@ export default class Tab2 extends Component {
           <input
             id="obceFilterInput"
             type="text"
-            placeholder="název města kam se poveze dřevo"
+            placeholder="Pište obec - část obce BEZ ULICE a vyberte tlačítkem dole"
             onChange={e => this.handleFiltering(e)}
             value={whereToDeliver ? whereToDeliver : filterValue}
           />
@@ -108,7 +108,7 @@ export default class Tab2 extends Component {
                     </li>
                   )
                 })}
-                {!final.length && <li>Prosím zadejte pouze platný název obce kam dřevo povezeme.</li>}
+                {!final.length && <li style={{color: 'red'}}>Pište obec - část obce BEZ ULICE a vyberte tlačítkem dole.</li>}
               </ul>
             </div>
           </form>

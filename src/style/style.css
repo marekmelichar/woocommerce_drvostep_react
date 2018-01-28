@@ -1190,6 +1190,10 @@ ul, ol {
     left: 30%;
   }
 
+  .header-message-box {
+    width: 100% !important;
+  }
+
 }
 
 @media screen and (max-width: 400px) {
