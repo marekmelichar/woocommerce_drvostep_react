@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import $ from 'jquery'
 // import _ from 'lodash'
 import accounting from 'accounting'
 
@@ -285,6 +286,7 @@ class App extends Component {
       })
     }
 
+    // if (whereToDeliver) {
     if (whereToDeliver || delivery.osobni_odber) {
       return this.setState({
         tab1: false,
@@ -374,7 +376,14 @@ class App extends Component {
               <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na dopravu
               </div>
-              <a rel="nofollow" href={orderLink} data-quantity="1" data-product_id={PRODUCT_ID} data-product_sku="" className="total-price-btn">
+              <a rel="nofollow"
+                // onClick={(e) => this.handleOrderButtonClick(e)}
+                href={orderLink}
+                data-quantity="1"
+                data-product_id={PRODUCT_ID}
+                data-product_sku=""
+                className="total-price-btn"
+                >
                 Objednat
               </a>
             </div>
@@ -383,6 +392,53 @@ class App extends Component {
       )
     }
   }
+
+  // handleOrderButtonClick = e => {
+  //   e.preventDefault()
+  //
+  //   var btn = $('.cart_item .product-name a')
+  //   var remove = $('.product-remove')
+  //
+  //   $(btn).each(function(i, item) {
+  //     if ($(item).text().includes('Palivové dřevo')) {
+  //       remove[i+1].click()
+  //     }
+  //   })
+
+
+
+  //
+  //   // axios.get('/erase_cart.php').then(data => {
+  //   //   console.log(data);
+  //   // })
+  //
+  //   // axios.post('/wp-content/plugins/woocommerce_drvostep/erase_cart.php', {
+  //   //   params: {
+  //   //     do: 'delete_wood_from_cart',
+  //   //     action: 'ACTION_NAME',
+  //   //     _ajax_nonce: `<?php echo wp_create_nonce( 'my_ajax_nonce' ); ?>`
+  //   //   }
+  //   // })
+  //   // .then(function (response) {
+  //   //   console.log(response);
+  //   // })
+  //   // .catch(function (error) {
+  //   //   console.log(error);
+  //   // });
+  //
+  //   var data = {
+  //       action: 'ACTION_NAME',
+  //       do: 'delete_wood_from_cart',
+  //       _ajax_nonce: `<?php echo wp_create_nonce( 'my_ajax_nonce' ); ?>`
+  //   };
+  //
+  //   // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+  //   // If you need it on a public facing page, uncomment the following line:
+  //   // var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+  //   $.post('/wp-content/plugins/woocommerce_drvostep/erase_cart.php', data, function(response) {
+  //       console.log('Got this from the server: ' + response);
+  //   });
+  // }
 
   increaseWood = () => {
 
