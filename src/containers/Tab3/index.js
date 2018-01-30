@@ -40,7 +40,7 @@ export default class Tab3 extends Component {
             <i className="info-icon fas fa-info-circle"></i>
           </span>
         </li>
-        <li><strong>{accounting.formatNumber(2 * data.deliveryPrice, 0, ' ')} Kč</strong></li>
+        <li><strong>{data.deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * data.deliveryPrice, 0, ' ')} Kč</strong></li>
       </ul>
     )
   }

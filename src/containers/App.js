@@ -83,7 +83,7 @@ class App extends Component {
       totalPrice: 0,
       recalculatedWoodAmount: 0,
       distance: 0,
-      deliveryPrice: 0,
+      deliveryPrice: 350,
       mustHaveWoodLength: false,
       mustHaveWoodType: false,
       mustHaveWhereToDeliver: false
