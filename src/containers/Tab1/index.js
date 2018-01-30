@@ -219,7 +219,7 @@ export default class Tab1 extends Component {
             </span>
             <div className="__tooltip mokre-drevo-i">
               <div>
-                - Spálíte více dřeva na stejné teplo <br/>
+                - Spálíte o <strong>40% více mokrého dřeva</strong> na výrobu stejného množství tepla <br/>
                 - Mokré je těžké - drahá doprava <br/>
                 - Až 2000 Kč ročně navíc za nadměrné opotřebení topení
               </div>
