@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import $ from 'jquery'
+// import $ from 'jquery'
 // import _ from 'lodash'
 import accounting from 'accounting'
 
@@ -20,7 +20,7 @@ const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
 // const PRICE_OF_WOOD_50CM = ??? / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
-const PRODUCT_ID = 3642
+const PRODUCT_ID = 4001
 // const PAGE_ID = 3642
 
 const calculate = (opt1, opt2, recalculatedWoodAmount) => {
@@ -377,6 +377,7 @@ class App extends Component {
                 Na dopravu
               </div>
               <a rel="nofollow"
+                id="eraseTheCartItem"
                 // onClick={(e) => this.handleOrderButtonClick(e)}
                 href={orderLink}
                 data-quantity="1"
@@ -396,48 +397,46 @@ class App extends Component {
   // handleOrderButtonClick = e => {
   //   e.preventDefault()
   //
-  //   var btn = $('.cart_item .product-name a')
-  //   var remove = $('.product-remove')
+  //   // var btn = $('.cart_item .product-name a')
+  //   // var remove = $('.product-remove')
   //
-  //   $(btn).each(function(i, item) {
-  //     if ($(item).text().includes('Palivové dřevo')) {
-  //       remove[i+1].click()
-  //     }
-  //   })
-
-
-
+  //   // $(btn).each(function(i, item) {
+  //   //   if ($(item).text().includes('Palivové dřevo')) {
+  //   //     remove[i+1].click()
+  //   //   }
+  //   // })
+  //
+  //
+  //
   //
   //   // axios.get('/erase_cart.php').then(data => {
   //   //   console.log(data);
   //   // })
   //
-  //   // axios.post('/wp-content/plugins/woocommerce_drvostep/erase_cart.php', {
-  //   //   params: {
-  //   //     do: 'delete_wood_from_cart',
-  //   //     action: 'ACTION_NAME',
-  //   //     _ajax_nonce: `<?php echo wp_create_nonce( 'my_ajax_nonce' ); ?>`
-  //   //   }
-  //   // })
-  //   // .then(function (response) {
-  //   //   console.log(response);
-  //   // })
-  //   // .catch(function (error) {
-  //   //   console.log(error);
-  //   // });
-  //
-  //   var data = {
-  //       action: 'ACTION_NAME',
-  //       do: 'delete_wood_from_cart',
-  //       _ajax_nonce: `<?php echo wp_create_nonce( 'my_ajax_nonce' ); ?>`
-  //   };
-  //
-  //   // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-  //   // If you need it on a public facing page, uncomment the following line:
-  //   // var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
-  //   $.post('/wp-content/plugins/woocommerce_drvostep/erase_cart.php', data, function(response) {
-  //       console.log('Got this from the server: ' + response);
+  //   // this is for Woocommerce :
+  //   /*eslint no-undef: 0*/
+  //   axios.post(postdrvostep.ajax_url, {
+  //     action: 'ERASE_CART'
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
   //   });
+  //
+  //   // var data = {
+  //   //     action: 'ACTION_NAME',
+  //   //     do: 'delete_wood_from_cart',
+  //   //     _ajax_nonce: "`<?php echo wp_create_nonce( 'my_ajax_nonce' ); ?>"
+  //   // };
+  //   //
+  //   // // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+  //   // // If you need it on a public facing page, uncomment the following line:
+  //   // var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+  //   // $.post(ajaxurl, data, function(response) {
+  //   //     console.log('Got this from the server: ' + response);
+  //   // });
   // }
 
   increaseWood = () => {
