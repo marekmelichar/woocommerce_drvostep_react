@@ -36,7 +36,10 @@ export default class Tab3 extends Component {
         <li>{data.whereToDeliver}</li>
         <li>
           {2 * data.distance} km
-          <span className="tooltip-holder" data-tip='Doprava se počítá tam i zpět.'>
+          <span
+            className="tooltip-holder delivery-info-tooltip"
+            data-tip="Doprava se počítá tam i zpět. <br/> Pro detailní domluvu dopravy vás <br/> zkontaktuji nejpozději následující <br/> pracovní den, nebo mi rovnou zavolejte."
+            >
             <i className="info-icon fas fa-info-circle"></i>
           </span>
         </li>
@@ -98,7 +101,7 @@ export default class Tab3 extends Component {
           <div className="right">{accounting.formatNumber(data.totalPrice + (2 * data.deliveryPrice), 0, ' ')} Kč</div>
         </div>
         {this.props.calculateTotalPrice()}
-        <ReactTooltip place="top" />
+        <ReactTooltip place="top" html={true} />
       </div>
     )
   }

@@ -85,7 +85,7 @@ export default class Tab2 extends Component {
           />
           {mustHaveWhereToDeliver && <span className="input-error-info-warning" onClick={() => document.getElementById('obceFilterInput').focus()}>* povinné pole</span>}
         </div>
-        <div className="text-center filtered-values">
+        {showFilterResults && <div className="text-center filtered-values">
           <form className="attributes">
             <div className="attribute">
               <ul className="flex">
@@ -112,7 +112,11 @@ export default class Tab2 extends Component {
               </ul>
             </div>
           </form>
-        </div>
+        </div>}
+        {whereToDeliver &&
+          <div className="call-for-details-txt">
+            Pro detailní domluvu dopravy vás zkontaktuji nejpozději následující pracovní den, nebo mi rovnou zavolejte.
+          </div>}
       </div>
     )
   }
@@ -128,6 +132,8 @@ export default class Tab2 extends Component {
     const {delivery, whenToDeliver, woodAmount} = this.props
 
     const {showError} = this.state
+
+    // console.log(this.props.whereToDeliver);
 
     return(
       <div className="-delivery-body main-content-body tab2">
