@@ -21,7 +21,12 @@ const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
 const PRODUCT_ID = 4001
-// const PAGE_ID = 3642
+// const PRODUCT_ID = 42
+
+const CONSUMER_KEY = 'ck_890d5fac6c5984059c4db0519a3ac259043f80a4'
+const CONSUMER_SECRET = 'cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903'
+// const CONSUMER_KEY = 'ck_3dd9dd575eaa0dfba66bcf469a764f135f47aefe'
+// const CONSUMER_SECRET = 'cs_4a9fdc1f7b5ecf8a7b186c4648588d22828e0f5d'
 
 const calculate = (opt1, opt2, recalculatedWoodAmount) => {
 
@@ -98,8 +103,10 @@ class App extends Component {
       method: 'get',
       // btoa(key:secret) from WooCommerce API
       // baseURL: `https://drvostepstagingbrown.marekmelichar.cz/wp-json/wc/v2/products/${PRODUCT_ID}`,
-      baseURL: `https://drvostep.eu/wp-json/wc/v2/products/${PRODUCT_ID}`,
-      headers: {'Authorization': `Basic ${btoa('ck_890d5fac6c5984059c4db0519a3ac259043f80a4:cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903')}`},
+      // baseURL: `https://drvostep.eu/wp-json/wc/v2/products/${PRODUCT_ID}`,
+      baseURL: `/wp-json/wc/v2/products/${PRODUCT_ID}`,
+      // headers: {'Authorization': `Basic ${btoa('ck_890d5fac6c5984059c4db0519a3ac259043f80a4:cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903')}`},
+      headers: {'Authorization': `Basic ${btoa(CONSUMER_KEY + ':' + CONSUMER_SECRET)}`},
       maxRedirects: 0,
     });
 
