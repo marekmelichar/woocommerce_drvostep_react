@@ -22,15 +22,25 @@ const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
 // const PRICE_OF_WOOD_50CM = ??? / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
+// const BASE_URL = 'https://drvostep.eu'
 const BASE_URL = 'https://woocommerce.marekmelichar.cz'
 
 // const PRODUCT_ID = 4001
-const PRODUCT_ID = 42
+const PRODUCT_ID = 187
 
 // const CONSUMER_KEY = 'ck_890d5fac6c5984059c4db0519a3ac259043f80a4'
 // const CONSUMER_SECRET = 'cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903'
 const CONSUMER_KEY = 'ck_3dd9dd575eaa0dfba66bcf469a764f135f47aefe'
 const CONSUMER_SECRET = 'cs_4a9fdc1f7b5ecf8a7b186c4648588d22828e0f5d'
+
+const ID_WOOD_LENGTH = 1
+const ID_WOOD_TYPE = 2
+const ID_SELF_PICKUP = 9
+const ID_DELIVERY_BY_DRVOSTEP = 10
+const ID_AS_SOON_AS_POSSIBLE = 11
+const ID_TILL_ONE_WEEK = 12
+const ID_TILL_ONE_MONTH = 13
+const ID_FILTER_OPTION_VALUE = 14
 
 const calculate = (opt1, opt2, recalculatedWoodAmount) => {
 
@@ -168,7 +178,7 @@ class App extends Component {
   componentDidUpdate() {
     const {opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice, distance} = this.state
 
-    console.log(opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice, distance);
+    console.log('componentDidUpdate', opt1, opt2);
 
     // const localStorage = window.localStorage
 
@@ -495,6 +505,8 @@ class App extends Component {
 
   handleOptionClick = (e, id, opt, distance) => {
 
+    console.log('handleOptionClick', id, opt);
+
     let deliveryPrice = 0;
 
     if (distance) {
@@ -503,7 +515,7 @@ class App extends Component {
       deliveryPrice = +this.state.distance * 20
     }
 
-    if (id === 14) {
+    if (id === ID_FILTER_OPTION_VALUE) {
       if (this.state.delivery.osobni_odber) {
         return this.setState({
           whereToDeliver: opt,
@@ -519,11 +531,11 @@ class App extends Component {
       })
     }
 
-    if (id === 11 || id === 12 || id === 13) {
+    if (id === ID_AS_SOON_AS_POSSIBLE || id === ID_TILL_ONE_WEEK || id === ID_TILL_ONE_MONTH) {
       return this.setState({ whenToDeliver: opt })
     }
 
-    if (id === 10) {
+    if (id === ID_DELIVERY_BY_DRVOSTEP) {
       return this.setState({
         delivery: {
           doveze_drvostep: opt,
@@ -534,7 +546,7 @@ class App extends Component {
       })
     }
 
-    if (id === 9) {
+    if (id === ID_SELF_PICKUP) {
       return this.setState({
         delivery: {
           doveze_drvostep: '',
@@ -545,7 +557,7 @@ class App extends Component {
       })
     }
 
-    if (id === 8) {
+    if (id === ID_WOOD_LENGTH) {
       return this.setState({
         opt1: opt,
         mustHaveWoodLength: false,
@@ -553,7 +565,7 @@ class App extends Component {
       })
     }
 
-    if (id === 7) {
+    if (id === ID_WOOD_TYPE) {
       return this.setState({
         opt2: opt,
         mustHaveWoodLength: false,
