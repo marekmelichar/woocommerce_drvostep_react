@@ -52,7 +52,7 @@ img {
 }
 
 body {
-  font-family: 'Raleway', arial, sans-serif;
+  font-family: 'Raleway', arial, sans-serif !important;
   line-height: 1.5;
   font-weight: normal;
   letter-spacing: 0.02em;

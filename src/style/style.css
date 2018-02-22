@@ -295,6 +295,7 @@ ul, ol {
   text-align: center;
   font-weight: 700;
   margin-bottom: 5px;
+  color: #A3643A;
 }
 
 .wrapper-wood .total-price._row.not-fit {
@@ -709,11 +710,15 @@ ul, ol {
   border-radius: 2px;
   height: 44px;
   margin-bottom: 3px;
+  transition: all 0.2s ease;
 }
 
 .wrapper-wood .wood-counter .filling {
   background: #A3643A;
   min-width: 0;
+  height: 100%;
+  border-radius: 2px;
+  transition: all 0.2s ease;
 }
 
 .wrapper-wood .wood-comparison {
