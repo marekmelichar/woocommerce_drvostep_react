@@ -10,6 +10,8 @@ import Tab1 from './Tab1'
 import Tab2 from './Tab2'
 import Tab3 from './Tab3'
 
+const localStorage = window.localStorage
+
 // const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
 // const PRICE_OF_WOOD_1_PRMS = 1628
 
@@ -20,13 +22,15 @@ const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
 // const PRICE_OF_WOOD_50CM = ??? / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
-const PRODUCT_ID = 4001
-// const PRODUCT_ID = 42
+const BASE_URL = 'https://woocommerce.marekmelichar.cz'
 
-const CONSUMER_KEY = 'ck_890d5fac6c5984059c4db0519a3ac259043f80a4'
-const CONSUMER_SECRET = 'cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903'
-// const CONSUMER_KEY = 'ck_3dd9dd575eaa0dfba66bcf469a764f135f47aefe'
-// const CONSUMER_SECRET = 'cs_4a9fdc1f7b5ecf8a7b186c4648588d22828e0f5d'
+// const PRODUCT_ID = 4001
+const PRODUCT_ID = 42
+
+// const CONSUMER_KEY = 'ck_890d5fac6c5984059c4db0519a3ac259043f80a4'
+// const CONSUMER_SECRET = 'cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903'
+const CONSUMER_KEY = 'ck_3dd9dd575eaa0dfba66bcf469a764f135f47aefe'
+const CONSUMER_SECRET = 'cs_4a9fdc1f7b5ecf8a7b186c4648588d22828e0f5d'
 
 const calculate = (opt1, opt2, recalculatedWoodAmount) => {
 
@@ -104,7 +108,7 @@ class App extends Component {
       // btoa(key:secret) from WooCommerce API
       // baseURL: `https://drvostepstagingbrown.marekmelichar.cz/wp-json/wc/v2/products/${PRODUCT_ID}`,
       // baseURL: `https://drvostep.eu/wp-json/wc/v2/products/${PRODUCT_ID}`,
-      baseURL: `/wp-json/wc/v2/products/${PRODUCT_ID}`,
+      baseURL: `${BASE_URL}/wp-json/wc/v2/products/${PRODUCT_ID}`,
       // headers: {'Authorization': `Basic ${btoa('ck_890d5fac6c5984059c4db0519a3ac259043f80a4:cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903')}`},
       headers: {'Authorization': `Basic ${btoa(CONSUMER_KEY + ':' + CONSUMER_SECRET)}`},
       maxRedirects: 0,
@@ -118,7 +122,7 @@ class App extends Component {
 
         const attributes = wood.attributes
 
-        // console.dir(attributes);
+        // console.log(wood, attributes);
 
         this.setState({
           wood,
@@ -141,7 +145,7 @@ class App extends Component {
 
     let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
-    const localStorage = window.localStorage
+    // const localStorage = window.localStorage
 
     return this.setState({
       loading: false,
@@ -164,7 +168,9 @@ class App extends Component {
   componentDidUpdate() {
     const {opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice, distance} = this.state
 
-    const localStorage = window.localStorage
+    console.log(opt1, opt2, woodAmount, delivery, whenToDeliver, whereToDeliver, deliveryPrice, distance);
+
+    // const localStorage = window.localStorage
 
     localStorage.setItem('opt1', opt1)
     localStorage.setItem('opt2', opt2)
@@ -178,7 +184,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    const localStorage = window.localStorage
+    // const localStorage = window.localStorage
 
     localStorage.removeItem('opt1')
     localStorage.removeItem('opt2')
