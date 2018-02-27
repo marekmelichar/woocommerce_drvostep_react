@@ -3,6 +3,7 @@
 *
 *  basic: #A3643A
 *  hover: #cc804d;
+*  drvostep zelena: #648C39
 */
 
 /*
@@ -10,6 +11,9 @@
 *
 *
 */
+
+
+
 /* .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label */
 .wrapper-wood .attributes input[type="radio"] + label,
 .wrapper-wood .total-price-btn,
@@ -40,6 +44,7 @@
   position: absolute;
   bottom: 0;
   border: none;
+  font-size: 1.5em;
 }
 
 .wrapper-wood .tab2 .total-price .back-btn {
@@ -308,7 +313,7 @@ ul, ol {
   transition: background-color 0.2s ease;
 }
 
-.wrapper-wood .total-price-btn,
+/* .wrapper-wood .total-price-btn, */
 .wrapper-wood .totals-loaded-cars .fully-load-btn {
   border: 1px solid #A3643A;
   background-color: #A3643A;
@@ -317,7 +322,7 @@ ul, ol {
 
 .wrapper-wood input[type="radio"] + label:hover,
 .wrapper-wood .attributes input[type="radio"] + label:hover,
-.wrapper-wood .total-price-btn:hover,
+/* .wrapper-wood .total-price-btn:hover, */
 .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label:hover,
 .wrapper-wood .total-price .back-btn:hover,
 .wrapper-wood .totals-loaded-cars .fully-load-btn:hover {
@@ -325,6 +330,18 @@ ul, ol {
   background-color: #cc804d;
   color: #fff;
   text-decoration: none;
+}
+
+.wrapper-wood .total-price-btn {
+  border: 1px solid #648C39;
+  background-color: #648C39;
+  color: #fff;
+}
+
+.wrapper-wood .total-price-btn:hover {
+  border: 1px solid #66ab36;
+  background-color: #66ab36;
+  color: #fff;
 }
 
 .wrapper-wood input[type="radio"] + label.checked:hover {
@@ -674,7 +691,8 @@ ul, ol {
 
 .wrapper-wood .wood-actual-info .tooltip-holder {
   position: absolute;
-  right: 130px;
+  right: 150px;
+  top: -33px;
 }
 
 .wrapper-wood .wood-body {

@@ -140,8 +140,8 @@ class App extends Component {
       loading: false,
       totalPrice,
       recalculatedWoodAmount,
-      opt1: localStorage.getItem('opt1') || '',
-      opt2: localStorage.getItem('opt2') || '',
+      opt1: localStorage.getItem('opt1') || '33cm',
+      opt2: localStorage.getItem('opt2') || 'Suchý buk',
       woodAmount: +localStorage.getItem('woodAmount') || +woodAmount,
       delivery: {
         doveze_drvostep: localStorage.getItem('doveze_drvostep') || 'doveze Drvoštěp',
@@ -315,10 +315,10 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                <div>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</div>
+                <div><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
               </div>
               <div className="total-price-btn" onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
-                Na dopravu
+                Pokračovat na dopravu
               </div>
             </div>
           </div>
@@ -333,7 +333,7 @@ class App extends Component {
             <div className="_column size_100 flex">
               <div className="total-price-info">
                 <div><strong>Celková cena:</strong></div>
-                <div>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</div>
+                <div><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
               </div>
               <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na výběr dřeva
