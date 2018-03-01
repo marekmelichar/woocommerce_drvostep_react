@@ -212,7 +212,7 @@ export default class Tab1 extends Component {
         </div>
         {opt2 !== 'Předsušený buk' && <div className="moisted-wood-comparison">
           {/* <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div> */}
-          <div className="wood-comparison"><strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> prms suchého odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
+          <div className="wood-comparison"><strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
           <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.
             <span className="tooltip-holder">
               <i className="info-icon fas fa-info-circle"></i>
