@@ -210,7 +210,24 @@ export default class Tab1 extends Component {
           </div>
           <div className="wood-handler-right no-select" onClick={increaseWood}>+</div>
         </div>
-        {opt2 !== 'Předsušený buk' && <div className="moisted-wood-comparison">
+        {opt2 === 'Předsušený buk' && <div className="moisted-wood-comparison">
+          {/* <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div> */}
+          <div className="wood-comparison"><strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong>
+            <span className="tooltip-holder">
+              <i className="info-icon sm fas fa-info-circle"></i>
+            </span>
+            <div className="__tooltip mokre-drevo-i">
+              <div>
+                - Spálíte o <strong>40% více mokrého dřeva</strong> na výrobu stejného množství tepla <br/>
+                - Mokré je těžké - drahá doprava <br/>
+                - Až 2000 Kč ročně navíc za nadměrné opotřebení topení
+              </div>
+              <img src="/images/info2.png" alt="Drvostep - horici komin" />
+              <div>Topení mokrým = nebezpečí požáru díky zanesenému komínu</div>
+            </div>
+          </div>
+        </div>}
+        {opt2 === 'Suchý buk' && <div className="moisted-wood-comparison">
           {/* <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div> */}
           <div className="wood-comparison"><strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
           <div className="wood-info">Suchým dřevem ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost kamen <br/> a zachráníte sousedské vztahy.

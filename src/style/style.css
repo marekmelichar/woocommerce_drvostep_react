@@ -501,6 +501,10 @@ ul, ol {
   left: 27%;
 }
 
+.info-icon.sm {
+  font-size: 100%;
+}
+
 
 
 /* ATTRIBUTES TAB2 */
