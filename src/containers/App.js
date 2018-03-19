@@ -374,7 +374,7 @@ class App extends Component {
               </div>
               <a rel="nofollow"
                 id="eraseTheCartItem"
-                // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin
+                // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                 // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                 href={orderLink}
                 data-quantity="1"
