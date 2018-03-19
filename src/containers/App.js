@@ -355,17 +355,12 @@ class App extends Component {
 
       totalPrice = totalPrice + 2*deliveryPrice
 
-      // orderLink = `https://drvostepstagingbrown.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-      // orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-      // orderLink = `${window.location.origin}/?page-id=${PAGE_ID}&add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
       orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     // this is for delivery = osobni odber
     if (opt1 && opt2 && woodAmount > 0 && delivery.osobni_odber && whenToDeliver && totalPrice) {
 
-      // orderLink = `https://drvostepstagingbrown.marekmelichar.cz/eshop/?add-to-cart=3642&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-      // orderLink = `${window.location.origin}/?page-id=${PAGE_ID}&add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
       orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
@@ -379,7 +374,8 @@ class App extends Component {
               </div>
               <a rel="nofollow"
                 id="eraseTheCartItem"
-                // onClick={(e) => this.handleOrderButtonClick(e)}
+                // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin
+                // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                 href={orderLink}
                 data-quantity="1"
                 data-product_id={PRODUCT_ID}
@@ -394,51 +390,6 @@ class App extends Component {
       )
     }
   }
-
-  // handleOrderButtonClick = e => {
-  //   e.preventDefault()
-  //
-  //   // var btn = $('.cart_item .product-name a')
-  //   // var remove = $('.product-remove')
-  //
-  //   // $(btn).each(function(i, item) {
-  //   //   if ($(item).text().includes('Palivové dřevo')) {
-  //   //     remove[i+1].click()
-  //   //   }
-  //   // })
-  //
-  //
-  //
-  //
-  //   // axios.get('/erase_cart.php').then(data => {
-  //   //   console.log(data);
-  //   // })
-  //
-  //   // this is for Woocommerce :
-  //   /*eslint no-undef: 0*/
-  //   axios.post(postdrvostep.ajax_url, {
-  //     action: 'ERASE_CART'
-  //   })
-  //   .then(function (response) {
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-  //
-  //   // var data = {
-  //   //     action: 'ACTION_NAME',
-  //   //     do: 'delete_wood_from_cart',
-  //   //     _ajax_nonce: "`<?php echo wp_create_nonce( 'my_ajax_nonce' ); ?>"
-  //   // };
-  //   //
-  //   // // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-  //   // // If you need it on a public facing page, uncomment the following line:
-  //   // var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-  //   // $.post(ajaxurl, data, function(response) {
-  //   //     console.log('Got this from the server: ' + response);
-  //   // });
-  // }
 
   increaseWood = () => {
 
