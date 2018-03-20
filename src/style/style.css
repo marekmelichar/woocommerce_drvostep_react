@@ -1168,6 +1168,21 @@ ul, ol {
 
 @media screen and (max-width: 767px) {
 
+  #akcePeletyModal .claim {
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    padding: 1em 1em 6em 1em;
+    font-size: 20px;
+    width: 80%;
+  }
+
+  #akcePeletyModal .claim .total-price-btn {
+    margin-bottom: 0;
+  }
+
   .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(1),
   .wrapper-wood .tab1 .flex .item-wrapper.drevina:nth-child(2) {
     width: 180px;
