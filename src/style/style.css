@@ -1028,6 +1028,8 @@ ul, ol {
   transform: translate3d(-50%, -50%, 0);
   padding: 2em 2em 6em 2em;
   font-size: 22px;
+  font-weight: normal;
+  line-height: 1.25;
 }
 
 #akcePeletyModal .claim .total-price-btn {

@@ -13,10 +13,18 @@ import Tab3 from './Tab3'
 // const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
 // const PRICE_OF_WOOD_1_PRMS = 1628
 
-const PRICE_OF_WOOD_25CM = 1955 / 1.1
-const PRICE_OF_WOOD_25CM_PREDSUCH = 1755 / 1.1
-const PRICE_OF_WOOD_33CM = 1890 / 1.1
-const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
+// const PRICE_OF_WOOD_25CM = 1955 / 1.1
+// const PRICE_OF_WOOD_25CM_PREDSUCH = 1755 / 1.1
+// const PRICE_OF_WOOD_33CM = 1890 / 1.1
+// const PRICE_OF_WOOD_33CM_PREDSUCH = 1690 / 1.1
+// // const PRICE_OF_WOOD_50CM = ??? / 1.1
+// const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
+
+// nove ceny za 1.1 prms :
+const PRICE_OF_WOOD_25CM = 1750 / 1.1
+const PRICE_OF_WOOD_25CM_PREDSUCH = 1650 / 1.1
+const PRICE_OF_WOOD_33CM = 1650 / 1.1
+const PRICE_OF_WOOD_33CM_PREDSUCH = 1550 / 1.1
 // const PRICE_OF_WOOD_50CM = ??? / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
@@ -342,7 +350,7 @@ class App extends Component {
               <div className="total-price-btn" onClick={() => this.setState({ akcePeletyModal: true })}>
                 Pokračovat na dopravu
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -669,10 +677,12 @@ class App extends Component {
         </div>
         {akcePeletyModal && <div id="akcePeletyModal">
           <div className="claim">
-            Chcete dopravu zdarma? <br/>
+            <strong>Chcete dopravu zdarma?</strong>
             <br/>
-            Místo "Doveze Drvoštěp" zadejte "Osobní odběr" a pokračujte dále, až budete v košíku, nezapomeňte do něj přiobjednat <br/>
-            alespoň paletu briket. <br/>
+            <br/>
+            Místo "Doveze Drvoštěp" zadejte "Osobní odběr" a pokračujte do košíku.
+            A v něm nezapomeňte přiobjednat alespoň paletu briket.
+            <br/>
             <br/>
             A máte oboje zadarmo!
             <div class="total-price-btn" onClick={() => this.closeAkcePeletyModal()}>Pokračovat</div>
