@@ -86,7 +86,8 @@ class App extends Component {
       deliveryPrice: 350,
       mustHaveWoodLength: false,
       mustHaveWoodType: false,
-      mustHaveWhereToDeliver: false
+      mustHaveWhereToDeliver: false,
+      akcePeletyModal: false
     }
   }
 
@@ -204,15 +205,31 @@ class App extends Component {
         </div>
         <i className="fas fa-angle-right"></i>
         <div className="tab">
-          {/* <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}> */}
-          <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
+
+          {/* akce Pelety a Brikety : */}
+
+          {tab1 && <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ akcePeletyModal: true })}>
             <i className="fas fa-truck"></i>
-          </div>
+          </div>}
+
+          {tab2 && <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
+            <i className="fas fa-truck"></i>
+          </div>}
+
+          {tab3 && <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
+            <i className="fas fa-truck"></i>
+          </div>}
+
+          {/* normalni stav mimo akce : */}
+
+          {/* <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
+            <i className="fas fa-truck"></i>
+          </div>   */}
+
           <div className="tab-heading">2. Doprava</div>
         </div>
         <i className="fas fa-angle-right"></i>
         <div className="tab">
-          {/* <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}> */}
           <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab3(totalPrice, recalculatedWoodAmount)}>
             <i className="fas fa-list-ul"></i>
           </div>
@@ -317,9 +334,15 @@ class App extends Component {
                 <div><strong>Celková cena:</strong></div>
                 <div><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
               </div>
-              <div className="total-price-btn" onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
+
+              {/* mimo akci : */}
+              {/* <div className="total-price-btn" onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}> */}
+
+              {/* akce Pelety a Brikety */}
+              <div className="total-price-btn" onClick={() => this.setState({ akcePeletyModal: true })}>
                 Pokračovat na dopravu
               </div>
+              
             </div>
           </div>
         </div>
@@ -370,6 +393,7 @@ class App extends Component {
           <div className="_row">
             <div className="_column size_100 flex">
               <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+              {/* <div className="back-btn" onClick={() => this.setState({ akcePeletyModal: true })}> */}
                 Na dopravu
               </div>
               <a rel="nofollow"
@@ -567,9 +591,19 @@ class App extends Component {
     })
   }
 
+  closeAkcePeletyModal = () => {
+    const {totalPrice, recalculatedWoodAmount} = this.state
+
+    this.setState({
+      akcePeletyModal: false
+    })
+
+    return this.handleGoToTab2(totalPrice, recalculatedWoodAmount)
+  }
+
   render() {
 
-    const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
+    const {wood, attributes, delivery, whenToDeliver, whereToDeliver, akcePeletyModal} = this.state
 
     return this.state.loading ? <div><Spinner /></div> : (
       <div className="wrapper-wood">
@@ -633,6 +667,17 @@ class App extends Component {
 
           </div>
         </div>
+        {akcePeletyModal && <div id="akcePeletyModal">
+          <div className="claim">
+            Chcete dopravu zdarma? <br/>
+            <br/>
+            Místo "Doveze Drvoštěp" zadejte "Osobní odběr" a pokračujte dále, až budete v košíku, nezapomeňte do něj přiobjednat <br/>
+            alespoň paletu briket. <br/>
+            <br/>
+            A máte oboje zadarmo!
+            <div class="total-price-btn" onClick={() => this.closeAkcePeletyModal()}>Pokračovat</div>
+          </div>
+        </div>}
       </div>
     )
   }
