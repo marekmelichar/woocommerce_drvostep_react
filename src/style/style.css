@@ -14,6 +14,16 @@
 
 
 
+body {
+  font-family: 'Raleway', arial, sans-serif;
+  line-height: 1.5;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  font-weight: normal;
+}
+
+
+
 /* .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label */
 .wrapper-wood .attributes input[type="radio"] + label,
 .wrapper-wood .total-price-btn,
@@ -173,21 +183,22 @@ ul, ol {
 }
 
 .wrapper-wood {
-  background-image: url(/images/Desktop.png);
+  /* background-image: url(/images/Desktop.png); */
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: cover;
-  padding: 16px 8px;
+  /* padding: 40px; */
 }
 
 .wrapper-wood .main-content {
-  color: #A3643A;
+  color: #786F4D;
 }
 
 .wrapper-wood .person {
-  background-color: rgba(255,255,255,0.8);
-  color: #A3643A;
-  border-radius: 4px;
+  /* background-color: rgba(255,255,255,0.8); */
+  color: #786F4D;
+  /* border-radius: 4px; */
+  border-right: 1px solid #786F4D;
 }
 
 .wrapper-wood .image {
@@ -197,7 +208,8 @@ ul, ol {
 }
 
 .wrapper-wood .image img {
-  border-radius: 4px;
+  max-width: 100%;
+  width: 250px;
 }
 
 .wrapper-wood .contact-info {
@@ -216,8 +228,10 @@ ul, ol {
 }
 
 .wrapper-wood .name-under-photo {
-  font-size: 16px;
-  margin-top: -10px;
+  font-size: 20px;
+  max-width: 240px;
+  width: 100%;
+  margin: 30px auto !important;
 }
 
 
@@ -228,9 +242,9 @@ ul, ol {
   justify-content: space-between;
   padding: 13px 50px 10px 50px;
 
-  background-color: rgba(255,255,255,0.8);
+  /* background-color: rgba(255,255,255,0.8); */
   color: #A3643A;
-  border-radius: 4px;
+  /* border-radius: 4px; */
 }
 
 .tabs svg.fa-angle-right {
@@ -287,9 +301,9 @@ ul, ol {
 /* main-content-body */
 
 .wrapper-wood .main-content-body {
-  background-color: rgba(255,255,255,0.8);
+  /* background-color: rgba(255,255,255,0.8); */
   color: #A3643A;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   padding: 0 50px;
   margin-top: 10px;
   min-height: 544px;

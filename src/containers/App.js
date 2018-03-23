@@ -573,30 +573,30 @@ class App extends Component {
     const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
     return this.state.loading ? <div><Spinner /></div> : (
-      <div className="wrapper-wood">
-        <div className="_row main-content">
-          <div className="_column size_50 person">
-            <div className="image">
+      <div className="container wrapper-wood py-4">
+        <div className="row main-content">
+          <div className="col-4 person">
+            <div className="image text-center">
                 <img src="/images/mazanec.png" alt="Jiri Mazanec - Drvostep" />
             </div>
-            <div className="_row">
-              <div className="_column size_100 text-center">
-                <p className="name-under-photo">Jmenuji se <strong>Jiří Mazanec</strong> a vyřeším s vámi vaši objednávku.</p>
+            <div className="row">
+              <div className="col text-center">
+                <p className="name-under-photo">Jmenuji se Jiří Mazanec a pomohu vám vyřešit vaši objednávku.</p>
               </div>
             </div>
-            <div className="_row">
-              <div className="_column size_50 contact-info">
+            <div className="row">
+              <div className="col-6 contact-info">
                 <p>E-mail:</p>
                 <a href="mailto:jiri.mazanec@drvostep.eu">jiri.mazanec@drvostep.eu</a>
               </div>
-              <div className="_column size_50 contact-info">
+              <div className="col-6 contact-info">
                 <p>Telefon:</p>
                 <a href="tel:+420 737 214 666">+420 737 214 666</a>
               </div>
-              <div className="_column size_50"></div>
+              <div className="col-6"></div>
             </div>
           </div>
-          <div className="_column size_50">
+          <div className="col-8 tabs-right-side">
 
             {this.renderTabs()}
 
