@@ -12,6 +12,7 @@ import IconPhone from '../components/icon_phone';
 import BadgeKvalitaDrvostep from '../components/badge_kvalita_drvostep';
 import IconVyberDreva from '../components/icon_vyber_dreva';
 import IconVyberDopravy from '../components/icon_vyber_dopravy';
+import IconSipka from '../components/icon_sipka';
 
 // nove ceny za 1.1 prms od 20.3.2018 :
 const PRICE_OF_WOOD_25CM = 1750 / 1.1
@@ -186,19 +187,29 @@ class App extends Component {
     let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
     return(
-      <div className="tabs">
-        <div className="tab">
+      <div className="row tabs no-gutters">
+        <div className="col d-flex align-items-center">
           <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
             <IconVyberDreva fill={tab1 ? "#729138" : "#C7BEA3"} />
           </div>
-          <div className="tab-heading">1. Dřevo</div>
+          <div className="tab-heading ml-3">1. Výběr dřeva</div>
         </div>
-        <i className="fas fa-angle-right"></i>
-        <div className="tab">
-          <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
-            <IconVyberDopravy fill={tab2 ? "#729138" : "#C7BEA3"} />
+
+        <div className="col-1 sipka-tabs d-flex align-items-center">
+          <IconSipka />
+        </div>
+
+        <div className="col tab">
+          <div className="row align-items-center">
+            <div className="col d-flex align-items-center justify-content-end">
+              <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
+                <IconVyberDopravy fill={tab2 ? "#729138" : "#C7BEA3"} />
+              </div>
+              <div className="tab-heading ml-3">2. Výběr dopravy</div>
+            </div>
+
           </div>
-          <div className="tab-heading">2. Doprava</div>
+
         </div>
         {/* <i className="fas fa-angle-right"></i>
         <div className="tab">
@@ -297,16 +308,35 @@ class App extends Component {
     let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
     if (tab1) {
+      // return(
+      //   <div>
+      //
+      //   </div>
+      //   <div className="total-price _row not-fit">
+      //     <div className="_row">
+      //       <div className="_column size_100 flex">
+      //         <div className="total-price-info">
+      //           <div><strong>Celková cena:</strong></div>
+      //           <div><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
+      //         </div>
+      //         <div className="total-price-btn" onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
+      //           Pokračovat na dopravu
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // )
       return(
-        <div className="total-price _row not-fit">
-          <div className="_row">
-            <div className="_column size_100 flex">
-              <div className="total-price-info">
-                <div><strong>Celková cena:</strong></div>
-                <div><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
-              </div>
+        <div>
+          <div className="row">
+            <div className="col text-center">
+              <div><strong>CENA DŘEVA: </strong><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col text-center">
               <div className="total-price-btn" onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
-                Pokračovat na dopravu
+                POKRAČOVAT NA VÝBĚR DOPRAVY
               </div>
             </div>
           </div>
