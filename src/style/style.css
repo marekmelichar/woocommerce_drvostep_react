@@ -4,6 +4,8 @@
 *  basic: #A3643A
 *  hover: #cc804d;
 *  drvostep zelena: #648C39
+*  nova zlata : #786F4D
+*  nova zlata hover: #C7BEA3
 */
 
 /*
@@ -218,13 +220,35 @@ ul, ol {
   font-size: 16px;
 }
 
+.wrapper-wood .contact-info svg {
+  max-width: 40px;
+}
+
 .wrapper-wood .contact-info a {
   font-weight: 700;
+  color: #786F4D;
 }
 
 .wrapper-wood .contact-info a:hover {
-  color: #cc804d;
+  color: #C7BEA3;
   text-decoration: none;
+}
+
+.wrapper-wood .quality-badge svg {
+  max-width: 200px;
+}
+
+.wrapper-wood .quality-badge .cls-1 {
+  fill: #729138;
+}
+
+.wrapper-wood .quality-badge .cls-2 {
+  fill-rule:evenodd;
+  fill: #fff;
+}
+
+.wrapper-wood .quality-badge .cls-3 {
+  fill: #786f4d;
 }
 
 .wrapper-wood .name-under-photo {
@@ -236,6 +260,10 @@ ul, ol {
 
 
 /* TABS */
+
+.wrapper-wood .tabs-right-side {
+  padding: 0 90px;
+}
 
 .wrapper-wood .tabs {
   display: flex;
@@ -253,30 +281,31 @@ ul, ol {
 }
 
 .wrapper-wood .tab-icon {
-  width: 60px;
-  height: 60px;
-  border: 1px solid #A3643A;
-  border-radius: 50%;
+  /* width: 60px; */
+  /* height: 60px; */
+  /* border: 1px solid #A3643A; */
+  /* border-radius: 50%; */
   padding: 25px;
   line-height: 1;
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
-  font-size: 30px;
+  /* font-size: 30px; */
   position: relative;
 }
 
 .wrapper-wood .tab-icon svg {
+  width: 80px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
 
-.wrapper-wood .tab-active {
+/* .wrapper-wood .tab-active {
   background-color: #A3643A;
   color: #fff;
-}
+} */
 
 .wrapper-wood .tab-heading {
   font-size: 16px;

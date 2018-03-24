@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-// import $ from 'jquery'
-// import _ from 'lodash'
 import accounting from 'accounting'
 
 import Spinner from '../components/Spinner';
 
 import Tab1 from './Tab1'
 import Tab2 from './Tab2'
-import Tab3 from './Tab3'
+// import Tab3 from './Tab3'
 
-// const PRICE_OF_WOOD_1_PRMS = 1627.2727272727273
-// const PRICE_OF_WOOD_1_PRMS = 1628
+import IconPhone from '../components/icon_phone';
+import BadgeKvalitaDrvostep from '../components/badge_kvalita_drvostep';
+import IconVyberDreva from '../components/icon_vyber_dreva';
+import IconVyberDopravy from '../components/icon_vyber_dopravy';
 
 // nove ceny za 1.1 prms od 20.3.2018 :
 const PRICE_OF_WOOD_25CM = 1750 / 1.1
@@ -22,7 +22,6 @@ const PRICE_OF_WOOD_33CM_PREDSUCH = 1550 / 1.1
 const PRICE_OF_WOOD_50CM_PREDSUCH = 1450 / 1.1
 
 const PRODUCT_ID = 4001
-// const PAGE_ID = 3642
 
 const calculate = (opt1, opt2, recalculatedWoodAmount) => {
 
@@ -97,8 +96,6 @@ class App extends Component {
 
     var instance = axios.create({
       method: 'get',
-      // btoa(key:secret) from WooCommerce API
-      // baseURL: `https://drvostepstagingbrown.marekmelichar.cz/wp-json/wc/v2/products/${PRODUCT_ID}`,
       baseURL: `https://drvostep.eu/wp-json/wc/v2/products/${PRODUCT_ID}`,
       headers: {'Authorization': `Basic ${btoa('ck_890d5fac6c5984059c4db0519a3ac259043f80a4:cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903')}`},
       maxRedirects: 0,
@@ -106,13 +103,10 @@ class App extends Component {
 
     instance()
       .then(data => {
-        // console.log(data.data);
-        // const wood = _.find(data.data, { 'id': 3642 })
+
         const wood = data.data
 
         const attributes = wood.attributes
-
-        // console.dir(attributes);
 
         this.setState({
           wood,
@@ -130,8 +124,6 @@ class App extends Component {
     const {opt1, opt2, woodAmount} = this.state
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
-
-    // let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
 
     let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
@@ -191,34 +183,30 @@ class App extends Component {
 
     let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
 
-    // let totalPrice = Math.round(+recalculatedWoodAmount * PRICE_OF_WOOD_1_PRMS)
-
     let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
 
     return(
       <div className="tabs">
         <div className="tab">
           <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
-            <i className="fas fa-tree"></i>
+            <IconVyberDreva fill={tab1 ? "#729138" : "#C7BEA3"} />
           </div>
           <div className="tab-heading">1. Dřevo</div>
         </div>
         <i className="fas fa-angle-right"></i>
         <div className="tab">
-          {/* <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}> */}
           <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
-            <i className="fas fa-truck"></i>
+            <IconVyberDopravy fill={tab2 ? "#729138" : "#C7BEA3"} />
           </div>
           <div className="tab-heading">2. Doprava</div>
         </div>
-        <i className="fas fa-angle-right"></i>
+        {/* <i className="fas fa-angle-right"></i>
         <div className="tab">
-          {/* <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}> */}
           <div className={`tab-icon ${tab3 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab3(totalPrice, recalculatedWoodAmount)}>
             <i className="fas fa-list-ul"></i>
           </div>
           <div className="tab-heading">3. Shrnutí</div>
-        </div>
+        </div> */}
       </div>
     )
   }
@@ -288,7 +276,6 @@ class App extends Component {
       })
     }
 
-    // if (whereToDeliver) {
     if (whereToDeliver || delivery.osobni_odber) {
       return this.setState({
         tab1: false,
@@ -339,7 +326,6 @@ class App extends Component {
               <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
                 Na výběr dřeva
               </div>
-              {/* <div className="total-price-btn" onClick={() => this.setState({ tab1: false, tab2: false, tab3: true, totalPrice, recalculatedWoodAmount })}> */}
               <div className="total-price-btn" onClick={() => this.handleGoToTab3(totalPrice, recalculatedWoodAmount)}>
                 Shrnutí
               </div>
@@ -585,15 +571,22 @@ class App extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-6 contact-info">
-                <p>E-mail:</p>
-                <a href="mailto:jiri.mazanec@drvostep.eu">jiri.mazanec@drvostep.eu</a>
-              </div>
-              <div className="col-6 contact-info">
-                <p>Telefon:</p>
+              <div className="col contact-info">
+                <IconPhone fill="#786F4D" />
+                <p>Zavolejte mi:</p>
                 <a href="tel:+420 737 214 666">+420 737 214 666</a>
               </div>
-              <div className="col-6"></div>
+            </div>
+            <div className="row">
+              <div className="col contact-info">
+                <p>Napište mi:</p>
+                <a href="mailto:jiri.mazanec@drvostep.eu">jiri.mazanec@drvostep.eu</a>
+              </div>
+            </div>
+            <div className="row mt-5">
+              <div className="col quality-badge text-center">
+                <BadgeKvalitaDrvostep />
+              </div>
             </div>
           </div>
           <div className="col-8 tabs-right-side">
@@ -626,11 +619,11 @@ class App extends Component {
               woodAmount={this.state.woodAmount}
               mustHaveWhereToDeliver={this.state.mustHaveWhereToDeliver}
             />}
-            {this.state.tab3 && <Tab3
+            {/* {this.state.tab3 && <Tab3
               data={this.state}
               handleFullyLoad={this.handleFullyLoad}
               calculateTotalPrice={this.calculateTotalPrice}
-            />}
+            />} */}
 
           </div>
         </div>
