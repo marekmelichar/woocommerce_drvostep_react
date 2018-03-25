@@ -70,8 +70,8 @@ class App extends Component {
       attributes: [],
       opt1: '',
       opt2: '',
-      tab1: true,
-      tab2: false,
+      tab1: false,
+      tab2: true,
       tab3: false,
       woodAmount: 3,
       delivery: {
@@ -346,26 +346,27 @@ class App extends Component {
       )
     }
 
-    if (tab2) {
-      return(
-        <div className="total-price _row not-fit">
-          <div className="_row">
-            <div className="_column size_100 flex">
-              <div className="total-price-info">
-                <div><strong>Celková cena:</strong></div>
-                <div><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
-              </div>
-              <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
-                Na výběr dřeva
-              </div>
-              <div className="total-price-btn" onClick={() => this.handleGoToTab3(totalPrice, recalculatedWoodAmount)}>
-                Shrnutí
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    }
+    // if (tab2) {
+    //   return(
+    //     <div className="total-price _row not-fit">
+    //       <div className="_row">
+    //         <div className="_column size_100 flex">
+    //           <div className="total-price-info">
+    //             <div><strong>Celková cena:</strong></div>
+    //             <div><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
+    //           </div>
+    //           <div className="back-btn" onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
+    //             Na výběr dřeva
+    //           </div>
+    //           <div className="total-price-btn" onClick={() => this.handleGoToTab3(totalPrice, recalculatedWoodAmount)}>
+    //             Shrnutí
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   )
+    // }
+
 
     let orderLink = ''
 
@@ -376,21 +377,12 @@ class App extends Component {
 
       orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
-
-    // this is for delivery = osobni odber
-    if (opt1 && opt2 && woodAmount > 0 && delivery.osobni_odber && whenToDeliver && totalPrice) {
-
-      orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-    }
-
-    if (tab3) {
+    
+    if (tab2) {
       return(
-        <div className="total-price _row not-fit">
-          <div className="_row">
-            <div className="_column size_100 flex">
-              <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
-                Na dopravu
-              </div>
+        <div className="total-bottom-price">
+          <div className="row">
+            <div className="col text-center">
               <a rel="nofollow"
                 id="eraseTheCartItem"
                 // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
@@ -401,13 +393,47 @@ class App extends Component {
                 data-product_sku=""
                 className="total-price-btn"
                 >
-                Objednat
+                PŘIDAT DŘEVO DO KOŠÍKU A POKRAČOVAT
               </a>
             </div>
           </div>
         </div>
       )
     }
+
+
+
+    // this is for delivery = osobni odber
+    // if (opt1 && opt2 && woodAmount > 0 && delivery.osobni_odber && whenToDeliver && totalPrice) {
+    //
+    //   orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+    // }
+
+    // if (tab3) {
+    //   return(
+    //     <div className="total-price _row not-fit">
+    //       <div className="_row">
+    //         <div className="_column size_100 flex">
+    //           <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
+    //             Na dopravu
+    //           </div>
+    //           <a rel="nofollow"
+    //             id="eraseTheCartItem"
+    //             // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
+    //             // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
+    //             href={orderLink}
+    //             data-quantity="1"
+    //             data-product_id={PRODUCT_ID}
+    //             data-product_sku=""
+    //             className="total-price-btn"
+    //             >
+    //             Objednat
+    //           </a>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   )
+    // }
   }
 
   increaseWood = () => {
@@ -588,10 +614,10 @@ class App extends Component {
 
   render() {
 
-    const {wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
+    const {tab1, tab2, wood, attributes, delivery, whenToDeliver, whereToDeliver} = this.state
 
     return this.state.loading ? <div><Spinner /></div> : (
-      <div className="container wrapper-wood py-4">
+      <div className={`container wrapper-wood py-4 ${tab1 ? 'tab1' : ''} ${tab2 ? 'tab2' : ''}`}>
         <div className="row main-content">
           <div className="col-4 person">
             <div className="image text-center">

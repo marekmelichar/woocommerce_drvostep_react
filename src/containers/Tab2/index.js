@@ -54,8 +54,8 @@ export default class Tab2 extends Component {
     if (delivery === 'osobní odběr' && woodAmount >= 3) {
       return (
         <div className="where-to-deliver">
-          {/* <h2>Název obce (bez ulice)</h2> */}
-          <div className="osobni-odber-veta">Po telefonické domluvě si <br/> dřevo u nás vyzvednete.</div>
+          <h2>VYZVEDNUTÍ DŘEVA:</h2>
+          <div className="osobni-odber-veta">Po domluvě si u nás vyzvednete objednané dřevo. <br/> Volejte +420 737 214 666</div>
         </div>
       )
     }
@@ -63,7 +63,7 @@ export default class Tab2 extends Component {
     if (woodAmount < 3) {
       return (
         <div className="where-to-deliver">
-          {/* <h2>Název obce (bez ulice)</h2> */}
+          <h2>VYZVEDNUTÍ DŘEVA:</h2>
           <div className="osobni-odber-veta">Máte vybráno pod 3.3 prms dřeva, po telefonické <br/> domluvě si dřevo u nás vyzvednete.</div>
         </div>
       )
@@ -74,7 +74,7 @@ export default class Tab2 extends Component {
     return (
       <div className="where-to-deliver">
         {/* {delivery !== 'osobní odběr' && woodAmount >= 3 && <h2>Název obce (bez ulice)</h2>} */}
-        <h2>Název obce (bez ulice)</h2>
+        <h2>NÁZEV OBCE:</h2>
         <div className="text-center">
           <input
             id="obceFilterInput"
@@ -85,6 +85,7 @@ export default class Tab2 extends Component {
           />
           {mustHaveWhereToDeliver && <span className="input-error-info-warning" onClick={() => document.getElementById('obceFilterInput').focus()}>* povinné pole</span>}
         </div>
+        {!whereToDeliver && <div className="instructions">Začněte psát název vaší obce a následně vyberte tlačítkem konkrétní obec</div>}
         {showFilterResults && <div className="text-center filtered-values">
           <form className="attributes">
             <div className="attribute">
@@ -137,11 +138,7 @@ export default class Tab2 extends Component {
 
     return(
       <div className="-delivery-body main-content-body tab2">
-        <h2 className="pt-15">Kdo doveze?</h2>
-        <p className="delivery-info">
-          <strong>Dovážíme od 3.3prms.</strong> Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy.
-          {/* <strong style={ this.state.color ? { color: this.state.color } : {}}>Dovážíme od 3.3prms.</strong> Dřevo sklopíme během 15 minut. <br/> Další čas je za 50kč/hod dle domluvy. */}
-        </p>
+        <h2 className="mt-3">ZPŮSOB ODBĚRU DŘEVA:</h2>
         <form className="attributes who">
           <div className="attribute">
             <ul className="flex">
@@ -181,7 +178,7 @@ export default class Tab2 extends Component {
         </form>
         {showError && <div className="error-info-warning">Dovážíme od 3.3prms.</div>}
 
-        <h2>Kdy?</h2>
+        <h2>KDY DŘEVO POTŘEBUJI:</h2>
         <form className="attributes when">
           <div className="attribute">
             <ul className="flex">
