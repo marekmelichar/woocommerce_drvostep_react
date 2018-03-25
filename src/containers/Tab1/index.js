@@ -107,7 +107,7 @@ export default class Tab1 extends Component {
               {/* } */}
 
               {/* {opt1 !== '50cm' && */}
-                <li className={opt1 === '50cm' ? "item-wrapper drevina tworowstext hidden" : "item-wrapper drevina tworowstext"}>
+                <li className={opt1 === '50cm' ? "item-wrapper drevina tworowstext d-none" : "item-wrapper drevina tworowstext"}>
                   <input
                     id={attributes[1].options[1]}
                     type="radio"
