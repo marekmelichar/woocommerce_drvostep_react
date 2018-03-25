@@ -377,7 +377,7 @@ class App extends Component {
 
       orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
-    
+
     if (tab2) {
       return(
         <div className="total-bottom-price">
@@ -393,7 +393,7 @@ class App extends Component {
                 data-product_sku=""
                 className="total-price-btn"
                 >
-                PŘIDAT DŘEVO DO KOŠÍKU A POKRAČOVAT
+                PŘIDAT DŘEVO DO KOŠÍKU
               </a>
             </div>
           </div>
