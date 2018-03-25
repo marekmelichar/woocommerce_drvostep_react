@@ -206,11 +206,11 @@ ul, ol {
 
 .wrapper-wood .image img {
   max-width: 100%;
-  width: 250px;
+  width: 230px;
 }
 
 .wrapper-wood .contact-info {
-  margin: 16px 0;
+  margin: 20px 0 0 0;
   text-align: center;
   font-size: 16px;
 }
@@ -230,7 +230,7 @@ ul, ol {
 }
 
 .wrapper-wood .quality-badge svg {
-  max-width: 200px;
+  max-width: 170px;
 }
 
 .wrapper-wood .quality-badge .cls-1 {
@@ -244,13 +244,14 @@ ul, ol {
 
 .wrapper-wood .quality-badge .cls-3 {
   fill: #786f4d;
+  /* fill: #fff; */
 }
 
 .wrapper-wood .name-under-photo {
-  font-size: 20px;
+  font-size: 18px;
   max-width: 240px;
   width: 100%;
-  margin: 30px auto !important;
+  margin: 0 auto !important;
 }
 
 
@@ -260,21 +261,8 @@ ul, ol {
   padding: 0 90px;
 }
 
-/* .wrapper-wood .tab-icon {
-  padding: 25px;
-  line-height: 1;
-  text-align: center;
-  margin: 0 auto;
-  cursor: pointer;
-  position: relative;
-} */
-
 .wrapper-wood .tab-icon svg {
   width: 80px;
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0); */
 }
 
 .sipka-tabs {
@@ -406,7 +394,7 @@ ul, ol {
 
 
 
-/* ATTRIBUTES TAB1 */
+/* ATTRIBUTES && TAB1 */
 
 .wrapper-wood .tab1 .flex .item-wrapper {
   color: #729138;
@@ -521,9 +509,30 @@ ul, ol {
   font-size: 100%;
 }
 
+.total-bottom-price {
+  margin-top: 100px;
+}
+
+.total-bottom-price .the-price {
+  font-size: 22px;
+}
+
+.total-bottom-price .total-price-btn {
+  margin-top: 15px;
+  border: 1px solid #786F4D;
+  background-color: #786F4D;
+  color: #fff;
+}
+
+.total-bottom-price .total-price-btn:hover {
+  border: 1px solid #C7BEA3;
+  background-color: #C7BEA3;
+  color: #fff;
+}
 
 
-/* ATTRIBUTES TAB2 */
+
+/* ATTRIBUTES && TAB2 */
 
 .wrapper-wood .tab2 .who .flex .item-wrapper:nth-child(1) {
   width: 210px;
@@ -719,6 +728,7 @@ ul, ol {
 .wrapper-wood .wood-body {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .wrapper-wood .wood-handler-left,
@@ -753,6 +763,24 @@ ul, ol {
 .wrapper-wood .wood-counter .filling {
   background: #729138;
   min-width: 0;
+}
+
+.wrapper-wood .wood-counter .wood-counter.progress {
+  position: relative;
+}
+
+.wrapper-wood .wood-counter .amount-inside-filling {
+  position: absolute;
+  color: #729138;
+  right: 66px;
+  top: 16px;
+  line-height: 1;
+  font-size: 13px;
+  transition: all 0.4s linear;
+}
+
+.progress-bar[data-value="100"] ~ .amount-inside-filling {
+  color: #fff;
 }
 
 .wrapper-wood .wood-comparison {

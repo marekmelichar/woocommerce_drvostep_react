@@ -327,10 +327,12 @@ class App extends Component {
       //   </div>
       // )
       return(
-        <div>
+        <div className="total-bottom-price">
           <div className="row">
             <div className="col text-center">
-              <div><strong>CENA DŘEVA: </strong><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong></div>
+              <div className="the-price">
+                <strong>CENA DŘEVA: </strong><strong>{accounting.formatNumber(totalPrice, 0, ' ')} Kč</strong>
+              </div>
             </div>
           </div>
           <div className="row">
@@ -613,7 +615,7 @@ class App extends Component {
                 <a href="mailto:jiri.mazanec@drvostep.eu">jiri.mazanec@drvostep.eu</a>
               </div>
             </div>
-            <div className="row mt-5">
+            <div className="row mt-3">
               <div className="col quality-badge text-center">
                 <BadgeKvalitaDrvostep />
               </div>

@@ -208,7 +208,8 @@ export default class Tab1 extends Component {
         <div className="wood-body">
           <div className="wood-handler-left no-select" onClick={decreaseWood}>-</div>
           <div className="wood-counter progress" onClick={e => handleClickOnWood(e, '.wood-counter.progress')}>
-            <div className="filling progress-bar" role="progressbar" style={{ width: 100 / 7 * woodAmount + '%' }} aria-valuenow={100 / 7 * woodAmount} aria-valuemin="0" aria-valuemax="100"></div>
+            <div className="filling progress-bar" role="progressbar" data-value={100 / 7 * woodAmount} style={{ width: 100 / 7 * woodAmount + '%' }} aria-valuenow={100 / 7 * woodAmount} aria-valuemin="0" aria-valuemax="100"></div>
+            <div className="amount-inside-filling">{recalculatedWoodAmount} prms</div>
           </div>
           <div className="wood-handler-right no-select" onClick={increaseWood}>+</div>
         </div>
