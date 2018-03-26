@@ -144,6 +144,14 @@ ul, ol {
   border-radius: 4px;
 }
 
+*:active,
+*:hover,
+*:focus,
+*:visited {
+  outline: 0;
+  text-decoration: none;
+}
+
 
 
 
@@ -556,6 +564,13 @@ ul, ol {
   color: #fff !important;
 }
 
+.delivery-price {
+  position: absolute;
+  bottom: 115px;
+  left: 0;
+  right: 0;
+}
+
 
 
 /* ATTRIBUTES && TAB2 */
@@ -609,7 +624,7 @@ ul, ol {
 /* FILTERED VALUES */
 
 .wrapper-wood .tab2 .filtered-values {
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .wrapper-wood .where-to-deliver .attributes input[type="radio"] + label {
@@ -659,9 +674,31 @@ ul, ol {
 }
 
 .wrapper-wood .where-to-deliver .instructions {
-  margin-top: 15px;
+  margin-top: 5px;
   text-align: center;
   font-size: 14px;
+}
+
+#eraseTheCartItem:before {
+  content: '';
+  width: 1px;
+  height: 30px;
+  background: #786F4D;
+  position: absolute;
+  top: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#eraseTheCartItemAndGoToBuyBriketyPelety:before {
+  content: '';
+  width: 1px;
+  height: 30px;
+  background: #786F4D;
+  position: absolute;
+  top: -52px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 

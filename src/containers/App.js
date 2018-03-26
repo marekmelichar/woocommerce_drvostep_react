@@ -138,7 +138,7 @@ class App extends Component {
       opt2: localStorage.getItem('opt2') || 'Suchý buk',
       woodAmount: +localStorage.getItem('woodAmount') || +woodAmount,
       delivery: {
-        doveze_drvostep: localStorage.getItem('doveze_drvostep') || 'doveze Drvoštěp',
+        doveze_drvostep: localStorage.getItem('osobni_odber') ? '' : localStorage.getItem('doveze_drvostep') || 'doveze Drvoštěp',
         osobni_odber: localStorage.getItem('osobni_odber') || ''
       },
       whenToDeliver: localStorage.getItem('whenToDeliver') || 'do měsíce',
@@ -379,26 +379,76 @@ class App extends Component {
     }
 
     if (tab2) {
-      return(
-        <div className="total-bottom-price">
-          <div className="row">
-            <div className="col text-center">
-              <a rel="nofollow"
-                id="eraseTheCartItem"
-                // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
-                // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
-                href={orderLink}
-                data-quantity="1"
-                data-product_id={PRODUCT_ID}
-                data-product_sku=""
-                className="total-price-btn"
-                >
-                PŘIDAT DŘEVO DO KOŠÍKU
-              </a>
+      if (delivery.doveze_drvostep) {
+
+        return(
+          <div className="total-bottom-price">
+            {whereToDeliver && <div className="row delivery-price">
+              <div className="col text-center">
+                <strong>
+                  CENA DOPRAVY: {2 * distance} km = {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč<br/>
+                  Při nákupu briket nyní doprava zdarma - uspořte {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč.
+                </strong>
+              </div>
+            </div>}
+            {!whereToDeliver && <div className="row delivery-price">
+              <div className="col text-center">
+                <strong>
+                  PRO VÝPOČET CENY DOPRAVY ZADEJTE OBEC
+                </strong>
+              </div>
+            </div>}
+            <div className="row">
+              <div className="col text-center">
+                <a rel="nofollow"
+                  id="eraseTheCartItem"
+                  // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
+                  // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
+                  href={orderLink}
+                  data-quantity="1"
+                  data-product_id={PRODUCT_ID}
+                  data-product_sku=""
+                  className="total-price-btn"
+                  >
+                  PŘIDAT DŘEVO DO KOŠÍKU
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      )
+        )
+      }
+
+      if (delivery.osobni_odber) {
+
+        return(
+          <div className="total-bottom-price">
+            <div className="row delivery-price">
+              <div className="col text-center">
+                <strong>
+                  Zvažte nákup dřevěných briket <br/>
+                  Při nákupu briket nyní doprava zdarma.
+                </strong>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col text-center">
+                <a rel="nofollow"
+                  id="eraseTheCartItemAndGoToBuyBriketyPelety"
+                  // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
+                  // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
+                  href={orderLink}
+                  data-quantity="1"
+                  data-product_id={PRODUCT_ID}
+                  data-product_sku=""
+                  className="total-price-btn"
+                  >
+                  PŘIDAT DŘEVO DO KOŠÍKU A POKRAČOVAT
+                </a>
+              </div>
+            </div>
+          </div>
+        )
+      }
     }
 
 
