@@ -215,6 +215,7 @@ ul, ol {
 .wrapper-wood .image img {
   max-width: 100%;
   width: 230px;
+  margin: 0 auto;
 }
 
 .wrapper-wood .contact-info {

@@ -375,7 +375,13 @@ class App extends Component {
 
       totalPrice = totalPrice + 2*deliveryPrice
 
-      orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep || delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+      orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.doveze_drvostep}&whenToDeliver=${whenToDeliver}&whereToDeliver=${whereToDeliver}%20${2*distance}%20km&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
+    }
+
+    // this is for delivery = osobni odber
+    if (opt1 && opt2 && woodAmount > 0 && delivery.osobni_odber && whenToDeliver && totalPrice) {
+
+      orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
     }
 
     if (tab2) {
@@ -433,7 +439,8 @@ class App extends Component {
             <div className="row">
               <div className="col text-center">
                 <a rel="nofollow"
-                  id="eraseTheCartItemAndGoToBuyBriketyPelety"
+                  id="eraseTheCartItem"
+                  // id="eraseTheCartItemAndGoToBuyBriketyPelety"
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                   href={orderLink}
@@ -453,11 +460,7 @@ class App extends Component {
 
 
 
-    // this is for delivery = osobni odber
-    // if (opt1 && opt2 && woodAmount > 0 && delivery.osobni_odber && whenToDeliver && totalPrice) {
-    //
-    //   orderLink = `/cart/?add-to-cart=${PRODUCT_ID}&attribute_pa_delka=${opt1}&attribute_pa_drevo=${opt2}&delivery=${delivery.osobni_odber}&whenToDeliver=${whenToDeliver}&quantity=1&price=${totalPrice}&prms=${recalculatedWoodAmount}`
-    // }
+
 
     // if (tab3) {
     //   return(
@@ -485,6 +488,30 @@ class App extends Component {
     //   )
     // }
   }
+
+  // handleOrderButtonClick = (e, orderLink) => {
+  //   e.preventDefault()
+  //
+  //   console.log(typeof window.postdrvostep, orderLink);
+  //
+  //   if (typeof window.postdrvostep !== 'undefined') {
+  //     axios.post(window.postdrvostep.ajax_url, {
+  // 			action: 'ERASE_CART'
+  //     })
+  //     .then(response => {
+  //
+  //       if (response === 'success') {
+  //         window.location.href = orderLink
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.log('error in ERASE_CART ajax');
+  //     })
+  //   } else {
+  //
+  //     return false;
+  //   }
+  // }
 
   increaseWood = () => {
 
