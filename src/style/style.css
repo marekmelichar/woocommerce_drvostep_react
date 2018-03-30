@@ -75,7 +75,8 @@ body {
 .drevina-error-info-warning,
 .input-error-info-warning {
   position: absolute;
-  left: 50%;
+  top: 188px;
+  left: 70%;
   transform: translateX(-50%);
   margin: 8px 0 0 0;
   color: red;
@@ -295,6 +296,7 @@ ul, ol {
 }
 
 .wrapper-wood .main-content-body h2 {
+  color: #786F4D;
   text-align: center;
   font-weight: 700;
   margin-bottom: 5px;
@@ -355,7 +357,7 @@ ul, ol {
 
 .wrapper-wood .attributes input[type="radio"] + label.disabled {
   background-color: transparent;
-  color: #A3643A;
+  color: #648C39;
 }
 
 
@@ -887,6 +889,7 @@ ul, ol {
 /* DELIVERY TAB & CONTENT */
 
 .wrapper-wood .main-content input#obceFilterInput {
+  font-family: 'Raleway', arial, sans-serif;
   border: 1px solid #729138;
   background: transparent;
   padding: 14px;
