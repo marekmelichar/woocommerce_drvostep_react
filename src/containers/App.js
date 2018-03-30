@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import accounting from 'accounting'
+import ReactTooltip from 'react-tooltip'
 
 import Spinner from '../components/Spinner';
 
@@ -13,6 +14,7 @@ import BadgeKvalitaDrvostep from '../components/badge_kvalita_drvostep';
 import IconVyberDreva from '../components/icon_vyber_dreva';
 import IconVyberDopravy from '../components/icon_vyber_dopravy';
 import IconSipka from '../components/icon_sipka';
+import QuestionMark from '../components/questionmark'
 
 // nove ceny za 1.1 prms od 20.3.2018 :
 const PRICE_OF_WOOD_25CM = 1750 / 1.1
@@ -70,8 +72,8 @@ class App extends Component {
       attributes: [],
       opt1: '',
       opt2: '',
-      tab1: false,
-      tab2: true,
+      tab1: true,
+      tab2: false,
       tab3: false,
       woodAmount: 3,
       delivery: {
@@ -392,7 +394,13 @@ class App extends Component {
             {whereToDeliver && <div className="row delivery-price">
               <div className="col text-center">
                 <strong>
-                  CENA DOPRAVY: {2 * distance} km = {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč<br/>
+                  CENA DOPRAVY: {2 * distance} km = {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč
+                  <span
+                    className="tooltip-holder delivery-info-tooltip"
+                    data-tip="Doprava se počítá tam i zpět. <br/> Pro detailní domluvu dopravy vás <br/> zkontaktuji nejpozději následující <br/> pracovní den, nebo mi rovnou zavolejte."
+                    >
+                    <QuestionMark />
+                  </span> <br/>
                   Při nákupu briket nyní doprava zdarma - uspořte {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč.
                 </strong>
               </div>
@@ -420,6 +428,7 @@ class App extends Component {
                 </a>
               </div>
             </div>
+            <ReactTooltip place="top" html={true} />
           </div>
         )
       }

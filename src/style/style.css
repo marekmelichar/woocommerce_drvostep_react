@@ -96,11 +96,11 @@ body {
 }
 
 .__react_component_tooltip.type-dark {
-  background-color: #A3643A !important;
+  background-color: #729138 !important;
 }
 
 .__react_component_tooltip.type-dark.place-top:after {
-  border-top-color: #A3643A !important;
+  border-top-color: #729138 !important;
 }
 
 
@@ -242,20 +242,6 @@ ul, ol {
   max-width: 170px;
 }
 
-.wrapper-wood .quality-badge .cls-1 {
-  fill: #729138;
-}
-
-.wrapper-wood .quality-badge .cls-2 {
-  fill-rule:evenodd;
-  fill: #fff;
-}
-
-.wrapper-wood .quality-badge .cls-3 {
-  fill: #786f4d;
-  /* fill: #fff; */
-}
-
 .wrapper-wood .name-under-photo {
   font-size: 18px;
   max-width: 240px;
@@ -306,11 +292,6 @@ ul, ol {
 .wrapper-wood .main-content-body {
   margin-top: 0;
   min-height: 544px;
-  /* position: absolute;
-  left: 90px;
-  right: 90px;
-  top: 90px;
-  bottom: 0; */
 }
 
 .wrapper-wood .main-content-body h2 {
@@ -518,8 +499,8 @@ ul, ol {
 }
 
 .moisted-wood-comparison .tooltip-holder ~ .__tooltip {
-  top: 90px;
-  left: 27%;
+  top: 180px;
+  left: 32%;
 }
 
 .info-icon.sm {
@@ -540,6 +521,8 @@ ul, ol {
 
 .total-bottom-price .the-price {
   font-size: 22px;
+  position: relative;
+  bottom: 70px;
 }
 
 .total-bottom-price .total-price-btn {
@@ -563,6 +546,10 @@ ul, ol {
   border: 1px solid #C7BEA3;
   background-color: #C7BEA3;
   color: #fff !important;
+}
+
+.total-bottom-price .tooltip-holder {
+  margin-left: 10px;
 }
 
 .delivery-price {
@@ -635,6 +622,7 @@ ul, ol {
   height: 50px;
   line-height: 1.25;
   color: #729138;
+  font-size: 15px;
 }
 
 .wrapper-wood .tab2 .filtered-values .flex .item-wrapper:nth-child(1) {
@@ -881,17 +869,7 @@ ul, ol {
   max-width: 20px;
 }
 
-.tooltip-holder .cls-1 {
-  fill:#729138;
-  fill-rule:evenodd;
-}
 
-.tooltip-holder .cls-2 {
-  font-size:17.67px;
-  fill:#fff;
-  font-family:Raleway-Bold, Raleway;
-  font-weight:700;
-}
 
 
 
