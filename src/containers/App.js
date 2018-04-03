@@ -420,11 +420,20 @@ class App extends Component {
                   id="eraseTheCartItem"
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
-                  href={orderLink}
-                  data-quantity="1"
-                  data-product_id={PRODUCT_ID}
-                  data-product_sku=""
-                  className="total-price-btn add_to_cart_button ajax_add_to_cart"
+                  // href={orderLink}
+                  className="button total-price-btn add_to_cart_button ajax_add_to_cart"
+                  // data-quantity="1"
+                  // data-product_id={PRODUCT_ID}
+                  // data-product_sku=""
+                  data-id={PRODUCT_ID}
+                  data-attribute_pa_delka={opt1}
+                  data-attribute_pa_drevo={opt2}
+                  data-delivery={delivery.doveze_drvostep || delivery.osobni_odber}
+                  data-whenToDeliver={whenToDeliver}
+                  data-whereToDeliver={whereToDeliver}
+                  data-kilometers={2*distance}
+                  data-price={totalPrice}
+                  data-prms={recalculatedWoodAmount}
                   >
                   PŘIDAT DŘEVO DO KOŠÍKU
                 </a>
@@ -450,15 +459,24 @@ class App extends Component {
             <div className="row">
               <div className="col text-center">
                 <a rel="nofollow"
-                  // id="eraseTheCartItem"
-                  id="eraseTheCartItemAndGoToBuyBriketyPelety"
+                  id="eraseTheCartItem"
+                  // id="eraseTheCartItemAndGoToBuyBriketyPelety"
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
-                  href={orderLink}
-                  data-quantity="1"
-                  data-product_id={PRODUCT_ID}
-                  data-product_sku=""
-                  className="total-price-btn add_to_cart_button ajax_add_to_cart"
+                  // href={orderLink}
+                  className="button total-price-btn add_to_cart_button ajax_add_to_cart"
+                  // data-quantity="1"
+                  // data-product_id={PRODUCT_ID}
+                  // data-product_sku=""
+                  data-id={PRODUCT_ID}
+                  data-attribute_pa_delka={opt1}
+                  data-attribute_pa_drevo={opt2}
+                  data-delivery={delivery.doveze_drvostep || delivery.osobni_odber}
+                  data-whenToDeliver={whenToDeliver}
+                  data-whereToDeliver={whereToDeliver}
+                  data-kilometers={2*distance}
+                  data-price={totalPrice}
+                  data-prms={recalculatedWoodAmount}
                   >
                   PŘIDAT DŘEVO DO KOŠÍKU A POKRAČOVAT
                 </a>
@@ -501,27 +519,91 @@ class App extends Component {
   }
 
   // handleOrderButtonClick = (e, orderLink) => {
+  //
+  //   const {opt1, opt2, delivery, whenToDeliver, whereToDeliver, distance, woodAmount} = this.state
+  //
+  //   let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
+  //   let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
+  //
   //   e.preventDefault()
   //
-  //   console.log(typeof window.postdrvostep, orderLink);
+  //   console.log('send it', window.postdrvostep.ajaxurl);
+  //   if (window.postdrvostep.ajaxurl) {
+  //     window.jQuery.ajax({
+  //   		url : window.postdrvostep.ajax_url,
+  //   		type : 'post',
+  //   		data : {
+  //   			action: 'ERASE_CART'
+  //   		},
+  //   		success : function( response ) {
+  //         if (response === 'success') {
+  //           console.log('erased the CART success', response);
   //
-  //   if (typeof window.postdrvostep !== 'undefined') {
-  //     axios.post(window.postdrvostep.ajax_url, {
-  // 			action: 'ERASE_CART'
-  //     })
-  //     .then(response => {
+  //           if (window.TEST_AJAX_URL.ajaxurl) {
   //
-  //       if (response === 'success') {
-  //         window.location.href = orderLink
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log('error in ERASE_CART ajax');
-  //     })
-  //   } else {
+  //             window.jQuery.ajax({
+  //           		url : window.TEST_AJAX_URL.ajaxurl,
+  //           		type : 'post',
+  //           		data : {
+  //           			action: 'TEST_AJAX',
+  //                 nextNonce: window.TEST_AJAX_URL.nextNonce,
+  //                 id: PRODUCT_ID,
+  //                 attribute_pa_delka: opt1,
+  //                 attribute_pa_drevo: opt2,
+  //                 delivery: delivery.doveze_drvostep || delivery.osobni_odber,
+  //                 whenToDeliver: whenToDeliver,
+  //                 whereToDeliver: whereToDeliver,
+  //                 kilometers: 2*distance,
+  //                 price: totalPrice,
+  //                 prms: recalculatedWoodAmount
+  //           		},
+  //           		success: function( response ) {
+  //                 console.log('AJAX SUCCESS', response);
+  //               },
+  //           		error: function( err ) {
+  //                 console.log('AJAX ERROR', err);
+  //               }
+  //       	    })
   //
-  //     return false;
+  //           } else {
+  //
+  //             return false;
+  //           }
+  //         }
+  //   		}
+  //   	})
   //   }
+  //
+  //   // if (window.TEST_AJAX_URL.ajaxurl) {
+  //   //
+  //   //   window.jQuery.ajax({
+  //   // 		url : window.TEST_AJAX_URL.ajaxurl,
+  //   // 		type : 'post',
+  //   // 		data : {
+  //   // 			action: 'TEST_AJAX',
+  //   //       nextNonce: window.TEST_AJAX_URL.nextNonce,
+  //   //       id: PRODUCT_ID,
+  //   //       attribute_pa_delka: opt1,
+  //   //       attribute_pa_drevo: opt2,
+  //   //       delivery: delivery.doveze_drvostep || delivery.osobni_odber,
+  //   //       whenToDeliver: whenToDeliver,
+  //   //       whereToDeliver: whereToDeliver,
+  //   //       kilometers: 2*distance,
+  //   //       price: totalPrice,
+  //   //       prms: recalculatedWoodAmount
+  //   // 		},
+  //   // 		success: function( response ) {
+  //   //       console.log('AJAX SUCCESS', response);
+  //   //     },
+  //   // 		error: function( err ) {
+  //   //       console.log('AJAX ERROR', err);
+  //   //     }
+	//   //   })
+  //   //
+  //   // } else {
+  //   //
+  //   //   return false;
+  //   // }
   // }
 
   increaseWood = () => {
