@@ -543,12 +543,13 @@ ul, ol {
   font-size: 22px;
   position: relative;
   bottom: 0;
+  margin-bottom: 10px;
 }
 
 .total-bottom-price .total-price-btn {
   font-weight: normal;
   padding: 14px;
-  margin-top: 12px;
+  /* margin-top: 12px; */
   border: 1px solid #786F4D;
   background-color: #786F4D;
   color: #fff !important;
@@ -576,7 +577,7 @@ ul, ol {
 
 .delivery-price {
   position: absolute;
-  bottom: 115px;
+  top: -30px;
   left: 0;
   right: 0;
 }
@@ -634,7 +635,7 @@ ul, ol {
 /* FILTERED VALUES */
 
 .wrapper-wood .tab2 .filtered-values {
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .wrapper-wood .tab2 .filtered-values .flex {
@@ -674,7 +675,7 @@ ul, ol {
 }
 
 .osobni-odber-veta {
-  margin-top: 40px;
+  margin-top: 0;
   font-size: 16px;
   text-align: center;
 }
@@ -684,7 +685,8 @@ ul, ol {
 }
 
 .call-for-details-txt {
-  margin-top: 2em;
+  margin-top: 15px;
+  text-align: center;
 }
 
 .wrapper-wood .where-to-deliver .instructions {
@@ -693,7 +695,7 @@ ul, ol {
   font-size: 14px;
 }
 
-#eraseTheCartItem:before {
+/* #eraseTheCartItem:before {
   content: '';
   width: 1px;
   height: 30px;
@@ -702,6 +704,14 @@ ul, ol {
   top: -52px;
   left: 50%;
   transform: translateX(-50%);
+} */
+
+#eraseTheCartItem.final-add-to-cart {
+  padding: 5px 14px;
+}
+
+#eraseTheCartItem .promo-text-in-button {
+  font-size: 12px;
 }
 
 #eraseTheCartItem.loading {
@@ -714,7 +724,7 @@ ul, ol {
   pointer-events: none;
 }
 
-#eraseTheCartItemAndGoToBuyBriketyPelety:before {
+/* #eraseTheCartItemAndGoToBuyBriketyPelety:before {
   content: '';
   width: 1px;
   height: 30px;
@@ -723,7 +733,7 @@ ul, ol {
   top: -52px;
   left: 50%;
   transform: translateX(-50%);
-}
+} */
 
 
 /* TAB 3 */
@@ -956,15 +966,19 @@ ul, ol {
 
 .wrapper-wood .arrow {
   position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  margin-bottom: 10px;
 }
 
 .wrapper-wood .line {
-    margin-top:14px;
-    width:2px;
-    background: #786F4D;
-    height:100px;
-    position: relative;
-    left: 7px;
+  margin-top:14px;
+  width:2px;
+  background: #786F4D;
+  height:70px;
+  position: relative;
+  left: 7px;
 }
 .wrapper-wood .point {
   position: relative;

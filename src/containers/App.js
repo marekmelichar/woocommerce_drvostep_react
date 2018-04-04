@@ -403,7 +403,7 @@ class App extends Component {
                     >
                     <QuestionMark />
                   </span> <br/>
-                  Při nákupu briket nyní doprava zdarma - uspořte {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč.
+                  {/* Při nákupu briket nyní doprava zdarma - uspořte {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč. */}
                 </strong>
               </div>
             </div>}
@@ -420,12 +420,12 @@ class App extends Component {
             </div>
             <div className="row">
               <div className="col text-center">
-                <a rel="nofollow"
+                <div rel="nofollow"
                   id="eraseTheCartItem"
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                   // href={orderLink}
-                  className={`button total-price-btn add_to_cart_button ajax_add_to_cart ${whereToDeliver === '' ? 'disabled' : ''}`}
+                  className={`final-add-to-cart button total-price-btn add_to_cart_button ajax_add_to_cart ${whereToDeliver === '' ? 'disabled' : ''}`}
                   // data-quantity="1"
                   // data-product_id={PRODUCT_ID}
                   // data-product_sku=""
@@ -439,8 +439,13 @@ class App extends Component {
                   data-price={totalPrice}
                   data-prms={recalculatedWoodAmount}
                   >
-                  PŘIDAT DŘEVO DO KOŠÍKU
-                </a>
+                  <div>
+                    PŘIDAT DŘEVO DO KOŠÍKU
+                  </div>
+                  <div className="promo-text-in-button">
+                    Kupte ještě paletu briket a uspořte {deliveryPrice < 350 ? 350 : accounting.formatNumber(2 * deliveryPrice, 0, ' ')} Kč za dopravu.
+                  </div>
+                </div>
               </div>
             </div>
             <ReactTooltip place="top" html={true} />
@@ -454,25 +459,25 @@ class App extends Component {
           <div className="total-bottom-price">
             <div className="row delivery-price">
               <div className="col text-center">
-                <strong>
+                {/* <strong>
                   Zvažte nákup dřevěných briket <br/>
                   Při nákupu briket nyní doprava zdarma.
-                </strong>
+                </strong> */}
               </div>
             </div>
             <div class="arrow">
-              <div class="line"></div>
+              <div class="line" style={{height: 170}}></div>
               <div class="point"></div>
             </div>
             <div className="row">
               <div className="col text-center">
-                <a rel="nofollow"
+                <div rel="nofollow"
                   id="eraseTheCartItem"
                   // id="eraseTheCartItemAndGoToBuyBriketyPelety"
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                   // href={orderLink}
-                  className="button total-price-btn add_to_cart_button ajax_add_to_cart"
+                  className="final-add-to-cart button total-price-btn add_to_cart_button ajax_add_to_cart"
                   // data-quantity="1"
                   // data-product_id={PRODUCT_ID}
                   // data-product_sku=""
@@ -486,8 +491,13 @@ class App extends Component {
                   data-price={totalPrice}
                   data-prms={recalculatedWoodAmount}
                   >
-                  PŘIDAT DŘEVO DO KOŠÍKU A POKRAČOVAT
-                </a>
+                  <div>
+                    PŘIDAT DŘEVO DO KOŠÍKU
+                  </div>
+                  <div className="promo-text-in-button">
+                    Zvažte nákup briket - nyní doprava zdarma.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
