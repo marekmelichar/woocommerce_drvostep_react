@@ -438,6 +438,7 @@ class App extends Component {
                   data-kilometers={2*distance}
                   data-price={totalPrice}
                   data-prms={recalculatedWoodAmount}
+                  data-priceofdelivery={2*deliveryPrice}
                   >
                   <div>
                     PŘIDAT DŘEVO DO KOŠÍKU
@@ -490,6 +491,7 @@ class App extends Component {
                   data-kilometers={2*distance}
                   data-price={totalPrice}
                   data-prms={recalculatedWoodAmount}
+                  data-priceofdelivery={2*deliveryPrice}
                   >
                   <div>
                     PŘIDAT DŘEVO DO KOŠÍKU
