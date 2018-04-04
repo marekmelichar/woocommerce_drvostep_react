@@ -190,20 +190,20 @@ class App extends Component {
 
     return(
       <div className="row tabs no-gutters">
-        <div className="col d-flex align-items-center">
+        <div id="forTab1" className="to-be-flexed __col col-md-5">
           <div className={`tab-icon ${tab1 ? 'tab-active' : ''}`} onClick={() => this.setState({ tab1: true, tab2: false, tab3: false, totalPrice, recalculatedWoodAmount })}>
             <IconVyberDreva fill={tab1 ? "#729138" : "#C7BEA3"} />
           </div>
           <div className="tab-heading ml-3">1. Výběr dřeva</div>
         </div>
 
-        <div className="col-1 sipka-tabs d-flex align-items-center">
+        <div id="forTabsMiddleArrow" className="to-be-flexed __col-1 col-md-2 sipka-tabs">
           <IconSipka />
         </div>
 
-        <div className="col tab">
+        <div id="forTab2" className="__col col-md-5 tab">
           <div className="row align-items-center">
-            <div className="col d-flex align-items-center justify-content-end">
+            <div className="to-be-flexed col">
               <div className={`tab-icon ${tab2 ? 'tab-active' : ''}`} onClick={() => this.handleGoToTab2(totalPrice, recalculatedWoodAmount)}>
                 <IconVyberDopravy fill={tab2 ? "#729138" : "#C7BEA3"} />
               </div>
@@ -486,125 +486,7 @@ class App extends Component {
         )
       }
     }
-
-
-
-
-
-    // if (tab3) {
-    //   return(
-    //     <div className="total-price _row not-fit">
-    //       <div className="_row">
-    //         <div className="_column size_100 flex">
-    //           <div className="back-btn" onClick={() => this.setState({ tab1: false, tab2: true, tab3: false, totalPrice, recalculatedWoodAmount })}>
-    //             Na dopravu
-    //           </div>
-    //           <a rel="nofollow"
-    //             id="eraseTheCartItem"
-    //             // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
-    //             // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
-    //             href={orderLink}
-    //             data-quantity="1"
-    //             data-product_id={PRODUCT_ID}
-    //             data-product_sku=""
-    //             className="total-price-btn"
-    //             >
-    //             Objednat
-    //           </a>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   )
-    // }
   }
-
-  // handleOrderButtonClick = (e, orderLink) => {
-  //
-  //   const {opt1, opt2, delivery, whenToDeliver, whereToDeliver, distance, woodAmount} = this.state
-  //
-  //   let recalculatedWoodAmount = (woodAmount * 1.1).toFixed(1)
-  //   let totalPrice = calculate(opt1, opt2, recalculatedWoodAmount)
-  //
-  //   e.preventDefault()
-  //
-  //   console.log('send it', window.postdrvostep.ajaxurl);
-  //   if (window.postdrvostep.ajaxurl) {
-  //     window.jQuery.ajax({
-  //   		url : window.postdrvostep.ajax_url,
-  //   		type : 'post',
-  //   		data : {
-  //   			action: 'ERASE_CART'
-  //   		},
-  //   		success : function( response ) {
-  //         if (response === 'success') {
-  //           console.log('erased the CART success', response);
-  //
-  //           if (window.TEST_AJAX_URL.ajaxurl) {
-  //
-  //             window.jQuery.ajax({
-  //           		url : window.TEST_AJAX_URL.ajaxurl,
-  //           		type : 'post',
-  //           		data : {
-  //           			action: 'TEST_AJAX',
-  //                 nextNonce: window.TEST_AJAX_URL.nextNonce,
-  //                 id: PRODUCT_ID,
-  //                 attribute_pa_delka: opt1,
-  //                 attribute_pa_drevo: opt2,
-  //                 delivery: delivery.doveze_drvostep || delivery.osobni_odber,
-  //                 whenToDeliver: whenToDeliver,
-  //                 whereToDeliver: whereToDeliver,
-  //                 kilometers: 2*distance,
-  //                 price: totalPrice,
-  //                 prms: recalculatedWoodAmount
-  //           		},
-  //           		success: function( response ) {
-  //                 console.log('AJAX SUCCESS', response);
-  //               },
-  //           		error: function( err ) {
-  //                 console.log('AJAX ERROR', err);
-  //               }
-  //       	    })
-  //
-  //           } else {
-  //
-  //             return false;
-  //           }
-  //         }
-  //   		}
-  //   	})
-  //   }
-  //
-  //   // if (window.TEST_AJAX_URL.ajaxurl) {
-  //   //
-  //   //   window.jQuery.ajax({
-  //   // 		url : window.TEST_AJAX_URL.ajaxurl,
-  //   // 		type : 'post',
-  //   // 		data : {
-  //   // 			action: 'TEST_AJAX',
-  //   //       nextNonce: window.TEST_AJAX_URL.nextNonce,
-  //   //       id: PRODUCT_ID,
-  //   //       attribute_pa_delka: opt1,
-  //   //       attribute_pa_drevo: opt2,
-  //   //       delivery: delivery.doveze_drvostep || delivery.osobni_odber,
-  //   //       whenToDeliver: whenToDeliver,
-  //   //       whereToDeliver: whereToDeliver,
-  //   //       kilometers: 2*distance,
-  //   //       price: totalPrice,
-  //   //       prms: recalculatedWoodAmount
-  //   // 		},
-  //   // 		success: function( response ) {
-  //   //       console.log('AJAX SUCCESS', response);
-  //   //     },
-  //   // 		error: function( err ) {
-  //   //       console.log('AJAX ERROR', err);
-  //   //     }
-	//   //   })
-  //   //
-  //   // } else {
-  //   //
-  //   //   return false;
-  //   // }
-  // }
 
   increaseWood = () => {
 
@@ -789,7 +671,7 @@ class App extends Component {
     return this.state.loading ? <div><Spinner /></div> : (
       <div className={`container wrapper-wood py-4 ${tab1 ? 'tab1' : ''} ${tab2 ? 'tab2' : ''}`}>
         <div className="row main-content">
-          <div className="col-4 person">
+          <div className="col-md-4 person">
             <div className="image text-center">
                 <img src="/images/mazanec.png" alt="Jiri Mazanec - Drvostep" />
             </div>
@@ -817,7 +699,7 @@ class App extends Component {
               </div>
             </div>
           </div>
-          <div className="col-8 tabs-right-side">
+          <div className="col-md-8 tabs-right-side">
 
             {this.renderTabs()}
 
