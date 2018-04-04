@@ -414,6 +414,10 @@ class App extends Component {
                 </strong>
               </div>
             </div>}
+            <div class="arrow">
+              <div class="line"></div>
+              <div class="point"></div>
+            </div>
             <div className="row">
               <div className="col text-center">
                 <a rel="nofollow"
@@ -421,7 +425,7 @@ class App extends Component {
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                   // href={orderLink}
-                  className="button total-price-btn add_to_cart_button ajax_add_to_cart"
+                  className={`button total-price-btn add_to_cart_button ajax_add_to_cart ${whereToDeliver === '' ? 'disabled' : ''}`}
                   // data-quantity="1"
                   // data-product_id={PRODUCT_ID}
                   // data-product_sku=""
@@ -429,8 +433,8 @@ class App extends Component {
                   data-attribute_pa_delka={opt1}
                   data-attribute_pa_drevo={opt2}
                   data-delivery={delivery.doveze_drvostep || delivery.osobni_odber}
-                  data-whenToDeliver={whenToDeliver}
-                  data-whereToDeliver={whereToDeliver}
+                  data-whentodeliver={whenToDeliver}
+                  data-wheretodeliver={whereToDeliver}
                   data-kilometers={2*distance}
                   data-price={totalPrice}
                   data-prms={recalculatedWoodAmount}
@@ -455,6 +459,10 @@ class App extends Component {
                   Při nákupu briket nyní doprava zdarma.
                 </strong>
               </div>
+            </div>
+            <div class="arrow">
+              <div class="line"></div>
+              <div class="point"></div>
             </div>
             <div className="row">
               <div className="col text-center">

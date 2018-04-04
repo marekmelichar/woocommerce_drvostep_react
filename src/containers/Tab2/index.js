@@ -73,7 +73,6 @@ export default class Tab2 extends Component {
 
     return (
       <div className="where-to-deliver">
-        {/* {delivery !== 'osobní odběr' && woodAmount >= 3 && <h2>Název obce (bez ulice)</h2>} */}
         <h2>NÁZEV OBCE:</h2>
         <div className="text-center">
           <input
@@ -104,7 +103,9 @@ export default class Tab2 extends Component {
                         <label
                           htmlFor={o.Obec}
                           className={whereToDeliver === o.Obec ? 'checked' : ''}
-                        ><span className="obec-text-inside">{o.Obec}</span></label>
+                        >
+                          <span className="obec-text-inside">{o.Obec}</span>
+                        </label>
                       </div>
                     </li>
                   )
