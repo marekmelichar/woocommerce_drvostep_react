@@ -192,7 +192,7 @@ export default class Tab1 extends Component {
 
     return(
       <div className="wood-range-input">
-        <h2>Vyberte množství dřeva</h2>
+        <h2>Vyberte množství dřeva:</h2>
         <div className="wood-actual-info">
           {/* <strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého */}
           <span className="tooltip-holder">
@@ -233,10 +233,9 @@ export default class Tab1 extends Component {
         </div>}
         {opt2 === 'Suchý buk' && <div className="moisted-wood-comparison">
           {/* <div className="wood-comparison">odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div> */}
-          <div className="wood-comparison"><strong>{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'}</strong> suchého odpovídá <strong>{compareToMoistWood} prms</strong> nedosušeného</div>
-          <div className="wood-info">Nákupem suchého dřeva ušetříte až <strong>{savedAmount} Kč</strong>, prodloužíte životnost vašich kamen <br/> a zachráníte sousedské vztahy.
+          <div className="wood-comparison">{woodAmount === 0 ? 0 : recalculatedWoodAmount + ' prms'} suchého dřeva odpovídá {compareToMoistWood} prms nedosušeného dřeva.</div>
+          <div className="wood-info">Nákupem suchého dřeva ušetříte až {savedAmount} Kč, prodloužíte životnost vašich kamen a zachráníte sousedské vztahy.
             <span className="tooltip-holder">
-              {/* <i className="info-icon fas fa-info-circle"></i> */}
               <QuestionMark />
             </span>
             <div className="__tooltip mokre-drevo-i">

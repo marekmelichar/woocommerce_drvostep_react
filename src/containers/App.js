@@ -99,7 +99,7 @@ class App extends Component {
 
     var instance = axios.create({
       method: 'get',
-      baseURL: `https://drvostep.eu/wp-json/wc/v2/products/${PRODUCT_ID}`,
+      baseURL: `https://drvostep.marekmelichar.cz/wp-json/wc/v2/products/${PRODUCT_ID}`,
       headers: {'Authorization': `Basic ${btoa('ck_890d5fac6c5984059c4db0519a3ac259043f80a4:cs_db86c197f1bf4a7a3a1aced7e3d8df1e51e44903')}`},
       maxRedirects: 0,
     });

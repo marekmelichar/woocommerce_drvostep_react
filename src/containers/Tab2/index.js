@@ -172,17 +172,20 @@ export default class Tab2 extends Component {
                   // disabled={this.props.woodAmount < 3 ? true : false}
                   // style={ this.props.woodAmount < 3 ? { pointerEvents: 'none' } : {}}
                   onClick={woodAmount < 3 ? (e) => this.handleDovezeDrvostepIfLessThan(e) : null }
-                >Doveze Drvoštěp</label>
+                >Dřevo mi doveze Drvoštěp</label>
               </li>
             </ul>
           </div>
         </form>
         {showError && <div className="error-info-warning">Dovážíme od 3.3prms.</div>}
 
-        <h2>KDY DŘEVO POTŘEBUJI:</h2>
+        <h2>KDY DŘEVO PŘIVEZEME:</h2>
         <form className="attributes when">
           <div className="attribute">
-            <ul className="flex">
+            Objednané dřevo vám přivezeme po telefonické domluvě.
+            Ozveme se vám následující pracovní den na vaše telefonní číslo.
+
+            {/* <ul className="flex">
               <li className="item-wrapper">
                 <input
                   id="coNejdrive"
@@ -225,7 +228,7 @@ export default class Tab2 extends Component {
                   className={whenToDeliver === 'do měsíce' ? 'checked' : ''}
                 >Do měsíce</label>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </form>
 
