@@ -425,7 +425,7 @@ class App extends Component {
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                   // href={orderLink}
-                  className={`final-add-to-cart button total-price-btn add_to_cart_button ajax_add_to_cart ${whereToDeliver === '' ? 'disabled' : ''}`}
+                  className={`final-add-to-cart button total-price-btn ${whereToDeliver === '' ? 'disabled' : ''}`}
                   // data-quantity="1"
                   // data-product_id={PRODUCT_ID}
                   // data-product_sku=""
@@ -478,7 +478,7 @@ class App extends Component {
                   // dont use the onClick here, have to handle that ajax call in eraseCart.js inside the plugin :
                   // onClick={(e) => this.handleOrderButtonClick(e, orderLink)}
                   // href={orderLink}
-                  className="final-add-to-cart button total-price-btn add_to_cart_button ajax_add_to_cart"
+                  className="final-add-to-cart button total-price-btn"
                   // data-quantity="1"
                   // data-product_id={PRODUCT_ID}
                   // data-product_sku=""
