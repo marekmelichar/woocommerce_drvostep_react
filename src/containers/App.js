@@ -415,7 +415,7 @@ class App extends Component {
               </div>
             </div>}
             <div class="arrow">
-              <div class="line"></div>
+              <div class="line doveze-drvostep"></div>
               <div class="point"></div>
             </div>
             <div className="row">
@@ -467,7 +467,7 @@ class App extends Component {
               </div>
             </div>
             <div class="arrow">
-              <div class="line" style={{height: 170}}></div>
+              <div class="line osobni-odber" style={{height: 170}}></div>
               <div class="point"></div>
             </div>
             <div className="row">
